@@ -35,7 +35,8 @@ client = NeptuneAPIV2(
     api_key=os.environ.get("NEPTUNE_API_V2_API_KEY"),  # This is the default and can be omitted
 )
 
-client.v1.status.check_health()
+response = client.v1.status.check_health()
+print(response.status)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -58,7 +59,8 @@ client = AsyncNeptuneAPIV2(
 
 
 async def main() -> None:
-    await client.v1.status.check_health()
+    response = await client.v1.status.check_health()
+    print(response.status)
 
 
 asyncio.run(main())
@@ -91,7 +93,8 @@ async def main() -> None:
         api_key=os.environ.get("NEPTUNE_API_V2_API_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
-        await client.v1.status.check_health()
+        response = await client.v1.status.check_health()
+        print(response.status)
 
 
 asyncio.run(main())
@@ -233,7 +236,7 @@ response = client.v1.status.with_raw_response.check_health()
 print(response.headers.get('X-My-Header'))
 
 status = response.parse()  # get the object that `v1.status.check_health()` would have returned
-print(status)
+print(status.status)
 ```
 
 These methods return an [`APIResponse`](https://github.com/stainless-sdks/neptune-api-v2-python/tree/main/src/neptune_api_v2/_response.py) object.
