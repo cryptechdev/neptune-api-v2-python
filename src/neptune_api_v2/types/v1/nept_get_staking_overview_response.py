@@ -43,7 +43,7 @@ class DataGlobalState(BaseModel):
     stake_acc: str
     """**TODO:** rename, proper description
 
-    stake_acc = âˆ« ( emission_rate / total_reward_weight ) dt
+    stake_acc = ∫ ( emission_rate / total_reward_weight ) dt
     """
 
 

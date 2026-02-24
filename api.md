@@ -2,9 +2,15 @@
 
 ## Status
 
+Types:
+
+```python
+from neptune_api_v2.types.v1 import StatusCheckHealthResponse
+```
+
 Methods:
 
-- <code title="get /api/v1/status/health">client.v1.status.<a href="./src/neptune_api_v2/resources/v1/status.py">check_health</a>() -> None</code>
+- <code title="get /api/v1/status/health">client.v1.status.<a href="./src/neptune_api_v2/resources/v1/status.py">check_health</a>() -> <a href="./src/neptune_api_v2/types/v1/status_check_health_response.py">StatusCheckHealthResponse</a></code>
 
 ## Assets
 

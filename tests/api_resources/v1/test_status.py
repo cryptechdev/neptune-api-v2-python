@@ -7,7 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from tests.utils import assert_matches_type
 from neptune_api_v2 import NeptuneAPIV2, AsyncNeptuneAPIV2
+from neptune_api_v2.types.v1 import StatusCheckHealthResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,7 +21,7 @@ class TestStatus:
     @parametrize
     def test_method_check_health(self, client: NeptuneAPIV2) -> None:
         status = client.v1.status.check_health()
-        assert status is None
+        assert_matches_type(StatusCheckHealthResponse, status, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -29,7 +31,7 @@ class TestStatus:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         status = response.parse()
-        assert status is None
+        assert_matches_type(StatusCheckHealthResponse, status, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -39,7 +41,7 @@ class TestStatus:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             status = response.parse()
-            assert status is None
+            assert_matches_type(StatusCheckHealthResponse, status, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -53,7 +55,7 @@ class TestAsyncStatus:
     @parametrize
     async def test_method_check_health(self, async_client: AsyncNeptuneAPIV2) -> None:
         status = await async_client.v1.status.check_health()
-        assert status is None
+        assert_matches_type(StatusCheckHealthResponse, status, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -63,7 +65,7 @@ class TestAsyncStatus:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         status = await response.parse()
-        assert status is None
+        assert_matches_type(StatusCheckHealthResponse, status, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -73,6 +75,6 @@ class TestAsyncStatus:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             status = await response.parse()
-            assert status is None
+            assert_matches_type(StatusCheckHealthResponse, status, path=["response"])
 
         assert cast(Any, response.is_closed) is True
