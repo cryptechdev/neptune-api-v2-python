@@ -39,8 +39,8 @@ from .borrow.borrow import (
     AsyncBorrowResourceWithStreamingResponse,
 )
 from ....._base_client import make_request_options
-from .....types.v1.users import market_list_params
-from .....types.v1.users.market_list_response import MarketListResponse
+from .....types.v1.users import market_get_portfolio_params
+from .....types.v1.users.market_get_portfolio_response import MarketGetPortfolioResponse
 
 __all__ = ["MarketsResource", "AsyncMarketsResource"]
 
@@ -77,7 +77,7 @@ class MarketsResource(SyncAPIResource):
         """
         return MarketsResourceWithStreamingResponse(self)
 
-    def list(
+    def get_portfolio(
         self,
         address: str,
         *,
@@ -89,7 +89,7 @@ class MarketsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketListResponse:
+    ) -> MarketGetPortfolioResponse:
         """
         Get user market portfolio
 
@@ -122,10 +122,10 @@ class MarketsResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    market_list_params.MarketListParams,
+                    market_get_portfolio_params.MarketGetPortfolioParams,
                 ),
             ),
-            cast_to=MarketListResponse,
+            cast_to=MarketGetPortfolioResponse,
         )
 
 
@@ -161,7 +161,7 @@ class AsyncMarketsResource(AsyncAPIResource):
         """
         return AsyncMarketsResourceWithStreamingResponse(self)
 
-    async def list(
+    async def get_portfolio(
         self,
         address: str,
         *,
@@ -173,7 +173,7 @@ class AsyncMarketsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketListResponse:
+    ) -> MarketGetPortfolioResponse:
         """
         Get user market portfolio
 
@@ -206,10 +206,10 @@ class AsyncMarketsResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    market_list_params.MarketListParams,
+                    market_get_portfolio_params.MarketGetPortfolioParams,
                 ),
             ),
-            cast_to=MarketListResponse,
+            cast_to=MarketGetPortfolioResponse,
         )
 
 
@@ -217,8 +217,8 @@ class MarketsResourceWithRawResponse:
     def __init__(self, markets: MarketsResource) -> None:
         self._markets = markets
 
-        self.list = to_raw_response_wrapper(
-            markets.list,
+        self.get_portfolio = to_raw_response_wrapper(
+            markets.get_portfolio,
         )
 
     @cached_property
@@ -238,8 +238,8 @@ class AsyncMarketsResourceWithRawResponse:
     def __init__(self, markets: AsyncMarketsResource) -> None:
         self._markets = markets
 
-        self.list = async_to_raw_response_wrapper(
-            markets.list,
+        self.get_portfolio = async_to_raw_response_wrapper(
+            markets.get_portfolio,
         )
 
     @cached_property
@@ -259,8 +259,8 @@ class MarketsResourceWithStreamingResponse:
     def __init__(self, markets: MarketsResource) -> None:
         self._markets = markets
 
-        self.list = to_streamed_response_wrapper(
-            markets.list,
+        self.get_portfolio = to_streamed_response_wrapper(
+            markets.get_portfolio,
         )
 
     @cached_property
@@ -280,8 +280,8 @@ class AsyncMarketsResourceWithStreamingResponse:
     def __init__(self, markets: AsyncMarketsResource) -> None:
         self._markets = markets
 
-        self.list = async_to_streamed_response_wrapper(
-            markets.list,
+        self.get_portfolio = async_to_streamed_response_wrapper(
+            markets.get_portfolio,
         )
 
     @cached_property

@@ -15,9 +15,9 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.v1.users.markets import merged_list_params, merged_retrieve_lookup_params
-from .....types.v1.users.markets.merged_list_response import MergedListResponse
-from .....types.v1.users.markets.merged_retrieve_lookup_response import MergedRetrieveLookupResponse
+from .....types.v1.users.markets import merged_get_all_markets_params, merged_lookup_by_asset_params
+from .....types.v1.users.markets.merged_get_all_markets_response import MergedGetAllMarketsResponse
+from .....types.v1.users.markets.merged_lookup_by_asset_response import MergedLookupByAssetResponse
 
 __all__ = ["MergedResource", "AsyncMergedResource"]
 
@@ -42,7 +42,7 @@ class MergedResource(SyncAPIResource):
         """
         return MergedResourceWithStreamingResponse(self)
 
-    def list(
+    def get_all_markets(
         self,
         address: str,
         *,
@@ -54,7 +54,7 @@ class MergedResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MergedListResponse:
+    ) -> MergedGetAllMarketsResponse:
         """
         Get user markets for all kinds (lend + borrow debt/collateral), grouped together
         by asset
@@ -88,13 +88,13 @@ class MergedResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    merged_list_params.MergedListParams,
+                    merged_get_all_markets_params.MergedGetAllMarketsParams,
                 ),
             ),
-            cast_to=MergedListResponse,
+            cast_to=MergedGetAllMarketsResponse,
         )
 
-    def retrieve_lookup(
+    def lookup_by_asset(
         self,
         address: str,
         *,
@@ -107,7 +107,7 @@ class MergedResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MergedRetrieveLookupResponse:
+    ) -> MergedLookupByAssetResponse:
         """
         Get user's markets (lend + borrow debt/collateral) for a specific asset
 
@@ -143,10 +143,10 @@ class MergedResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    merged_retrieve_lookup_params.MergedRetrieveLookupParams,
+                    merged_lookup_by_asset_params.MergedLookupByAssetParams,
                 ),
             ),
-            cast_to=MergedRetrieveLookupResponse,
+            cast_to=MergedLookupByAssetResponse,
         )
 
 
@@ -170,7 +170,7 @@ class AsyncMergedResource(AsyncAPIResource):
         """
         return AsyncMergedResourceWithStreamingResponse(self)
 
-    async def list(
+    async def get_all_markets(
         self,
         address: str,
         *,
@@ -182,7 +182,7 @@ class AsyncMergedResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MergedListResponse:
+    ) -> MergedGetAllMarketsResponse:
         """
         Get user markets for all kinds (lend + borrow debt/collateral), grouped together
         by asset
@@ -216,13 +216,13 @@ class AsyncMergedResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    merged_list_params.MergedListParams,
+                    merged_get_all_markets_params.MergedGetAllMarketsParams,
                 ),
             ),
-            cast_to=MergedListResponse,
+            cast_to=MergedGetAllMarketsResponse,
         )
 
-    async def retrieve_lookup(
+    async def lookup_by_asset(
         self,
         address: str,
         *,
@@ -235,7 +235,7 @@ class AsyncMergedResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MergedRetrieveLookupResponse:
+    ) -> MergedLookupByAssetResponse:
         """
         Get user's markets (lend + borrow debt/collateral) for a specific asset
 
@@ -271,10 +271,10 @@ class AsyncMergedResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    merged_retrieve_lookup_params.MergedRetrieveLookupParams,
+                    merged_lookup_by_asset_params.MergedLookupByAssetParams,
                 ),
             ),
-            cast_to=MergedRetrieveLookupResponse,
+            cast_to=MergedLookupByAssetResponse,
         )
 
 
@@ -282,11 +282,11 @@ class MergedResourceWithRawResponse:
     def __init__(self, merged: MergedResource) -> None:
         self._merged = merged
 
-        self.list = to_raw_response_wrapper(
-            merged.list,
+        self.get_all_markets = to_raw_response_wrapper(
+            merged.get_all_markets,
         )
-        self.retrieve_lookup = to_raw_response_wrapper(
-            merged.retrieve_lookup,
+        self.lookup_by_asset = to_raw_response_wrapper(
+            merged.lookup_by_asset,
         )
 
 
@@ -294,11 +294,11 @@ class AsyncMergedResourceWithRawResponse:
     def __init__(self, merged: AsyncMergedResource) -> None:
         self._merged = merged
 
-        self.list = async_to_raw_response_wrapper(
-            merged.list,
+        self.get_all_markets = async_to_raw_response_wrapper(
+            merged.get_all_markets,
         )
-        self.retrieve_lookup = async_to_raw_response_wrapper(
-            merged.retrieve_lookup,
+        self.lookup_by_asset = async_to_raw_response_wrapper(
+            merged.lookup_by_asset,
         )
 
 
@@ -306,11 +306,11 @@ class MergedResourceWithStreamingResponse:
     def __init__(self, merged: MergedResource) -> None:
         self._merged = merged
 
-        self.list = to_streamed_response_wrapper(
-            merged.list,
+        self.get_all_markets = to_streamed_response_wrapper(
+            merged.get_all_markets,
         )
-        self.retrieve_lookup = to_streamed_response_wrapper(
-            merged.retrieve_lookup,
+        self.lookup_by_asset = to_streamed_response_wrapper(
+            merged.lookup_by_asset,
         )
 
 
@@ -318,9 +318,9 @@ class AsyncMergedResourceWithStreamingResponse:
     def __init__(self, merged: AsyncMergedResource) -> None:
         self._merged = merged
 
-        self.list = async_to_streamed_response_wrapper(
-            merged.list,
+        self.get_all_markets = async_to_streamed_response_wrapper(
+            merged.get_all_markets,
         )
-        self.retrieve_lookup = async_to_streamed_response_wrapper(
-            merged.retrieve_lookup,
+        self.lookup_by_asset = async_to_streamed_response_wrapper(
+            merged.lookup_by_asset,
         )

@@ -15,9 +15,9 @@ from ......_response import (
     async_to_streamed_response_wrapper,
 )
 from ......_base_client import make_request_options
-from ......types.v1.users.nept.staking import pool_list_params, pool_retrieve_lookup_params
-from ......types.v1.users.nept.staking.pool_list_response import PoolListResponse
-from ......types.v1.users.nept.staking.pool_retrieve_lookup_response import PoolRetrieveLookupResponse
+from ......types.v1.users.nept.staking import pool_lookup_params, pool_get_all_params
+from ......types.v1.users.nept.staking.pool_lookup_response import PoolLookupResponse
+from ......types.v1.users.nept.staking.pool_get_all_response import PoolGetAllResponse
 
 __all__ = ["PoolsResource", "AsyncPoolsResource"]
 
@@ -42,7 +42,7 @@ class PoolsResource(SyncAPIResource):
         """
         return PoolsResourceWithStreamingResponse(self)
 
-    def list(
+    def get_all(
         self,
         address: str,
         *,
@@ -54,7 +54,7 @@ class PoolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PoolListResponse:
+    ) -> PoolGetAllResponse:
         """
         Get user staking pools
 
@@ -87,13 +87,13 @@ class PoolsResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    pool_list_params.PoolListParams,
+                    pool_get_all_params.PoolGetAllParams,
                 ),
             ),
-            cast_to=PoolListResponse,
+            cast_to=PoolGetAllResponse,
         )
 
-    def retrieve_lookup(
+    def lookup(
         self,
         address: str,
         *,
@@ -107,7 +107,7 @@ class PoolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PoolRetrieveLookupResponse:
+    ) -> PoolLookupResponse:
         """
         Get user staking pool by duration/index
 
@@ -150,10 +150,10 @@ class PoolsResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    pool_retrieve_lookup_params.PoolRetrieveLookupParams,
+                    pool_lookup_params.PoolLookupParams,
                 ),
             ),
-            cast_to=PoolRetrieveLookupResponse,
+            cast_to=PoolLookupResponse,
         )
 
 
@@ -177,7 +177,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         """
         return AsyncPoolsResourceWithStreamingResponse(self)
 
-    async def list(
+    async def get_all(
         self,
         address: str,
         *,
@@ -189,7 +189,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PoolListResponse:
+    ) -> PoolGetAllResponse:
         """
         Get user staking pools
 
@@ -222,13 +222,13 @@ class AsyncPoolsResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    pool_list_params.PoolListParams,
+                    pool_get_all_params.PoolGetAllParams,
                 ),
             ),
-            cast_to=PoolListResponse,
+            cast_to=PoolGetAllResponse,
         )
 
-    async def retrieve_lookup(
+    async def lookup(
         self,
         address: str,
         *,
@@ -242,7 +242,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PoolRetrieveLookupResponse:
+    ) -> PoolLookupResponse:
         """
         Get user staking pool by duration/index
 
@@ -285,10 +285,10 @@ class AsyncPoolsResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    pool_retrieve_lookup_params.PoolRetrieveLookupParams,
+                    pool_lookup_params.PoolLookupParams,
                 ),
             ),
-            cast_to=PoolRetrieveLookupResponse,
+            cast_to=PoolLookupResponse,
         )
 
 
@@ -296,11 +296,11 @@ class PoolsResourceWithRawResponse:
     def __init__(self, pools: PoolsResource) -> None:
         self._pools = pools
 
-        self.list = to_raw_response_wrapper(
-            pools.list,
+        self.get_all = to_raw_response_wrapper(
+            pools.get_all,
         )
-        self.retrieve_lookup = to_raw_response_wrapper(
-            pools.retrieve_lookup,
+        self.lookup = to_raw_response_wrapper(
+            pools.lookup,
         )
 
 
@@ -308,11 +308,11 @@ class AsyncPoolsResourceWithRawResponse:
     def __init__(self, pools: AsyncPoolsResource) -> None:
         self._pools = pools
 
-        self.list = async_to_raw_response_wrapper(
-            pools.list,
+        self.get_all = async_to_raw_response_wrapper(
+            pools.get_all,
         )
-        self.retrieve_lookup = async_to_raw_response_wrapper(
-            pools.retrieve_lookup,
+        self.lookup = async_to_raw_response_wrapper(
+            pools.lookup,
         )
 
 
@@ -320,11 +320,11 @@ class PoolsResourceWithStreamingResponse:
     def __init__(self, pools: PoolsResource) -> None:
         self._pools = pools
 
-        self.list = to_streamed_response_wrapper(
-            pools.list,
+        self.get_all = to_streamed_response_wrapper(
+            pools.get_all,
         )
-        self.retrieve_lookup = to_streamed_response_wrapper(
-            pools.retrieve_lookup,
+        self.lookup = to_streamed_response_wrapper(
+            pools.lookup,
         )
 
 
@@ -332,9 +332,9 @@ class AsyncPoolsResourceWithStreamingResponse:
     def __init__(self, pools: AsyncPoolsResource) -> None:
         self._pools = pools
 
-        self.list = async_to_streamed_response_wrapper(
-            pools.list,
+        self.get_all = async_to_streamed_response_wrapper(
+            pools.get_all,
         )
-        self.retrieve_lookup = async_to_streamed_response_wrapper(
-            pools.retrieve_lookup,
+        self.lookup = async_to_streamed_response_wrapper(
+            pools.lookup,
         )

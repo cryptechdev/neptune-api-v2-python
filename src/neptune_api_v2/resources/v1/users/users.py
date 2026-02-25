@@ -26,7 +26,7 @@ from .nept.nept import (
     AsyncNeptResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
-from ....types.v1 import EventAction, user_retrieve_user_params, user_retrieve_tx_history_params
+from ....types.v1 import EventAction, user_retrieve_params, user_get_tx_history_params
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -44,8 +44,8 @@ from .markets.markets import (
     AsyncMarketsResourceWithStreamingResponse,
 )
 from ....types.v1.event_action import EventAction
-from ....types.v1.user_retrieve_user_response import UserRetrieveUserResponse
-from ....types.v1.user_retrieve_tx_history_response import UserRetrieveTxHistoryResponse
+from ....types.v1.user_retrieve_response import UserRetrieveResponse
+from ....types.v1.user_get_tx_history_response import UserGetTxHistoryResponse
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
 
@@ -82,7 +82,62 @@ class UsersResource(SyncAPIResource):
         """
         return UsersResourceWithStreamingResponse(self)
 
-    def retrieve_tx_history(
+    def retrieve(
+        self,
+        address: str,
+        *,
+        with_percent: bool | Omit = omit,
+        with_text: bool | Omit = omit,
+        with_value: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> UserRetrieveResponse:
+        """
+        Get user
+
+        Args:
+          address: The user account address
+
+          with_percent: Calculate and include proportion percentages, where applicable
+
+          with_text: Include text variation fields
+
+          with_value: Calculate and include USD values for amounts, where applicable
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not address:
+            raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
+        return self._get(
+            f"/api/v1/users/{address}/user",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "with_percent": with_percent,
+                        "with_text": with_text,
+                        "with_value": with_value,
+                    },
+                    user_retrieve_params.UserRetrieveParams,
+                ),
+            ),
+            cast_to=UserRetrieveResponse,
+        )
+
+    def get_tx_history(
         self,
         address: str,
         *,
@@ -98,7 +153,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserRetrieveTxHistoryResponse:
+    ) -> UserGetTxHistoryResponse:
         """
         Get user tx history
 
@@ -153,65 +208,10 @@ class UsersResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    user_retrieve_tx_history_params.UserRetrieveTxHistoryParams,
+                    user_get_tx_history_params.UserGetTxHistoryParams,
                 ),
             ),
-            cast_to=UserRetrieveTxHistoryResponse,
-        )
-
-    def retrieve_user(
-        self,
-        address: str,
-        *,
-        with_percent: bool | Omit = omit,
-        with_text: bool | Omit = omit,
-        with_value: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserRetrieveUserResponse:
-        """
-        Get user
-
-        Args:
-          address: The user account address
-
-          with_percent: Calculate and include proportion percentages, where applicable
-
-          with_text: Include text variation fields
-
-          with_value: Calculate and include USD values for amounts, where applicable
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not address:
-            raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
-        return self._get(
-            f"/api/v1/users/{address}/user",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "with_percent": with_percent,
-                        "with_text": with_text,
-                        "with_value": with_value,
-                    },
-                    user_retrieve_user_params.UserRetrieveUserParams,
-                ),
-            ),
-            cast_to=UserRetrieveUserResponse,
+            cast_to=UserGetTxHistoryResponse,
         )
 
 
@@ -247,7 +247,62 @@ class AsyncUsersResource(AsyncAPIResource):
         """
         return AsyncUsersResourceWithStreamingResponse(self)
 
-    async def retrieve_tx_history(
+    async def retrieve(
+        self,
+        address: str,
+        *,
+        with_percent: bool | Omit = omit,
+        with_text: bool | Omit = omit,
+        with_value: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> UserRetrieveResponse:
+        """
+        Get user
+
+        Args:
+          address: The user account address
+
+          with_percent: Calculate and include proportion percentages, where applicable
+
+          with_text: Include text variation fields
+
+          with_value: Calculate and include USD values for amounts, where applicable
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not address:
+            raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
+        return await self._get(
+            f"/api/v1/users/{address}/user",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "with_percent": with_percent,
+                        "with_text": with_text,
+                        "with_value": with_value,
+                    },
+                    user_retrieve_params.UserRetrieveParams,
+                ),
+            ),
+            cast_to=UserRetrieveResponse,
+        )
+
+    async def get_tx_history(
         self,
         address: str,
         *,
@@ -263,7 +318,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserRetrieveTxHistoryResponse:
+    ) -> UserGetTxHistoryResponse:
         """
         Get user tx history
 
@@ -318,65 +373,10 @@ class AsyncUsersResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    user_retrieve_tx_history_params.UserRetrieveTxHistoryParams,
+                    user_get_tx_history_params.UserGetTxHistoryParams,
                 ),
             ),
-            cast_to=UserRetrieveTxHistoryResponse,
-        )
-
-    async def retrieve_user(
-        self,
-        address: str,
-        *,
-        with_percent: bool | Omit = omit,
-        with_text: bool | Omit = omit,
-        with_value: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserRetrieveUserResponse:
-        """
-        Get user
-
-        Args:
-          address: The user account address
-
-          with_percent: Calculate and include proportion percentages, where applicable
-
-          with_text: Include text variation fields
-
-          with_value: Calculate and include USD values for amounts, where applicable
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not address:
-            raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
-        return await self._get(
-            f"/api/v1/users/{address}/user",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "with_percent": with_percent,
-                        "with_text": with_text,
-                        "with_value": with_value,
-                    },
-                    user_retrieve_user_params.UserRetrieveUserParams,
-                ),
-            ),
-            cast_to=UserRetrieveUserResponse,
+            cast_to=UserGetTxHistoryResponse,
         )
 
 
@@ -384,11 +384,11 @@ class UsersResourceWithRawResponse:
     def __init__(self, users: UsersResource) -> None:
         self._users = users
 
-        self.retrieve_tx_history = to_raw_response_wrapper(
-            users.retrieve_tx_history,
+        self.retrieve = to_raw_response_wrapper(
+            users.retrieve,
         )
-        self.retrieve_user = to_raw_response_wrapper(
-            users.retrieve_user,
+        self.get_tx_history = to_raw_response_wrapper(
+            users.get_tx_history,
         )
 
     @cached_property
@@ -408,11 +408,11 @@ class AsyncUsersResourceWithRawResponse:
     def __init__(self, users: AsyncUsersResource) -> None:
         self._users = users
 
-        self.retrieve_tx_history = async_to_raw_response_wrapper(
-            users.retrieve_tx_history,
+        self.retrieve = async_to_raw_response_wrapper(
+            users.retrieve,
         )
-        self.retrieve_user = async_to_raw_response_wrapper(
-            users.retrieve_user,
+        self.get_tx_history = async_to_raw_response_wrapper(
+            users.get_tx_history,
         )
 
     @cached_property
@@ -432,11 +432,11 @@ class UsersResourceWithStreamingResponse:
     def __init__(self, users: UsersResource) -> None:
         self._users = users
 
-        self.retrieve_tx_history = to_streamed_response_wrapper(
-            users.retrieve_tx_history,
+        self.retrieve = to_streamed_response_wrapper(
+            users.retrieve,
         )
-        self.retrieve_user = to_streamed_response_wrapper(
-            users.retrieve_user,
+        self.get_tx_history = to_streamed_response_wrapper(
+            users.get_tx_history,
         )
 
     @cached_property
@@ -456,11 +456,11 @@ class AsyncUsersResourceWithStreamingResponse:
     def __init__(self, users: AsyncUsersResource) -> None:
         self._users = users
 
-        self.retrieve_tx_history = async_to_streamed_response_wrapper(
-            users.retrieve_tx_history,
+        self.retrieve = async_to_streamed_response_wrapper(
+            users.retrieve,
         )
-        self.retrieve_user = async_to_streamed_response_wrapper(
-            users.retrieve_user,
+        self.get_tx_history = async_to_streamed_response_wrapper(
+            users.get_tx_history,
         )
 
     @cached_property

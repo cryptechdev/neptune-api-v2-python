@@ -2,15 +2,9 @@
 
 from __future__ import annotations
 
-from .loans_originated_retrieve_by_asset_params import (
-    LoansOriginatedRetrieveByAssetParams as LoansOriginatedRetrieveByAssetParams,
-)
-from .loans_originated_retrieve_by_asset_response import (
-    LoansOriginatedRetrieveByAssetResponse as LoansOriginatedRetrieveByAssetResponse,
-)
-from .loans_originated_retrieve_loans_originated_params import (
-    LoansOriginatedRetrieveLoansOriginatedParams as LoansOriginatedRetrieveLoansOriginatedParams,
-)
-from .loans_originated_retrieve_loans_originated_response import (
-    LoansOriginatedRetrieveLoansOriginatedResponse as LoansOriginatedRetrieveLoansOriginatedResponse,
+from .loans_originated_get_all_params import LoansOriginatedGetAllParams as LoansOriginatedGetAllParams
+from .loans_originated_get_all_response import LoansOriginatedGetAllResponse as LoansOriginatedGetAllResponse
+from .loans_originated_get_by_asset_params import LoansOriginatedGetByAssetParams as LoansOriginatedGetByAssetParams
+from .loans_originated_get_by_asset_response import (
+    LoansOriginatedGetByAssetResponse as LoansOriginatedGetByAssetResponse,
 )

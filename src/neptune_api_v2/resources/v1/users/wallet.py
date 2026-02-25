@@ -15,8 +15,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.v1.users import wallet_retrieve_balances_params
-from ....types.v1.users.wallet_retrieve_balances_response import WalletRetrieveBalancesResponse
+from ....types.v1.users import wallet_get_balances_params
+from ....types.v1.users.wallet_get_balances_response import WalletGetBalancesResponse
 
 __all__ = ["WalletResource", "AsyncWalletResource"]
 
@@ -41,7 +41,7 @@ class WalletResource(SyncAPIResource):
         """
         return WalletResourceWithStreamingResponse(self)
 
-    def retrieve_balances(
+    def get_balances(
         self,
         address: str,
         *,
@@ -53,7 +53,7 @@ class WalletResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WalletRetrieveBalancesResponse:
+    ) -> WalletGetBalancesResponse:
         """
         Get user portfolio
 
@@ -86,10 +86,10 @@ class WalletResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    wallet_retrieve_balances_params.WalletRetrieveBalancesParams,
+                    wallet_get_balances_params.WalletGetBalancesParams,
                 ),
             ),
-            cast_to=WalletRetrieveBalancesResponse,
+            cast_to=WalletGetBalancesResponse,
         )
 
 
@@ -113,7 +113,7 @@ class AsyncWalletResource(AsyncAPIResource):
         """
         return AsyncWalletResourceWithStreamingResponse(self)
 
-    async def retrieve_balances(
+    async def get_balances(
         self,
         address: str,
         *,
@@ -125,7 +125,7 @@ class AsyncWalletResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WalletRetrieveBalancesResponse:
+    ) -> WalletGetBalancesResponse:
         """
         Get user portfolio
 
@@ -158,10 +158,10 @@ class AsyncWalletResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    wallet_retrieve_balances_params.WalletRetrieveBalancesParams,
+                    wallet_get_balances_params.WalletGetBalancesParams,
                 ),
             ),
-            cast_to=WalletRetrieveBalancesResponse,
+            cast_to=WalletGetBalancesResponse,
         )
 
 
@@ -169,8 +169,8 @@ class WalletResourceWithRawResponse:
     def __init__(self, wallet: WalletResource) -> None:
         self._wallet = wallet
 
-        self.retrieve_balances = to_raw_response_wrapper(
-            wallet.retrieve_balances,
+        self.get_balances = to_raw_response_wrapper(
+            wallet.get_balances,
         )
 
 
@@ -178,8 +178,8 @@ class AsyncWalletResourceWithRawResponse:
     def __init__(self, wallet: AsyncWalletResource) -> None:
         self._wallet = wallet
 
-        self.retrieve_balances = async_to_raw_response_wrapper(
-            wallet.retrieve_balances,
+        self.get_balances = async_to_raw_response_wrapper(
+            wallet.get_balances,
         )
 
 
@@ -187,8 +187,8 @@ class WalletResourceWithStreamingResponse:
     def __init__(self, wallet: WalletResource) -> None:
         self._wallet = wallet
 
-        self.retrieve_balances = to_streamed_response_wrapper(
-            wallet.retrieve_balances,
+        self.get_balances = to_streamed_response_wrapper(
+            wallet.get_balances,
         )
 
 
@@ -196,6 +196,6 @@ class AsyncWalletResourceWithStreamingResponse:
     def __init__(self, wallet: AsyncWalletResource) -> None:
         self._wallet = wallet
 
-        self.retrieve_balances = async_to_streamed_response_wrapper(
-            wallet.retrieve_balances,
+        self.get_balances = async_to_streamed_response_wrapper(
+            wallet.get_balances,
         )

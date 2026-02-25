@@ -15,9 +15,11 @@ from ......_response import (
     async_to_streamed_response_wrapper,
 )
 from ......_base_client import make_request_options
-from ......types.v1.users.markets.borrow import lookup_retrieve_debt_params, lookup_retrieve_collateral_params
-from ......types.v1.users.markets.borrow.lookup_retrieve_debt_response import LookupRetrieveDebtResponse
-from ......types.v1.users.markets.borrow.lookup_retrieve_collateral_response import LookupRetrieveCollateralResponse
+from ......types.v1.users.markets.borrow import lookup_get_debt_accounts_params, lookup_get_collateral_accounts_params
+from ......types.v1.users.markets.borrow.lookup_get_debt_accounts_response import LookupGetDebtAccountsResponse
+from ......types.v1.users.markets.borrow.lookup_get_collateral_accounts_response import (
+    LookupGetCollateralAccountsResponse,
+)
 
 __all__ = ["LookupResource", "AsyncLookupResource"]
 
@@ -42,7 +44,7 @@ class LookupResource(SyncAPIResource):
         """
         return LookupResourceWithStreamingResponse(self)
 
-    def retrieve_collateral(
+    def get_collateral_accounts(
         self,
         address: str,
         *,
@@ -55,7 +57,7 @@ class LookupResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LookupRetrieveCollateralResponse:
+    ) -> LookupGetCollateralAccountsResponse:
         """
         Lookup user borrow market collateral accounts by asset
 
@@ -91,13 +93,13 @@ class LookupResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    lookup_retrieve_collateral_params.LookupRetrieveCollateralParams,
+                    lookup_get_collateral_accounts_params.LookupGetCollateralAccountsParams,
                 ),
             ),
-            cast_to=LookupRetrieveCollateralResponse,
+            cast_to=LookupGetCollateralAccountsResponse,
         )
 
-    def retrieve_debt(
+    def get_debt_accounts(
         self,
         address: str,
         *,
@@ -110,7 +112,7 @@ class LookupResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LookupRetrieveDebtResponse:
+    ) -> LookupGetDebtAccountsResponse:
         """
         Lookup user borrow market debt by accounts by asset
 
@@ -146,10 +148,10 @@ class LookupResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    lookup_retrieve_debt_params.LookupRetrieveDebtParams,
+                    lookup_get_debt_accounts_params.LookupGetDebtAccountsParams,
                 ),
             ),
-            cast_to=LookupRetrieveDebtResponse,
+            cast_to=LookupGetDebtAccountsResponse,
         )
 
 
@@ -173,7 +175,7 @@ class AsyncLookupResource(AsyncAPIResource):
         """
         return AsyncLookupResourceWithStreamingResponse(self)
 
-    async def retrieve_collateral(
+    async def get_collateral_accounts(
         self,
         address: str,
         *,
@@ -186,7 +188,7 @@ class AsyncLookupResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LookupRetrieveCollateralResponse:
+    ) -> LookupGetCollateralAccountsResponse:
         """
         Lookup user borrow market collateral accounts by asset
 
@@ -222,13 +224,13 @@ class AsyncLookupResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    lookup_retrieve_collateral_params.LookupRetrieveCollateralParams,
+                    lookup_get_collateral_accounts_params.LookupGetCollateralAccountsParams,
                 ),
             ),
-            cast_to=LookupRetrieveCollateralResponse,
+            cast_to=LookupGetCollateralAccountsResponse,
         )
 
-    async def retrieve_debt(
+    async def get_debt_accounts(
         self,
         address: str,
         *,
@@ -241,7 +243,7 @@ class AsyncLookupResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LookupRetrieveDebtResponse:
+    ) -> LookupGetDebtAccountsResponse:
         """
         Lookup user borrow market debt by accounts by asset
 
@@ -277,10 +279,10 @@ class AsyncLookupResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    lookup_retrieve_debt_params.LookupRetrieveDebtParams,
+                    lookup_get_debt_accounts_params.LookupGetDebtAccountsParams,
                 ),
             ),
-            cast_to=LookupRetrieveDebtResponse,
+            cast_to=LookupGetDebtAccountsResponse,
         )
 
 
@@ -288,11 +290,11 @@ class LookupResourceWithRawResponse:
     def __init__(self, lookup: LookupResource) -> None:
         self._lookup = lookup
 
-        self.retrieve_collateral = to_raw_response_wrapper(
-            lookup.retrieve_collateral,
+        self.get_collateral_accounts = to_raw_response_wrapper(
+            lookup.get_collateral_accounts,
         )
-        self.retrieve_debt = to_raw_response_wrapper(
-            lookup.retrieve_debt,
+        self.get_debt_accounts = to_raw_response_wrapper(
+            lookup.get_debt_accounts,
         )
 
 
@@ -300,11 +302,11 @@ class AsyncLookupResourceWithRawResponse:
     def __init__(self, lookup: AsyncLookupResource) -> None:
         self._lookup = lookup
 
-        self.retrieve_collateral = async_to_raw_response_wrapper(
-            lookup.retrieve_collateral,
+        self.get_collateral_accounts = async_to_raw_response_wrapper(
+            lookup.get_collateral_accounts,
         )
-        self.retrieve_debt = async_to_raw_response_wrapper(
-            lookup.retrieve_debt,
+        self.get_debt_accounts = async_to_raw_response_wrapper(
+            lookup.get_debt_accounts,
         )
 
 
@@ -312,11 +314,11 @@ class LookupResourceWithStreamingResponse:
     def __init__(self, lookup: LookupResource) -> None:
         self._lookup = lookup
 
-        self.retrieve_collateral = to_streamed_response_wrapper(
-            lookup.retrieve_collateral,
+        self.get_collateral_accounts = to_streamed_response_wrapper(
+            lookup.get_collateral_accounts,
         )
-        self.retrieve_debt = to_streamed_response_wrapper(
-            lookup.retrieve_debt,
+        self.get_debt_accounts = to_streamed_response_wrapper(
+            lookup.get_debt_accounts,
         )
 
 
@@ -324,9 +326,9 @@ class AsyncLookupResourceWithStreamingResponse:
     def __init__(self, lookup: AsyncLookupResource) -> None:
         self._lookup = lookup
 
-        self.retrieve_collateral = async_to_streamed_response_wrapper(
-            lookup.retrieve_collateral,
+        self.get_collateral_accounts = async_to_streamed_response_wrapper(
+            lookup.get_collateral_accounts,
         )
-        self.retrieve_debt = async_to_streamed_response_wrapper(
-            lookup.retrieve_debt,
+        self.get_debt_accounts = async_to_streamed_response_wrapper(
+            lookup.get_debt_accounts,
         )

@@ -22,7 +22,7 @@ from .history.history import (
     AsyncHistoryResourceWithStreamingResponse,
 )
 from ....._base_client import make_request_options
-from .....types.v1.analytics.market_retrieve_state_response import MarketRetrieveStateResponse
+from .....types.v1.analytics.market_get_current_state_response import MarketGetCurrentStateResponse
 
 __all__ = ["MarketResource", "AsyncMarketResource"]
 
@@ -51,7 +51,7 @@ class MarketResource(SyncAPIResource):
         """
         return MarketResourceWithStreamingResponse(self)
 
-    def retrieve_state(
+    def get_current_state(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -60,14 +60,14 @@ class MarketResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketRetrieveStateResponse:
+    ) -> MarketGetCurrentStateResponse:
         """Get analytics for current market state"""
         return self._get(
             "/api/v1/analytics/market/state",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketRetrieveStateResponse,
+            cast_to=MarketGetCurrentStateResponse,
         )
 
 
@@ -95,7 +95,7 @@ class AsyncMarketResource(AsyncAPIResource):
         """
         return AsyncMarketResourceWithStreamingResponse(self)
 
-    async def retrieve_state(
+    async def get_current_state(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -104,14 +104,14 @@ class AsyncMarketResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketRetrieveStateResponse:
+    ) -> MarketGetCurrentStateResponse:
         """Get analytics for current market state"""
         return await self._get(
             "/api/v1/analytics/market/state",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketRetrieveStateResponse,
+            cast_to=MarketGetCurrentStateResponse,
         )
 
 
@@ -119,8 +119,8 @@ class MarketResourceWithRawResponse:
     def __init__(self, market: MarketResource) -> None:
         self._market = market
 
-        self.retrieve_state = to_raw_response_wrapper(
-            market.retrieve_state,
+        self.get_current_state = to_raw_response_wrapper(
+            market.get_current_state,
         )
 
     @cached_property
@@ -132,8 +132,8 @@ class AsyncMarketResourceWithRawResponse:
     def __init__(self, market: AsyncMarketResource) -> None:
         self._market = market
 
-        self.retrieve_state = async_to_raw_response_wrapper(
-            market.retrieve_state,
+        self.get_current_state = async_to_raw_response_wrapper(
+            market.get_current_state,
         )
 
     @cached_property
@@ -145,8 +145,8 @@ class MarketResourceWithStreamingResponse:
     def __init__(self, market: MarketResource) -> None:
         self._market = market
 
-        self.retrieve_state = to_streamed_response_wrapper(
-            market.retrieve_state,
+        self.get_current_state = to_streamed_response_wrapper(
+            market.get_current_state,
         )
 
     @cached_property
@@ -158,8 +158,8 @@ class AsyncMarketResourceWithStreamingResponse:
     def __init__(self, market: AsyncMarketResource) -> None:
         self._market = market
 
-        self.retrieve_state = async_to_streamed_response_wrapper(
-            market.retrieve_state,
+        self.get_current_state = async_to_streamed_response_wrapper(
+            market.get_current_state,
         )
 
     @cached_property

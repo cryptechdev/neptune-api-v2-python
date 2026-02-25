@@ -15,9 +15,9 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.v1.users.markets import lend_list_params, lend_retrieve_lookup_params
-from .....types.v1.users.markets.lend_list_response import LendListResponse
-from .....types.v1.users.markets.lend_retrieve_lookup_response import LendRetrieveLookupResponse
+from .....types.v1.users.markets import lend_get_portfolio_params, lend_lookup_distribution_params
+from .....types.v1.users.markets.lend_get_portfolio_response import LendGetPortfolioResponse
+from .....types.v1.users.markets.lend_lookup_distribution_response import LendLookupDistributionResponse
 
 __all__ = ["LendResource", "AsyncLendResource"]
 
@@ -42,7 +42,7 @@ class LendResource(SyncAPIResource):
         """
         return LendResourceWithStreamingResponse(self)
 
-    def list(
+    def get_portfolio(
         self,
         address: str,
         *,
@@ -54,7 +54,7 @@ class LendResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LendListResponse:
+    ) -> LendGetPortfolioResponse:
         """
         Get user lending portfolio
 
@@ -87,13 +87,13 @@ class LendResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    lend_list_params.LendListParams,
+                    lend_get_portfolio_params.LendGetPortfolioParams,
                 ),
             ),
-            cast_to=LendListResponse,
+            cast_to=LendGetPortfolioResponse,
         )
 
-    def retrieve_lookup(
+    def lookup_distribution(
         self,
         address: str,
         *,
@@ -106,7 +106,7 @@ class LendResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LendRetrieveLookupResponse:
+    ) -> LendLookupDistributionResponse:
         """
         Lookup user lending distribution by asset
 
@@ -142,10 +142,10 @@ class LendResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    lend_retrieve_lookup_params.LendRetrieveLookupParams,
+                    lend_lookup_distribution_params.LendLookupDistributionParams,
                 ),
             ),
-            cast_to=LendRetrieveLookupResponse,
+            cast_to=LendLookupDistributionResponse,
         )
 
 
@@ -169,7 +169,7 @@ class AsyncLendResource(AsyncAPIResource):
         """
         return AsyncLendResourceWithStreamingResponse(self)
 
-    async def list(
+    async def get_portfolio(
         self,
         address: str,
         *,
@@ -181,7 +181,7 @@ class AsyncLendResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LendListResponse:
+    ) -> LendGetPortfolioResponse:
         """
         Get user lending portfolio
 
@@ -214,13 +214,13 @@ class AsyncLendResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    lend_list_params.LendListParams,
+                    lend_get_portfolio_params.LendGetPortfolioParams,
                 ),
             ),
-            cast_to=LendListResponse,
+            cast_to=LendGetPortfolioResponse,
         )
 
-    async def retrieve_lookup(
+    async def lookup_distribution(
         self,
         address: str,
         *,
@@ -233,7 +233,7 @@ class AsyncLendResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LendRetrieveLookupResponse:
+    ) -> LendLookupDistributionResponse:
         """
         Lookup user lending distribution by asset
 
@@ -269,10 +269,10 @@ class AsyncLendResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    lend_retrieve_lookup_params.LendRetrieveLookupParams,
+                    lend_lookup_distribution_params.LendLookupDistributionParams,
                 ),
             ),
-            cast_to=LendRetrieveLookupResponse,
+            cast_to=LendLookupDistributionResponse,
         )
 
 
@@ -280,11 +280,11 @@ class LendResourceWithRawResponse:
     def __init__(self, lend: LendResource) -> None:
         self._lend = lend
 
-        self.list = to_raw_response_wrapper(
-            lend.list,
+        self.get_portfolio = to_raw_response_wrapper(
+            lend.get_portfolio,
         )
-        self.retrieve_lookup = to_raw_response_wrapper(
-            lend.retrieve_lookup,
+        self.lookup_distribution = to_raw_response_wrapper(
+            lend.lookup_distribution,
         )
 
 
@@ -292,11 +292,11 @@ class AsyncLendResourceWithRawResponse:
     def __init__(self, lend: AsyncLendResource) -> None:
         self._lend = lend
 
-        self.list = async_to_raw_response_wrapper(
-            lend.list,
+        self.get_portfolio = async_to_raw_response_wrapper(
+            lend.get_portfolio,
         )
-        self.retrieve_lookup = async_to_raw_response_wrapper(
-            lend.retrieve_lookup,
+        self.lookup_distribution = async_to_raw_response_wrapper(
+            lend.lookup_distribution,
         )
 
 
@@ -304,11 +304,11 @@ class LendResourceWithStreamingResponse:
     def __init__(self, lend: LendResource) -> None:
         self._lend = lend
 
-        self.list = to_streamed_response_wrapper(
-            lend.list,
+        self.get_portfolio = to_streamed_response_wrapper(
+            lend.get_portfolio,
         )
-        self.retrieve_lookup = to_streamed_response_wrapper(
-            lend.retrieve_lookup,
+        self.lookup_distribution = to_streamed_response_wrapper(
+            lend.lookup_distribution,
         )
 
 
@@ -316,9 +316,9 @@ class AsyncLendResourceWithStreamingResponse:
     def __init__(self, lend: AsyncLendResource) -> None:
         self._lend = lend
 
-        self.list = async_to_streamed_response_wrapper(
-            lend.list,
+        self.get_portfolio = async_to_streamed_response_wrapper(
+            lend.get_portfolio,
         )
-        self.retrieve_lookup = async_to_streamed_response_wrapper(
-            lend.retrieve_lookup,
+        self.lookup_distribution = async_to_streamed_response_wrapper(
+            lend.lookup_distribution,
         )

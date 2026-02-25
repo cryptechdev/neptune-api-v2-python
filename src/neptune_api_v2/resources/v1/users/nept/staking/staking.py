@@ -23,9 +23,9 @@ from ......_response import (
     async_to_streamed_response_wrapper,
 )
 from ......_base_client import make_request_options
-from ......types.v1.users.nept import staking_list_params, staking_retrieve_unstaking_params
-from ......types.v1.users.nept.staking_list_response import StakingListResponse
-from ......types.v1.users.nept.staking_retrieve_unstaking_response import StakingRetrieveUnstakingResponse
+from ......types.v1.users.nept import staking_get_overview_params, staking_get_unstaking_pool_params
+from ......types.v1.users.nept.staking_get_overview_response import StakingGetOverviewResponse
+from ......types.v1.users.nept.staking_get_unstaking_pool_response import StakingGetUnstakingPoolResponse
 
 __all__ = ["StakingResource", "AsyncStakingResource"]
 
@@ -54,7 +54,7 @@ class StakingResource(SyncAPIResource):
         """
         return StakingResourceWithStreamingResponse(self)
 
-    def list(
+    def get_overview(
         self,
         address: str,
         *,
@@ -66,7 +66,7 @@ class StakingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> StakingListResponse:
+    ) -> StakingGetOverviewResponse:
         """
         Get user staking overview
 
@@ -99,13 +99,13 @@ class StakingResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    staking_list_params.StakingListParams,
+                    staking_get_overview_params.StakingGetOverviewParams,
                 ),
             ),
-            cast_to=StakingListResponse,
+            cast_to=StakingGetOverviewResponse,
         )
 
-    def retrieve_unstaking(
+    def get_unstaking_pool(
         self,
         address: str,
         *,
@@ -117,7 +117,7 @@ class StakingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> StakingRetrieveUnstakingResponse:
+    ) -> StakingGetUnstakingPoolResponse:
         """
         Get user unstaking pool
 
@@ -150,10 +150,10 @@ class StakingResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    staking_retrieve_unstaking_params.StakingRetrieveUnstakingParams,
+                    staking_get_unstaking_pool_params.StakingGetUnstakingPoolParams,
                 ),
             ),
-            cast_to=StakingRetrieveUnstakingResponse,
+            cast_to=StakingGetUnstakingPoolResponse,
         )
 
 
@@ -181,7 +181,7 @@ class AsyncStakingResource(AsyncAPIResource):
         """
         return AsyncStakingResourceWithStreamingResponse(self)
 
-    async def list(
+    async def get_overview(
         self,
         address: str,
         *,
@@ -193,7 +193,7 @@ class AsyncStakingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> StakingListResponse:
+    ) -> StakingGetOverviewResponse:
         """
         Get user staking overview
 
@@ -226,13 +226,13 @@ class AsyncStakingResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    staking_list_params.StakingListParams,
+                    staking_get_overview_params.StakingGetOverviewParams,
                 ),
             ),
-            cast_to=StakingListResponse,
+            cast_to=StakingGetOverviewResponse,
         )
 
-    async def retrieve_unstaking(
+    async def get_unstaking_pool(
         self,
         address: str,
         *,
@@ -244,7 +244,7 @@ class AsyncStakingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> StakingRetrieveUnstakingResponse:
+    ) -> StakingGetUnstakingPoolResponse:
         """
         Get user unstaking pool
 
@@ -277,10 +277,10 @@ class AsyncStakingResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    staking_retrieve_unstaking_params.StakingRetrieveUnstakingParams,
+                    staking_get_unstaking_pool_params.StakingGetUnstakingPoolParams,
                 ),
             ),
-            cast_to=StakingRetrieveUnstakingResponse,
+            cast_to=StakingGetUnstakingPoolResponse,
         )
 
 
@@ -288,11 +288,11 @@ class StakingResourceWithRawResponse:
     def __init__(self, staking: StakingResource) -> None:
         self._staking = staking
 
-        self.list = to_raw_response_wrapper(
-            staking.list,
+        self.get_overview = to_raw_response_wrapper(
+            staking.get_overview,
         )
-        self.retrieve_unstaking = to_raw_response_wrapper(
-            staking.retrieve_unstaking,
+        self.get_unstaking_pool = to_raw_response_wrapper(
+            staking.get_unstaking_pool,
         )
 
     @cached_property
@@ -304,11 +304,11 @@ class AsyncStakingResourceWithRawResponse:
     def __init__(self, staking: AsyncStakingResource) -> None:
         self._staking = staking
 
-        self.list = async_to_raw_response_wrapper(
-            staking.list,
+        self.get_overview = async_to_raw_response_wrapper(
+            staking.get_overview,
         )
-        self.retrieve_unstaking = async_to_raw_response_wrapper(
-            staking.retrieve_unstaking,
+        self.get_unstaking_pool = async_to_raw_response_wrapper(
+            staking.get_unstaking_pool,
         )
 
     @cached_property
@@ -320,11 +320,11 @@ class StakingResourceWithStreamingResponse:
     def __init__(self, staking: StakingResource) -> None:
         self._staking = staking
 
-        self.list = to_streamed_response_wrapper(
-            staking.list,
+        self.get_overview = to_streamed_response_wrapper(
+            staking.get_overview,
         )
-        self.retrieve_unstaking = to_streamed_response_wrapper(
-            staking.retrieve_unstaking,
+        self.get_unstaking_pool = to_streamed_response_wrapper(
+            staking.get_unstaking_pool,
         )
 
     @cached_property
@@ -336,11 +336,11 @@ class AsyncStakingResourceWithStreamingResponse:
     def __init__(self, staking: AsyncStakingResource) -> None:
         self._staking = staking
 
-        self.list = async_to_streamed_response_wrapper(
-            staking.list,
+        self.get_overview = async_to_streamed_response_wrapper(
+            staking.get_overview,
         )
-        self.retrieve_unstaking = async_to_streamed_response_wrapper(
-            staking.retrieve_unstaking,
+        self.get_unstaking_pool = async_to_streamed_response_wrapper(
+            staking.get_unstaking_pool,
         )
 
     @cached_property

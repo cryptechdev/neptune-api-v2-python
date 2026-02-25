@@ -11,7 +11,7 @@ from tests.utils import assert_matches_type
 from neptune_api_v2 import NeptuneAPIV2, AsyncNeptuneAPIV2
 from neptune_api_v2.types.v1.markets import (
     BorrowOverviewResponse,
-    BorrowGetBorrowRateHistoryResponse,
+    BorrowGetRateHistoryResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -22,18 +22,18 @@ class TestBorrow:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_get_borrow_rate_history(self, client: NeptuneAPIV2) -> None:
-        borrow = client.v1.markets.borrow.get_borrow_rate_history(
+    def test_method_get_rate_history(self, client: NeptuneAPIV2) -> None:
+        borrow = client.v1.markets.borrow.get_rate_history(
             end=0,
             period="h",
             start=0,
         )
-        assert_matches_type(BorrowGetBorrowRateHistoryResponse, borrow, path=["response"])
+        assert_matches_type(BorrowGetRateHistoryResponse, borrow, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_get_borrow_rate_history_with_all_params(self, client: NeptuneAPIV2) -> None:
-        borrow = client.v1.markets.borrow.get_borrow_rate_history(
+    def test_method_get_rate_history_with_all_params(self, client: NeptuneAPIV2) -> None:
+        borrow = client.v1.markets.borrow.get_rate_history(
             end=0,
             period="h",
             start=0,
@@ -42,12 +42,12 @@ class TestBorrow:
             limit=1,
             offset=0,
         )
-        assert_matches_type(BorrowGetBorrowRateHistoryResponse, borrow, path=["response"])
+        assert_matches_type(BorrowGetRateHistoryResponse, borrow, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_get_borrow_rate_history(self, client: NeptuneAPIV2) -> None:
-        response = client.v1.markets.borrow.with_raw_response.get_borrow_rate_history(
+    def test_raw_response_get_rate_history(self, client: NeptuneAPIV2) -> None:
+        response = client.v1.markets.borrow.with_raw_response.get_rate_history(
             end=0,
             period="h",
             start=0,
@@ -56,12 +56,12 @@ class TestBorrow:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         borrow = response.parse()
-        assert_matches_type(BorrowGetBorrowRateHistoryResponse, borrow, path=["response"])
+        assert_matches_type(BorrowGetRateHistoryResponse, borrow, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_get_borrow_rate_history(self, client: NeptuneAPIV2) -> None:
-        with client.v1.markets.borrow.with_streaming_response.get_borrow_rate_history(
+    def test_streaming_response_get_rate_history(self, client: NeptuneAPIV2) -> None:
+        with client.v1.markets.borrow.with_streaming_response.get_rate_history(
             end=0,
             period="h",
             start=0,
@@ -70,7 +70,7 @@ class TestBorrow:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             borrow = response.parse()
-            assert_matches_type(BorrowGetBorrowRateHistoryResponse, borrow, path=["response"])
+            assert_matches_type(BorrowGetRateHistoryResponse, borrow, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -119,18 +119,18 @@ class TestAsyncBorrow:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_get_borrow_rate_history(self, async_client: AsyncNeptuneAPIV2) -> None:
-        borrow = await async_client.v1.markets.borrow.get_borrow_rate_history(
+    async def test_method_get_rate_history(self, async_client: AsyncNeptuneAPIV2) -> None:
+        borrow = await async_client.v1.markets.borrow.get_rate_history(
             end=0,
             period="h",
             start=0,
         )
-        assert_matches_type(BorrowGetBorrowRateHistoryResponse, borrow, path=["response"])
+        assert_matches_type(BorrowGetRateHistoryResponse, borrow, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_get_borrow_rate_history_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
-        borrow = await async_client.v1.markets.borrow.get_borrow_rate_history(
+    async def test_method_get_rate_history_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
+        borrow = await async_client.v1.markets.borrow.get_rate_history(
             end=0,
             period="h",
             start=0,
@@ -139,12 +139,12 @@ class TestAsyncBorrow:
             limit=1,
             offset=0,
         )
-        assert_matches_type(BorrowGetBorrowRateHistoryResponse, borrow, path=["response"])
+        assert_matches_type(BorrowGetRateHistoryResponse, borrow, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_get_borrow_rate_history(self, async_client: AsyncNeptuneAPIV2) -> None:
-        response = await async_client.v1.markets.borrow.with_raw_response.get_borrow_rate_history(
+    async def test_raw_response_get_rate_history(self, async_client: AsyncNeptuneAPIV2) -> None:
+        response = await async_client.v1.markets.borrow.with_raw_response.get_rate_history(
             end=0,
             period="h",
             start=0,
@@ -153,12 +153,12 @@ class TestAsyncBorrow:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         borrow = await response.parse()
-        assert_matches_type(BorrowGetBorrowRateHistoryResponse, borrow, path=["response"])
+        assert_matches_type(BorrowGetRateHistoryResponse, borrow, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_get_borrow_rate_history(self, async_client: AsyncNeptuneAPIV2) -> None:
-        async with async_client.v1.markets.borrow.with_streaming_response.get_borrow_rate_history(
+    async def test_streaming_response_get_rate_history(self, async_client: AsyncNeptuneAPIV2) -> None:
+        async with async_client.v1.markets.borrow.with_streaming_response.get_rate_history(
             end=0,
             period="h",
             start=0,
@@ -167,7 +167,7 @@ class TestAsyncBorrow:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             borrow = await response.parse()
-            assert_matches_type(BorrowGetBorrowRateHistoryResponse, borrow, path=["response"])
+            assert_matches_type(BorrowGetRateHistoryResponse, borrow, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

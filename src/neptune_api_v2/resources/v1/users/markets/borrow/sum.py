@@ -15,9 +15,9 @@ from ......_response import (
     async_to_streamed_response_wrapper,
 )
 from ......_base_client import make_request_options
-from ......types.v1.users.markets.borrow import sum_retrieve_debts_params, sum_retrieve_collaterals_params
-from ......types.v1.users.markets.borrow.sum_retrieve_debts_response import SumRetrieveDebtsResponse
-from ......types.v1.users.markets.borrow.sum_retrieve_collaterals_response import SumRetrieveCollateralsResponse
+from ......types.v1.users.markets.borrow import sum_get_debts_params, sum_get_collaterals_params
+from ......types.v1.users.markets.borrow.sum_get_debts_response import SumGetDebtsResponse
+from ......types.v1.users.markets.borrow.sum_get_collaterals_response import SumGetCollateralsResponse
 
 __all__ = ["SumResource", "AsyncSumResource"]
 
@@ -42,7 +42,7 @@ class SumResource(SyncAPIResource):
         """
         return SumResourceWithStreamingResponse(self)
 
-    def retrieve_collaterals(
+    def get_collaterals(
         self,
         address: str,
         *,
@@ -54,7 +54,7 @@ class SumResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SumRetrieveCollateralsResponse:
+    ) -> SumGetCollateralsResponse:
         """
         Get user combined collaterals for all subaccounts
 
@@ -87,13 +87,13 @@ class SumResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    sum_retrieve_collaterals_params.SumRetrieveCollateralsParams,
+                    sum_get_collaterals_params.SumGetCollateralsParams,
                 ),
             ),
-            cast_to=SumRetrieveCollateralsResponse,
+            cast_to=SumGetCollateralsResponse,
         )
 
-    def retrieve_debts(
+    def get_debts(
         self,
         address: str,
         *,
@@ -105,7 +105,7 @@ class SumResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SumRetrieveDebtsResponse:
+    ) -> SumGetDebtsResponse:
         """
         Get user combined debts for all subaccounts
 
@@ -138,10 +138,10 @@ class SumResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    sum_retrieve_debts_params.SumRetrieveDebtsParams,
+                    sum_get_debts_params.SumGetDebtsParams,
                 ),
             ),
-            cast_to=SumRetrieveDebtsResponse,
+            cast_to=SumGetDebtsResponse,
         )
 
 
@@ -165,7 +165,7 @@ class AsyncSumResource(AsyncAPIResource):
         """
         return AsyncSumResourceWithStreamingResponse(self)
 
-    async def retrieve_collaterals(
+    async def get_collaterals(
         self,
         address: str,
         *,
@@ -177,7 +177,7 @@ class AsyncSumResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SumRetrieveCollateralsResponse:
+    ) -> SumGetCollateralsResponse:
         """
         Get user combined collaterals for all subaccounts
 
@@ -210,13 +210,13 @@ class AsyncSumResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    sum_retrieve_collaterals_params.SumRetrieveCollateralsParams,
+                    sum_get_collaterals_params.SumGetCollateralsParams,
                 ),
             ),
-            cast_to=SumRetrieveCollateralsResponse,
+            cast_to=SumGetCollateralsResponse,
         )
 
-    async def retrieve_debts(
+    async def get_debts(
         self,
         address: str,
         *,
@@ -228,7 +228,7 @@ class AsyncSumResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SumRetrieveDebtsResponse:
+    ) -> SumGetDebtsResponse:
         """
         Get user combined debts for all subaccounts
 
@@ -261,10 +261,10 @@ class AsyncSumResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    sum_retrieve_debts_params.SumRetrieveDebtsParams,
+                    sum_get_debts_params.SumGetDebtsParams,
                 ),
             ),
-            cast_to=SumRetrieveDebtsResponse,
+            cast_to=SumGetDebtsResponse,
         )
 
 
@@ -272,11 +272,11 @@ class SumResourceWithRawResponse:
     def __init__(self, sum: SumResource) -> None:
         self._sum = sum
 
-        self.retrieve_collaterals = to_raw_response_wrapper(
-            sum.retrieve_collaterals,
+        self.get_collaterals = to_raw_response_wrapper(
+            sum.get_collaterals,
         )
-        self.retrieve_debts = to_raw_response_wrapper(
-            sum.retrieve_debts,
+        self.get_debts = to_raw_response_wrapper(
+            sum.get_debts,
         )
 
 
@@ -284,11 +284,11 @@ class AsyncSumResourceWithRawResponse:
     def __init__(self, sum: AsyncSumResource) -> None:
         self._sum = sum
 
-        self.retrieve_collaterals = async_to_raw_response_wrapper(
-            sum.retrieve_collaterals,
+        self.get_collaterals = async_to_raw_response_wrapper(
+            sum.get_collaterals,
         )
-        self.retrieve_debts = async_to_raw_response_wrapper(
-            sum.retrieve_debts,
+        self.get_debts = async_to_raw_response_wrapper(
+            sum.get_debts,
         )
 
 
@@ -296,11 +296,11 @@ class SumResourceWithStreamingResponse:
     def __init__(self, sum: SumResource) -> None:
         self._sum = sum
 
-        self.retrieve_collaterals = to_streamed_response_wrapper(
-            sum.retrieve_collaterals,
+        self.get_collaterals = to_streamed_response_wrapper(
+            sum.get_collaterals,
         )
-        self.retrieve_debts = to_streamed_response_wrapper(
-            sum.retrieve_debts,
+        self.get_debts = to_streamed_response_wrapper(
+            sum.get_debts,
         )
 
 
@@ -308,9 +308,9 @@ class AsyncSumResourceWithStreamingResponse:
     def __init__(self, sum: AsyncSumResource) -> None:
         self._sum = sum
 
-        self.retrieve_collaterals = async_to_streamed_response_wrapper(
-            sum.retrieve_collaterals,
+        self.get_collaterals = async_to_streamed_response_wrapper(
+            sum.get_collaterals,
         )
-        self.retrieve_debts = async_to_streamed_response_wrapper(
-            sum.retrieve_debts,
+        self.get_debts = async_to_streamed_response_wrapper(
+            sum.get_debts,
         )

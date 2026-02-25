@@ -23,7 +23,7 @@ from .merged import (
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
-from ....types.v1 import market_overview_params, market_get_market_params_params
+from ....types.v1 import market_overview_params, market_get_params_params
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -41,7 +41,7 @@ from .borrow.borrow import (
 )
 from ...._base_client import make_request_options
 from ....types.v1.market_overview_response import MarketOverviewResponse
-from ....types.v1.market_get_market_params_response import MarketGetMarketParamsResponse
+from ....types.v1.market_get_params_response import MarketGetParamsResponse
 
 __all__ = ["MarketsResource", "AsyncMarketsResource"]
 
@@ -78,7 +78,7 @@ class MarketsResource(SyncAPIResource):
         """
         return MarketsResourceWithStreamingResponse(self)
 
-    def get_market_params(
+    def get_params(
         self,
         *,
         with_text: bool | Omit = omit,
@@ -88,7 +88,7 @@ class MarketsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketGetMarketParamsResponse:
+    ) -> MarketGetParamsResponse:
         """
         Get market params
 
@@ -110,11 +110,9 @@ class MarketsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {"with_text": with_text}, market_get_market_params_params.MarketGetMarketParamsParams
-                ),
+                query=maybe_transform({"with_text": with_text}, market_get_params_params.MarketGetParamsParams),
             ),
-            cast_to=MarketGetMarketParamsResponse,
+            cast_to=MarketGetParamsResponse,
         )
 
     def overview(
@@ -196,7 +194,7 @@ class AsyncMarketsResource(AsyncAPIResource):
         """
         return AsyncMarketsResourceWithStreamingResponse(self)
 
-    async def get_market_params(
+    async def get_params(
         self,
         *,
         with_text: bool | Omit = omit,
@@ -206,7 +204,7 @@ class AsyncMarketsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketGetMarketParamsResponse:
+    ) -> MarketGetParamsResponse:
         """
         Get market params
 
@@ -229,10 +227,10 @@ class AsyncMarketsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"with_text": with_text}, market_get_market_params_params.MarketGetMarketParamsParams
+                    {"with_text": with_text}, market_get_params_params.MarketGetParamsParams
                 ),
             ),
-            cast_to=MarketGetMarketParamsResponse,
+            cast_to=MarketGetParamsResponse,
         )
 
     async def overview(
@@ -286,8 +284,8 @@ class MarketsResourceWithRawResponse:
     def __init__(self, markets: MarketsResource) -> None:
         self._markets = markets
 
-        self.get_market_params = to_raw_response_wrapper(
-            markets.get_market_params,
+        self.get_params = to_raw_response_wrapper(
+            markets.get_params,
         )
         self.overview = to_raw_response_wrapper(
             markets.overview,
@@ -310,8 +308,8 @@ class AsyncMarketsResourceWithRawResponse:
     def __init__(self, markets: AsyncMarketsResource) -> None:
         self._markets = markets
 
-        self.get_market_params = async_to_raw_response_wrapper(
-            markets.get_market_params,
+        self.get_params = async_to_raw_response_wrapper(
+            markets.get_params,
         )
         self.overview = async_to_raw_response_wrapper(
             markets.overview,
@@ -334,8 +332,8 @@ class MarketsResourceWithStreamingResponse:
     def __init__(self, markets: MarketsResource) -> None:
         self._markets = markets
 
-        self.get_market_params = to_streamed_response_wrapper(
-            markets.get_market_params,
+        self.get_params = to_streamed_response_wrapper(
+            markets.get_params,
         )
         self.overview = to_streamed_response_wrapper(
             markets.overview,
@@ -358,8 +356,8 @@ class AsyncMarketsResourceWithStreamingResponse:
     def __init__(self, markets: AsyncMarketsResource) -> None:
         self._markets = markets
 
-        self.get_market_params = async_to_streamed_response_wrapper(
-            markets.get_market_params,
+        self.get_params = async_to_streamed_response_wrapper(
+            markets.get_params,
         )
         self.overview = async_to_streamed_response_wrapper(
             markets.overview,

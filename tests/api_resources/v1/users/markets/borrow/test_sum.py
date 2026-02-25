@@ -10,8 +10,8 @@ import pytest
 from tests.utils import assert_matches_type
 from neptune_api_v2 import NeptuneAPIV2, AsyncNeptuneAPIV2
 from neptune_api_v2.types.v1.users.markets.borrow import (
-    SumRetrieveDebtsResponse,
-    SumRetrieveCollateralsResponse,
+    SumGetDebtsResponse,
+    SumGetCollateralsResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -22,105 +22,105 @@ class TestSum:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_collaterals(self, client: NeptuneAPIV2) -> None:
-        sum = client.v1.users.markets.borrow.sum.retrieve_collaterals(
+    def test_method_get_collaterals(self, client: NeptuneAPIV2) -> None:
+        sum = client.v1.users.markets.borrow.sum.get_collaterals(
             address="address",
         )
-        assert_matches_type(SumRetrieveCollateralsResponse, sum, path=["response"])
+        assert_matches_type(SumGetCollateralsResponse, sum, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_collaterals_with_all_params(self, client: NeptuneAPIV2) -> None:
-        sum = client.v1.users.markets.borrow.sum.retrieve_collaterals(
+    def test_method_get_collaterals_with_all_params(self, client: NeptuneAPIV2) -> None:
+        sum = client.v1.users.markets.borrow.sum.get_collaterals(
             address="address",
             with_text=True,
             with_value=True,
         )
-        assert_matches_type(SumRetrieveCollateralsResponse, sum, path=["response"])
+        assert_matches_type(SumGetCollateralsResponse, sum, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_retrieve_collaterals(self, client: NeptuneAPIV2) -> None:
-        response = client.v1.users.markets.borrow.sum.with_raw_response.retrieve_collaterals(
+    def test_raw_response_get_collaterals(self, client: NeptuneAPIV2) -> None:
+        response = client.v1.users.markets.borrow.sum.with_raw_response.get_collaterals(
             address="address",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sum = response.parse()
-        assert_matches_type(SumRetrieveCollateralsResponse, sum, path=["response"])
+        assert_matches_type(SumGetCollateralsResponse, sum, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve_collaterals(self, client: NeptuneAPIV2) -> None:
-        with client.v1.users.markets.borrow.sum.with_streaming_response.retrieve_collaterals(
+    def test_streaming_response_get_collaterals(self, client: NeptuneAPIV2) -> None:
+        with client.v1.users.markets.borrow.sum.with_streaming_response.get_collaterals(
             address="address",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sum = response.parse()
-            assert_matches_type(SumRetrieveCollateralsResponse, sum, path=["response"])
+            assert_matches_type(SumGetCollateralsResponse, sum, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_retrieve_collaterals(self, client: NeptuneAPIV2) -> None:
+    def test_path_params_get_collaterals(self, client: NeptuneAPIV2) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address` but received ''"):
-            client.v1.users.markets.borrow.sum.with_raw_response.retrieve_collaterals(
+            client.v1.users.markets.borrow.sum.with_raw_response.get_collaterals(
                 address="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_debts(self, client: NeptuneAPIV2) -> None:
-        sum = client.v1.users.markets.borrow.sum.retrieve_debts(
+    def test_method_get_debts(self, client: NeptuneAPIV2) -> None:
+        sum = client.v1.users.markets.borrow.sum.get_debts(
             address="address",
         )
-        assert_matches_type(SumRetrieveDebtsResponse, sum, path=["response"])
+        assert_matches_type(SumGetDebtsResponse, sum, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_debts_with_all_params(self, client: NeptuneAPIV2) -> None:
-        sum = client.v1.users.markets.borrow.sum.retrieve_debts(
+    def test_method_get_debts_with_all_params(self, client: NeptuneAPIV2) -> None:
+        sum = client.v1.users.markets.borrow.sum.get_debts(
             address="address",
             with_text=True,
             with_value=True,
         )
-        assert_matches_type(SumRetrieveDebtsResponse, sum, path=["response"])
+        assert_matches_type(SumGetDebtsResponse, sum, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_retrieve_debts(self, client: NeptuneAPIV2) -> None:
-        response = client.v1.users.markets.borrow.sum.with_raw_response.retrieve_debts(
+    def test_raw_response_get_debts(self, client: NeptuneAPIV2) -> None:
+        response = client.v1.users.markets.borrow.sum.with_raw_response.get_debts(
             address="address",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sum = response.parse()
-        assert_matches_type(SumRetrieveDebtsResponse, sum, path=["response"])
+        assert_matches_type(SumGetDebtsResponse, sum, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve_debts(self, client: NeptuneAPIV2) -> None:
-        with client.v1.users.markets.borrow.sum.with_streaming_response.retrieve_debts(
+    def test_streaming_response_get_debts(self, client: NeptuneAPIV2) -> None:
+        with client.v1.users.markets.borrow.sum.with_streaming_response.get_debts(
             address="address",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sum = response.parse()
-            assert_matches_type(SumRetrieveDebtsResponse, sum, path=["response"])
+            assert_matches_type(SumGetDebtsResponse, sum, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_retrieve_debts(self, client: NeptuneAPIV2) -> None:
+    def test_path_params_get_debts(self, client: NeptuneAPIV2) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address` but received ''"):
-            client.v1.users.markets.borrow.sum.with_raw_response.retrieve_debts(
+            client.v1.users.markets.borrow.sum.with_raw_response.get_debts(
                 address="",
             )
 
@@ -132,104 +132,104 @@ class TestAsyncSum:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_collaterals(self, async_client: AsyncNeptuneAPIV2) -> None:
-        sum = await async_client.v1.users.markets.borrow.sum.retrieve_collaterals(
+    async def test_method_get_collaterals(self, async_client: AsyncNeptuneAPIV2) -> None:
+        sum = await async_client.v1.users.markets.borrow.sum.get_collaterals(
             address="address",
         )
-        assert_matches_type(SumRetrieveCollateralsResponse, sum, path=["response"])
+        assert_matches_type(SumGetCollateralsResponse, sum, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_collaterals_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
-        sum = await async_client.v1.users.markets.borrow.sum.retrieve_collaterals(
+    async def test_method_get_collaterals_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
+        sum = await async_client.v1.users.markets.borrow.sum.get_collaterals(
             address="address",
             with_text=True,
             with_value=True,
         )
-        assert_matches_type(SumRetrieveCollateralsResponse, sum, path=["response"])
+        assert_matches_type(SumGetCollateralsResponse, sum, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve_collaterals(self, async_client: AsyncNeptuneAPIV2) -> None:
-        response = await async_client.v1.users.markets.borrow.sum.with_raw_response.retrieve_collaterals(
+    async def test_raw_response_get_collaterals(self, async_client: AsyncNeptuneAPIV2) -> None:
+        response = await async_client.v1.users.markets.borrow.sum.with_raw_response.get_collaterals(
             address="address",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sum = await response.parse()
-        assert_matches_type(SumRetrieveCollateralsResponse, sum, path=["response"])
+        assert_matches_type(SumGetCollateralsResponse, sum, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve_collaterals(self, async_client: AsyncNeptuneAPIV2) -> None:
-        async with async_client.v1.users.markets.borrow.sum.with_streaming_response.retrieve_collaterals(
+    async def test_streaming_response_get_collaterals(self, async_client: AsyncNeptuneAPIV2) -> None:
+        async with async_client.v1.users.markets.borrow.sum.with_streaming_response.get_collaterals(
             address="address",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sum = await response.parse()
-            assert_matches_type(SumRetrieveCollateralsResponse, sum, path=["response"])
+            assert_matches_type(SumGetCollateralsResponse, sum, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_retrieve_collaterals(self, async_client: AsyncNeptuneAPIV2) -> None:
+    async def test_path_params_get_collaterals(self, async_client: AsyncNeptuneAPIV2) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address` but received ''"):
-            await async_client.v1.users.markets.borrow.sum.with_raw_response.retrieve_collaterals(
+            await async_client.v1.users.markets.borrow.sum.with_raw_response.get_collaterals(
                 address="",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_debts(self, async_client: AsyncNeptuneAPIV2) -> None:
-        sum = await async_client.v1.users.markets.borrow.sum.retrieve_debts(
+    async def test_method_get_debts(self, async_client: AsyncNeptuneAPIV2) -> None:
+        sum = await async_client.v1.users.markets.borrow.sum.get_debts(
             address="address",
         )
-        assert_matches_type(SumRetrieveDebtsResponse, sum, path=["response"])
+        assert_matches_type(SumGetDebtsResponse, sum, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_debts_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
-        sum = await async_client.v1.users.markets.borrow.sum.retrieve_debts(
+    async def test_method_get_debts_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
+        sum = await async_client.v1.users.markets.borrow.sum.get_debts(
             address="address",
             with_text=True,
             with_value=True,
         )
-        assert_matches_type(SumRetrieveDebtsResponse, sum, path=["response"])
+        assert_matches_type(SumGetDebtsResponse, sum, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve_debts(self, async_client: AsyncNeptuneAPIV2) -> None:
-        response = await async_client.v1.users.markets.borrow.sum.with_raw_response.retrieve_debts(
+    async def test_raw_response_get_debts(self, async_client: AsyncNeptuneAPIV2) -> None:
+        response = await async_client.v1.users.markets.borrow.sum.with_raw_response.get_debts(
             address="address",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sum = await response.parse()
-        assert_matches_type(SumRetrieveDebtsResponse, sum, path=["response"])
+        assert_matches_type(SumGetDebtsResponse, sum, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve_debts(self, async_client: AsyncNeptuneAPIV2) -> None:
-        async with async_client.v1.users.markets.borrow.sum.with_streaming_response.retrieve_debts(
+    async def test_streaming_response_get_debts(self, async_client: AsyncNeptuneAPIV2) -> None:
+        async with async_client.v1.users.markets.borrow.sum.with_streaming_response.get_debts(
             address="address",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sum = await response.parse()
-            assert_matches_type(SumRetrieveDebtsResponse, sum, path=["response"])
+            assert_matches_type(SumGetDebtsResponse, sum, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_retrieve_debts(self, async_client: AsyncNeptuneAPIV2) -> None:
+    async def test_path_params_get_debts(self, async_client: AsyncNeptuneAPIV2) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address` but received ''"):
-            await async_client.v1.users.markets.borrow.sum.with_raw_response.retrieve_debts(
+            await async_client.v1.users.markets.borrow.sum.with_raw_response.get_debts(
                 address="",
             )
