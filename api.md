@@ -44,14 +44,14 @@ Types:
 ```python
 from neptune_api_v2.types.v1 import (
     GlobalMarketConfig,
-    MarketGetMarketParamsResponse,
+    MarketGetParamsResponse,
     MarketOverviewResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /api/v1/markets/config">client.v1.markets.<a href="./src/neptune_api_v2/resources/v1/markets/markets.py">get_market_params</a>(\*\*<a href="src/neptune_api_v2/types/v1/market_get_market_params_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/market_get_market_params_response.py">MarketGetMarketParamsResponse</a></code>
+- <code title="get /api/v1/markets/config">client.v1.markets.<a href="./src/neptune_api_v2/resources/v1/markets/markets.py">get_params</a>(\*\*<a href="src/neptune_api_v2/types/v1/market_get_params_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/market_get_params_response.py">MarketGetParamsResponse</a></code>
 - <code title="get /api/v1/markets">client.v1.markets.<a href="./src/neptune_api_v2/resources/v1/markets/markets.py">overview</a>(\*\*<a href="src/neptune_api_v2/types/v1/market_overview_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/market_overview_response.py">MarketOverviewResponse</a></code>
 
 ### Merged
@@ -100,14 +100,14 @@ Types:
 ```python
 from neptune_api_v2.types.v1.markets import (
     BorrowMarketOverview,
-    BorrowGetBorrowRateHistoryResponse,
+    BorrowGetRateHistoryResponse,
     BorrowOverviewResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /api/v1/markets/borrow/rate-history">client.v1.markets.borrow.<a href="./src/neptune_api_v2/resources/v1/markets/borrow/borrow.py">get_borrow_rate_history</a>(\*\*<a href="src/neptune_api_v2/types/v1/markets/borrow_get_borrow_rate_history_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/markets/borrow_get_borrow_rate_history_response.py">BorrowGetBorrowRateHistoryResponse</a></code>
+- <code title="get /api/v1/markets/borrow/rate-history">client.v1.markets.borrow.<a href="./src/neptune_api_v2/resources/v1/markets/borrow/borrow.py">get_rate_history</a>(\*\*<a href="src/neptune_api_v2/types/v1/markets/borrow_get_rate_history_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/markets/borrow_get_rate_history_response.py">BorrowGetRateHistoryResponse</a></code>
 - <code title="get /api/v1/markets/borrow">client.v1.markets.borrow.<a href="./src/neptune_api_v2/resources/v1/markets/borrow/borrow.py">overview</a>(\*\*<a href="src/neptune_api_v2/types/v1/markets/borrow_overview_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/markets/borrow_overview_response.py">BorrowOverviewResponse</a></code>
 
 #### Collaterals
@@ -158,46 +158,42 @@ from neptune_api_v2.types.v1 import (
     StakingPoolFull,
     StakingPoolParams,
     StakingPoolState,
+    NeptGetParamsResponse,
     NeptGetStakingOverviewResponse,
-    NeptGetTokenParamsResponse,
-    NeptGetTokenStateResponse,
+    NeptGetStateResponse,
 )
 ```
 
 Methods:
 
+- <code title="get /api/v1/nept/params">client.v1.nept.<a href="./src/neptune_api_v2/resources/v1/nept.py">get_params</a>(\*\*<a href="src/neptune_api_v2/types/v1/nept_get_params_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/nept_get_params_response.py">NeptGetParamsResponse</a></code>
 - <code title="get /api/v1/nept/staking">client.v1.nept.<a href="./src/neptune_api_v2/resources/v1/nept.py">get_staking_overview</a>(\*\*<a href="src/neptune_api_v2/types/v1/nept_get_staking_overview_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/nept_get_staking_overview_response.py">NeptGetStakingOverviewResponse</a></code>
-- <code title="get /api/v1/nept/params">client.v1.nept.<a href="./src/neptune_api_v2/resources/v1/nept.py">get_token_params</a>(\*\*<a href="src/neptune_api_v2/types/v1/nept_get_token_params_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/nept_get_token_params_response.py">NeptGetTokenParamsResponse</a></code>
-- <code title="get /api/v1/nept/state">client.v1.nept.<a href="./src/neptune_api_v2/resources/v1/nept.py">get_token_state</a>(\*\*<a href="src/neptune_api_v2/types/v1/nept_get_token_state_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/nept_get_token_state_response.py">NeptGetTokenStateResponse</a></code>
+- <code title="get /api/v1/nept/state">client.v1.nept.<a href="./src/neptune_api_v2/resources/v1/nept.py">get_state</a>(\*\*<a href="src/neptune_api_v2/types/v1/nept_get_state_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/nept_get_state_response.py">NeptGetStateResponse</a></code>
 
 ## Users
 
 Types:
 
 ```python
-from neptune_api_v2.types.v1 import (
-    EventAction,
-    UserRetrieveTxHistoryResponse,
-    UserRetrieveUserResponse,
-)
+from neptune_api_v2.types.v1 import EventAction, UserRetrieveResponse, UserGetTxHistoryResponse
 ```
 
 Methods:
 
-- <code title="get /api/v1/users/{address}/tx-history">client.v1.users.<a href="./src/neptune_api_v2/resources/v1/users/users.py">retrieve_tx_history</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/user_retrieve_tx_history_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/user_retrieve_tx_history_response.py">UserRetrieveTxHistoryResponse</a></code>
-- <code title="get /api/v1/users/{address}/user">client.v1.users.<a href="./src/neptune_api_v2/resources/v1/users/users.py">retrieve_user</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/user_retrieve_user_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/user_retrieve_user_response.py">UserRetrieveUserResponse</a></code>
+- <code title="get /api/v1/users/{address}/user">client.v1.users.<a href="./src/neptune_api_v2/resources/v1/users/users.py">retrieve</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/user_retrieve_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/user_retrieve_response.py">UserRetrieveResponse</a></code>
+- <code title="get /api/v1/users/{address}/tx-history">client.v1.users.<a href="./src/neptune_api_v2/resources/v1/users/users.py">get_tx_history</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/user_get_tx_history_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/user_get_tx_history_response.py">UserGetTxHistoryResponse</a></code>
 
 ### Markets
 
 Types:
 
 ```python
-from neptune_api_v2.types.v1.users import UserMarket, MarketListResponse
+from neptune_api_v2.types.v1.users import UserMarket, MarketGetPortfolioResponse
 ```
 
 Methods:
 
-- <code title="get /api/v1/users/{address}/markets">client.v1.users.markets.<a href="./src/neptune_api_v2/resources/v1/users/markets/markets.py">list</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/market_list_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/market_list_response.py">MarketListResponse</a></code>
+- <code title="get /api/v1/users/{address}/markets">client.v1.users.markets.<a href="./src/neptune_api_v2/resources/v1/users/markets/markets.py">get_portfolio</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/market_get_portfolio_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/market_get_portfolio_response.py">MarketGetPortfolioResponse</a></code>
 
 #### Lend
 
@@ -206,27 +202,27 @@ Types:
 ```python
 from neptune_api_v2.types.v1.users.markets import (
     UserDebtAssetPool,
-    LendListResponse,
-    LendRetrieveLookupResponse,
+    LendGetPortfolioResponse,
+    LendLookupDistributionResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /api/v1/users/{address}/markets/lend">client.v1.users.markets.lend.<a href="./src/neptune_api_v2/resources/v1/users/markets/lend.py">list</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/lend_list_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/lend_list_response.py">LendListResponse</a></code>
-- <code title="get /api/v1/users/{address}/markets/lend/lookup">client.v1.users.markets.lend.<a href="./src/neptune_api_v2/resources/v1/users/markets/lend.py">retrieve_lookup</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/lend_retrieve_lookup_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/lend_retrieve_lookup_response.py">LendRetrieveLookupResponse</a></code>
+- <code title="get /api/v1/users/{address}/markets/lend">client.v1.users.markets.lend.<a href="./src/neptune_api_v2/resources/v1/users/markets/lend.py">get_portfolio</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/lend_get_portfolio_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/lend_get_portfolio_response.py">LendGetPortfolioResponse</a></code>
+- <code title="get /api/v1/users/{address}/markets/lend/lookup">client.v1.users.markets.lend.<a href="./src/neptune_api_v2/resources/v1/users/markets/lend.py">lookup_distribution</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/lend_lookup_distribution_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/lend_lookup_distribution_response.py">LendLookupDistributionResponse</a></code>
 
 #### Borrow
 
 Types:
 
 ```python
-from neptune_api_v2.types.v1.users.markets import BorrowListResponse
+from neptune_api_v2.types.v1.users.markets import BorrowGetPortfolioResponse
 ```
 
 Methods:
 
-- <code title="get /api/v1/users/{address}/markets/borrow">client.v1.users.markets.borrow.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/borrow.py">list</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow_list_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow_list_response.py">BorrowListResponse</a></code>
+- <code title="get /api/v1/users/{address}/markets/borrow">client.v1.users.markets.borrow.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/borrow.py">get_portfolio</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow_get_portfolio_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow_get_portfolio_response.py">BorrowGetPortfolioResponse</a></code>
 
 ##### Accounts
 
@@ -238,18 +234,18 @@ from neptune_api_v2.types.v1.users.markets.borrow import (
     UserBorrowMarketAccount,
     UserCollateralAssetPool,
     AccountRetrieveResponse,
-    AccountRetrieveCollateralsResponse,
-    AccountRetrieveDebtsResponse,
-    AccountRetrieveHealthResponse,
+    AccountGetCollateralsResponse,
+    AccountGetDebtsResponse,
+    AccountGetHealthResponse,
 )
 ```
 
 Methods:
 
 - <code title="get /api/v1/users/{address}/markets/borrow/accounts/{index}">client.v1.users.markets.borrow.accounts.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/accounts.py">retrieve</a>(index, \*, address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow/account_retrieve_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow/account_retrieve_response.py">AccountRetrieveResponse</a></code>
-- <code title="get /api/v1/users/{address}/markets/borrow/accounts/{index}/collaterals">client.v1.users.markets.borrow.accounts.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/accounts.py">retrieve_collaterals</a>(index, \*, address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow/account_retrieve_collaterals_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow/account_retrieve_collaterals_response.py">AccountRetrieveCollateralsResponse</a></code>
-- <code title="get /api/v1/users/{address}/markets/borrow/accounts/{index}/debts">client.v1.users.markets.borrow.accounts.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/accounts.py">retrieve_debts</a>(index, \*, address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow/account_retrieve_debts_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow/account_retrieve_debts_response.py">AccountRetrieveDebtsResponse</a></code>
-- <code title="get /api/v1/users/{address}/markets/borrow/accounts/{index}/health">client.v1.users.markets.borrow.accounts.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/accounts.py">retrieve_health</a>(index, \*, address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow/account_retrieve_health_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow/account_retrieve_health_response.py">AccountRetrieveHealthResponse</a></code>
+- <code title="get /api/v1/users/{address}/markets/borrow/accounts/{index}/collaterals">client.v1.users.markets.borrow.accounts.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/accounts.py">get_collaterals</a>(index, \*, address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow/account_get_collaterals_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow/account_get_collaterals_response.py">AccountGetCollateralsResponse</a></code>
+- <code title="get /api/v1/users/{address}/markets/borrow/accounts/{index}/debts">client.v1.users.markets.borrow.accounts.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/accounts.py">get_debts</a>(index, \*, address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow/account_get_debts_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow/account_get_debts_response.py">AccountGetDebtsResponse</a></code>
+- <code title="get /api/v1/users/{address}/markets/borrow/accounts/{index}/health">client.v1.users.markets.borrow.accounts.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/accounts.py">get_health</a>(index, \*, address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow/account_get_health_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow/account_get_health_response.py">AccountGetHealthResponse</a></code>
 
 ##### Sum
 
@@ -257,15 +253,15 @@ Types:
 
 ```python
 from neptune_api_v2.types.v1.users.markets.borrow import (
-    SumRetrieveCollateralsResponse,
-    SumRetrieveDebtsResponse,
+    SumGetCollateralsResponse,
+    SumGetDebtsResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /api/v1/users/{address}/markets/borrow/sum/collaterals">client.v1.users.markets.borrow.sum.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/sum.py">retrieve_collaterals</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow/sum_retrieve_collaterals_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow/sum_retrieve_collaterals_response.py">SumRetrieveCollateralsResponse</a></code>
-- <code title="get /api/v1/users/{address}/markets/borrow/sum/debts">client.v1.users.markets.borrow.sum.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/sum.py">retrieve_debts</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow/sum_retrieve_debts_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow/sum_retrieve_debts_response.py">SumRetrieveDebtsResponse</a></code>
+- <code title="get /api/v1/users/{address}/markets/borrow/sum/collaterals">client.v1.users.markets.borrow.sum.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/sum.py">get_collaterals</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow/sum_get_collaterals_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow/sum_get_collaterals_response.py">SumGetCollateralsResponse</a></code>
+- <code title="get /api/v1/users/{address}/markets/borrow/sum/debts">client.v1.users.markets.borrow.sum.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/sum.py">get_debts</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow/sum_get_debts_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow/sum_get_debts_response.py">SumGetDebtsResponse</a></code>
 
 ##### Lookup
 
@@ -273,15 +269,15 @@ Types:
 
 ```python
 from neptune_api_v2.types.v1.users.markets.borrow import (
-    LookupRetrieveCollateralResponse,
-    LookupRetrieveDebtResponse,
+    LookupGetCollateralAccountsResponse,
+    LookupGetDebtAccountsResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /api/v1/users/{address}/markets/borrow/lookup/collateral">client.v1.users.markets.borrow.lookup.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/lookup.py">retrieve_collateral</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow/lookup_retrieve_collateral_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow/lookup_retrieve_collateral_response.py">LookupRetrieveCollateralResponse</a></code>
-- <code title="get /api/v1/users/{address}/markets/borrow/lookup/debt">client.v1.users.markets.borrow.lookup.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/lookup.py">retrieve_debt</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow/lookup_retrieve_debt_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow/lookup_retrieve_debt_response.py">LookupRetrieveDebtResponse</a></code>
+- <code title="get /api/v1/users/{address}/markets/borrow/lookup/collateral">client.v1.users.markets.borrow.lookup.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/lookup.py">get_collateral_accounts</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow/lookup_get_collateral_accounts_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow/lookup_get_collateral_accounts_response.py">LookupGetCollateralAccountsResponse</a></code>
+- <code title="get /api/v1/users/{address}/markets/borrow/lookup/debt">client.v1.users.markets.borrow.lookup.<a href="./src/neptune_api_v2/resources/v1/users/markets/borrow/lookup.py">get_debt_accounts</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/borrow/lookup_get_debt_accounts_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/borrow/lookup_get_debt_accounts_response.py">LookupGetDebtAccountsResponse</a></code>
 
 #### Merged
 
@@ -290,15 +286,15 @@ Types:
 ```python
 from neptune_api_v2.types.v1.users.markets import (
     UserMergedMarket,
-    MergedListResponse,
-    MergedRetrieveLookupResponse,
+    MergedGetAllMarketsResponse,
+    MergedLookupByAssetResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /api/v1/users/{address}/markets/merged">client.v1.users.markets.merged.<a href="./src/neptune_api_v2/resources/v1/users/markets/merged.py">list</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/merged_list_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/merged_list_response.py">MergedListResponse</a></code>
-- <code title="get /api/v1/users/{address}/markets/merged/lookup">client.v1.users.markets.merged.<a href="./src/neptune_api_v2/resources/v1/users/markets/merged.py">retrieve_lookup</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/merged_retrieve_lookup_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/merged_retrieve_lookup_response.py">MergedRetrieveLookupResponse</a></code>
+- <code title="get /api/v1/users/{address}/markets/merged">client.v1.users.markets.merged.<a href="./src/neptune_api_v2/resources/v1/users/markets/merged.py">get_all_markets</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/merged_get_all_markets_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/merged_get_all_markets_response.py">MergedGetAllMarketsResponse</a></code>
+- <code title="get /api/v1/users/{address}/markets/merged/lookup">client.v1.users.markets.merged.<a href="./src/neptune_api_v2/resources/v1/users/markets/merged.py">lookup_by_asset</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/markets/merged_lookup_by_asset_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/markets/merged_lookup_by_asset_response.py">MergedLookupByAssetResponse</a></code>
 
 ### Nept
 
@@ -308,13 +304,13 @@ Types:
 from neptune_api_v2.types.v1.users import (
     UserNeptUnlockAmounts,
     UserNeptUnlockOverview,
-    NeptRetrieveUnlocksResponse,
+    NeptGetUnlocksResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /api/v1/users/{address}/nept/unlocks">client.v1.users.nept.<a href="./src/neptune_api_v2/resources/v1/users/nept/nept.py">retrieve_unlocks</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/nept_retrieve_unlocks_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/nept_retrieve_unlocks_response.py">NeptRetrieveUnlocksResponse</a></code>
+- <code title="get /api/v1/users/{address}/nept/unlocks">client.v1.users.nept.<a href="./src/neptune_api_v2/resources/v1/users/nept/nept.py">get_unlocks</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/nept_get_unlocks_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/nept_get_unlocks_response.py">NeptGetUnlocksResponse</a></code>
 
 #### Staking
 
@@ -324,15 +320,15 @@ Types:
 from neptune_api_v2.types.v1.users.nept import (
     UserStake,
     UserStakeUnbondingEntry,
-    StakingListResponse,
-    StakingRetrieveUnstakingResponse,
+    StakingGetOverviewResponse,
+    StakingGetUnstakingPoolResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /api/v1/users/{address}/nept/staking">client.v1.users.nept.staking.<a href="./src/neptune_api_v2/resources/v1/users/nept/staking/staking.py">list</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/nept/staking_list_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/nept/staking_list_response.py">StakingListResponse</a></code>
-- <code title="get /api/v1/users/{address}/nept/staking/unstaking">client.v1.users.nept.staking.<a href="./src/neptune_api_v2/resources/v1/users/nept/staking/staking.py">retrieve_unstaking</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/nept/staking_retrieve_unstaking_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/nept/staking_retrieve_unstaking_response.py">StakingRetrieveUnstakingResponse</a></code>
+- <code title="get /api/v1/users/{address}/nept/staking">client.v1.users.nept.staking.<a href="./src/neptune_api_v2/resources/v1/users/nept/staking/staking.py">get_overview</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/nept/staking_get_overview_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/nept/staking_get_overview_response.py">StakingGetOverviewResponse</a></code>
+- <code title="get /api/v1/users/{address}/nept/staking/unstaking">client.v1.users.nept.staking.<a href="./src/neptune_api_v2/resources/v1/users/nept/staking/staking.py">get_unstaking_pool</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/nept/staking_get_unstaking_pool_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/nept/staking_get_unstaking_pool_response.py">StakingGetUnstakingPoolResponse</a></code>
 
 ##### Pools
 
@@ -341,27 +337,27 @@ Types:
 ```python
 from neptune_api_v2.types.v1.users.nept.staking import (
     UserStakePool,
-    PoolListResponse,
-    PoolRetrieveLookupResponse,
+    PoolGetAllResponse,
+    PoolLookupResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /api/v1/users/{address}/nept/staking/pools">client.v1.users.nept.staking.pools.<a href="./src/neptune_api_v2/resources/v1/users/nept/staking/pools.py">list</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/nept/staking/pool_list_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/nept/staking/pool_list_response.py">PoolListResponse</a></code>
-- <code title="get /api/v1/users/{address}/nept/staking/pools/lookup">client.v1.users.nept.staking.pools.<a href="./src/neptune_api_v2/resources/v1/users/nept/staking/pools.py">retrieve_lookup</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/nept/staking/pool_retrieve_lookup_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/nept/staking/pool_retrieve_lookup_response.py">PoolRetrieveLookupResponse</a></code>
+- <code title="get /api/v1/users/{address}/nept/staking/pools">client.v1.users.nept.staking.pools.<a href="./src/neptune_api_v2/resources/v1/users/nept/staking/pools.py">get_all</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/nept/staking/pool_get_all_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/nept/staking/pool_get_all_response.py">PoolGetAllResponse</a></code>
+- <code title="get /api/v1/users/{address}/nept/staking/pools/lookup">client.v1.users.nept.staking.pools.<a href="./src/neptune_api_v2/resources/v1/users/nept/staking/pools.py">lookup</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/nept/staking/pool_lookup_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/nept/staking/pool_lookup_response.py">PoolLookupResponse</a></code>
 
 ### Wallet
 
 Types:
 
 ```python
-from neptune_api_v2.types.v1.users import UserWalletPortfolio, WalletRetrieveBalancesResponse
+from neptune_api_v2.types.v1.users import UserWalletPortfolio, WalletGetBalancesResponse
 ```
 
 Methods:
 
-- <code title="get /api/v1/users/{address}/wallet/balances">client.v1.users.wallet.<a href="./src/neptune_api_v2/resources/v1/users/wallet.py">retrieve_balances</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/wallet_retrieve_balances_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/wallet_retrieve_balances_response.py">WalletRetrieveBalancesResponse</a></code>
+- <code title="get /api/v1/users/{address}/wallet/balances">client.v1.users.wallet.<a href="./src/neptune_api_v2/resources/v1/users/wallet.py">get_balances</a>(address, \*\*<a href="src/neptune_api_v2/types/v1/users/wallet_get_balances_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/users/wallet_get_balances_response.py">WalletGetBalancesResponse</a></code>
 
 ## Analytics
 
@@ -370,12 +366,12 @@ Methods:
 Types:
 
 ```python
-from neptune_api_v2.types.v1.analytics import MarketRetrieveStateResponse
+from neptune_api_v2.types.v1.analytics import MarketGetCurrentStateResponse
 ```
 
 Methods:
 
-- <code title="get /api/v1/analytics/market/state">client.v1.analytics.market.<a href="./src/neptune_api_v2/resources/v1/analytics/market/market.py">retrieve_state</a>() -> <a href="./src/neptune_api_v2/types/v1/analytics/market_retrieve_state_response.py">MarketRetrieveStateResponse</a></code>
+- <code title="get /api/v1/analytics/market/state">client.v1.analytics.market.<a href="./src/neptune_api_v2/resources/v1/analytics/market/market.py">get_current_state</a>() -> <a href="./src/neptune_api_v2/types/v1/analytics/market_get_current_state_response.py">MarketGetCurrentStateResponse</a></code>
 
 #### History
 
@@ -385,15 +381,15 @@ Types:
 
 ```python
 from neptune_api_v2.types.v1.analytics.market.history import (
-    LoansOriginatedRetrieveByAssetResponse,
-    LoansOriginatedRetrieveLoansOriginatedResponse,
+    LoansOriginatedGetAllResponse,
+    LoansOriginatedGetByAssetResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /api/v1/analytics/market/history/loans-originated/by-asset">client.v1.analytics.market.history.loans_originated.<a href="./src/neptune_api_v2/resources/v1/analytics/market/history/loans_originated.py">retrieve_by_asset</a>(\*\*<a href="src/neptune_api_v2/types/v1/analytics/market/history/loans_originated_retrieve_by_asset_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/analytics/market/history/loans_originated_retrieve_by_asset_response.py">LoansOriginatedRetrieveByAssetResponse</a></code>
-- <code title="get /api/v1/analytics/market/history/loans-originated">client.v1.analytics.market.history.loans_originated.<a href="./src/neptune_api_v2/resources/v1/analytics/market/history/loans_originated.py">retrieve_loans_originated</a>(\*\*<a href="src/neptune_api_v2/types/v1/analytics/market/history/loans_originated_retrieve_loans_originated_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/analytics/market/history/loans_originated_retrieve_loans_originated_response.py">LoansOriginatedRetrieveLoansOriginatedResponse</a></code>
+- <code title="get /api/v1/analytics/market/history/loans-originated">client.v1.analytics.market.history.loans_originated.<a href="./src/neptune_api_v2/resources/v1/analytics/market/history/loans_originated.py">get_all</a>(\*\*<a href="src/neptune_api_v2/types/v1/analytics/market/history/loans_originated_get_all_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/analytics/market/history/loans_originated_get_all_response.py">LoansOriginatedGetAllResponse</a></code>
+- <code title="get /api/v1/analytics/market/history/loans-originated/by-asset">client.v1.analytics.market.history.loans_originated.<a href="./src/neptune_api_v2/resources/v1/analytics/market/history/loans_originated.py">get_by_asset</a>(\*\*<a href="src/neptune_api_v2/types/v1/analytics/market/history/loans_originated_get_by_asset_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/analytics/market/history/loans_originated_get_by_asset_response.py">LoansOriginatedGetByAssetResponse</a></code>
 
 ## Integrations
 
@@ -402,9 +398,9 @@ Methods:
 Types:
 
 ```python
-from neptune_api_v2.types.v1.integrations import BantrRetrieveTransactionsResponse
+from neptune_api_v2.types.v1.integrations import BantrGetTransactionsResponse
 ```
 
 Methods:
 
-- <code title="get /api/v1/integrations/bantr/transactions">client.v1.integrations.bantr.<a href="./src/neptune_api_v2/resources/v1/integrations/bantr.py">retrieve_transactions</a>(\*\*<a href="src/neptune_api_v2/types/v1/integrations/bantr_retrieve_transactions_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/integrations/bantr_retrieve_transactions_response.py">BantrRetrieveTransactionsResponse</a></code>
+- <code title="get /api/v1/integrations/bantr/transactions">client.v1.integrations.bantr.<a href="./src/neptune_api_v2/resources/v1/integrations/bantr.py">get_transactions</a>(\*\*<a href="src/neptune_api_v2/types/v1/integrations/bantr_get_transactions_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/v1/integrations/bantr_get_transactions_response.py">BantrGetTransactionsResponse</a></code>

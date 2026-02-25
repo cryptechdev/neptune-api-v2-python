@@ -39,8 +39,8 @@ from ......_response import (
     async_to_streamed_response_wrapper,
 )
 from ......_base_client import make_request_options
-from ......types.v1.users.markets import borrow_list_params
-from ......types.v1.users.markets.borrow_list_response import BorrowListResponse
+from ......types.v1.users.markets import borrow_get_portfolio_params
+from ......types.v1.users.markets.borrow_get_portfolio_response import BorrowGetPortfolioResponse
 
 __all__ = ["BorrowResource", "AsyncBorrowResource"]
 
@@ -77,7 +77,7 @@ class BorrowResource(SyncAPIResource):
         """
         return BorrowResourceWithStreamingResponse(self)
 
-    def list(
+    def get_portfolio(
         self,
         address: str,
         *,
@@ -89,7 +89,7 @@ class BorrowResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BorrowListResponse:
+    ) -> BorrowGetPortfolioResponse:
         """
         Get user borrow portfolio
 
@@ -122,10 +122,10 @@ class BorrowResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    borrow_list_params.BorrowListParams,
+                    borrow_get_portfolio_params.BorrowGetPortfolioParams,
                 ),
             ),
-            cast_to=BorrowListResponse,
+            cast_to=BorrowGetPortfolioResponse,
         )
 
 
@@ -161,7 +161,7 @@ class AsyncBorrowResource(AsyncAPIResource):
         """
         return AsyncBorrowResourceWithStreamingResponse(self)
 
-    async def list(
+    async def get_portfolio(
         self,
         address: str,
         *,
@@ -173,7 +173,7 @@ class AsyncBorrowResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BorrowListResponse:
+    ) -> BorrowGetPortfolioResponse:
         """
         Get user borrow portfolio
 
@@ -206,10 +206,10 @@ class AsyncBorrowResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    borrow_list_params.BorrowListParams,
+                    borrow_get_portfolio_params.BorrowGetPortfolioParams,
                 ),
             ),
-            cast_to=BorrowListResponse,
+            cast_to=BorrowGetPortfolioResponse,
         )
 
 
@@ -217,8 +217,8 @@ class BorrowResourceWithRawResponse:
     def __init__(self, borrow: BorrowResource) -> None:
         self._borrow = borrow
 
-        self.list = to_raw_response_wrapper(
-            borrow.list,
+        self.get_portfolio = to_raw_response_wrapper(
+            borrow.get_portfolio,
         )
 
     @cached_property
@@ -238,8 +238,8 @@ class AsyncBorrowResourceWithRawResponse:
     def __init__(self, borrow: AsyncBorrowResource) -> None:
         self._borrow = borrow
 
-        self.list = async_to_raw_response_wrapper(
-            borrow.list,
+        self.get_portfolio = async_to_raw_response_wrapper(
+            borrow.get_portfolio,
         )
 
     @cached_property
@@ -259,8 +259,8 @@ class BorrowResourceWithStreamingResponse:
     def __init__(self, borrow: BorrowResource) -> None:
         self._borrow = borrow
 
-        self.list = to_streamed_response_wrapper(
-            borrow.list,
+        self.get_portfolio = to_streamed_response_wrapper(
+            borrow.get_portfolio,
         )
 
     @cached_property
@@ -280,8 +280,8 @@ class AsyncBorrowResourceWithStreamingResponse:
     def __init__(self, borrow: AsyncBorrowResource) -> None:
         self._borrow = borrow
 
-        self.list = async_to_streamed_response_wrapper(
-            borrow.list,
+        self.get_portfolio = async_to_streamed_response_wrapper(
+            borrow.get_portfolio,
         )
 
     @cached_property

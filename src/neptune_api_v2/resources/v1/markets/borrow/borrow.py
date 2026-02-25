@@ -32,10 +32,10 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._base_client import make_request_options
-from .....types.v1.markets import borrow_overview_params, borrow_get_borrow_rate_history_params
+from .....types.v1.markets import borrow_overview_params, borrow_get_rate_history_params
 from .....types.v1.interval_unit import IntervalUnit
 from .....types.v1.markets.borrow_overview_response import BorrowOverviewResponse
-from .....types.v1.markets.borrow_get_borrow_rate_history_response import BorrowGetBorrowRateHistoryResponse
+from .....types.v1.markets.borrow_get_rate_history_response import BorrowGetRateHistoryResponse
 
 __all__ = ["BorrowResource", "AsyncBorrowResource"]
 
@@ -68,7 +68,7 @@ class BorrowResource(SyncAPIResource):
         """
         return BorrowResourceWithStreamingResponse(self)
 
-    def get_borrow_rate_history(
+    def get_rate_history(
         self,
         *,
         end: int,
@@ -84,7 +84,7 @@ class BorrowResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BorrowGetBorrowRateHistoryResponse:
+    ) -> BorrowGetRateHistoryResponse:
         """
         Get historical borrowing rates for assets
 
@@ -151,10 +151,10 @@ class BorrowResource(SyncAPIResource):
                         "limit": limit,
                         "offset": offset,
                     },
-                    borrow_get_borrow_rate_history_params.BorrowGetBorrowRateHistoryParams,
+                    borrow_get_rate_history_params.BorrowGetRateHistoryParams,
                 ),
             ),
-            cast_to=BorrowGetBorrowRateHistoryResponse,
+            cast_to=BorrowGetRateHistoryResponse,
         )
 
     def overview(
@@ -232,7 +232,7 @@ class AsyncBorrowResource(AsyncAPIResource):
         """
         return AsyncBorrowResourceWithStreamingResponse(self)
 
-    async def get_borrow_rate_history(
+    async def get_rate_history(
         self,
         *,
         end: int,
@@ -248,7 +248,7 @@ class AsyncBorrowResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BorrowGetBorrowRateHistoryResponse:
+    ) -> BorrowGetRateHistoryResponse:
         """
         Get historical borrowing rates for assets
 
@@ -315,10 +315,10 @@ class AsyncBorrowResource(AsyncAPIResource):
                         "limit": limit,
                         "offset": offset,
                     },
-                    borrow_get_borrow_rate_history_params.BorrowGetBorrowRateHistoryParams,
+                    borrow_get_rate_history_params.BorrowGetRateHistoryParams,
                 ),
             ),
-            cast_to=BorrowGetBorrowRateHistoryResponse,
+            cast_to=BorrowGetRateHistoryResponse,
         )
 
     async def overview(
@@ -372,8 +372,8 @@ class BorrowResourceWithRawResponse:
     def __init__(self, borrow: BorrowResource) -> None:
         self._borrow = borrow
 
-        self.get_borrow_rate_history = to_raw_response_wrapper(
-            borrow.get_borrow_rate_history,
+        self.get_rate_history = to_raw_response_wrapper(
+            borrow.get_rate_history,
         )
         self.overview = to_raw_response_wrapper(
             borrow.overview,
@@ -392,8 +392,8 @@ class AsyncBorrowResourceWithRawResponse:
     def __init__(self, borrow: AsyncBorrowResource) -> None:
         self._borrow = borrow
 
-        self.get_borrow_rate_history = async_to_raw_response_wrapper(
-            borrow.get_borrow_rate_history,
+        self.get_rate_history = async_to_raw_response_wrapper(
+            borrow.get_rate_history,
         )
         self.overview = async_to_raw_response_wrapper(
             borrow.overview,
@@ -412,8 +412,8 @@ class BorrowResourceWithStreamingResponse:
     def __init__(self, borrow: BorrowResource) -> None:
         self._borrow = borrow
 
-        self.get_borrow_rate_history = to_streamed_response_wrapper(
-            borrow.get_borrow_rate_history,
+        self.get_rate_history = to_streamed_response_wrapper(
+            borrow.get_rate_history,
         )
         self.overview = to_streamed_response_wrapper(
             borrow.overview,
@@ -432,8 +432,8 @@ class AsyncBorrowResourceWithStreamingResponse:
     def __init__(self, borrow: AsyncBorrowResource) -> None:
         self._borrow = borrow
 
-        self.get_borrow_rate_history = async_to_streamed_response_wrapper(
-            borrow.get_borrow_rate_history,
+        self.get_rate_history = async_to_streamed_response_wrapper(
+            borrow.get_rate_history,
         )
         self.overview = async_to_streamed_response_wrapper(
             borrow.overview,

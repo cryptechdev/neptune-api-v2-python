@@ -10,8 +10,8 @@ import pytest
 from tests.utils import assert_matches_type
 from neptune_api_v2 import NeptuneAPIV2, AsyncNeptuneAPIV2
 from neptune_api_v2.types.v1.users.markets.borrow import (
-    LookupRetrieveDebtResponse,
-    LookupRetrieveCollateralResponse,
+    LookupGetDebtAccountsResponse,
+    LookupGetCollateralAccountsResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -22,28 +22,28 @@ class TestLookup:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_collateral(self, client: NeptuneAPIV2) -> None:
-        lookup = client.v1.users.markets.borrow.lookup.retrieve_collateral(
+    def test_method_get_collateral_accounts(self, client: NeptuneAPIV2) -> None:
+        lookup = client.v1.users.markets.borrow.lookup.get_collateral_accounts(
             address="address",
             asset_id="token;-K-//-//3-",
         )
-        assert_matches_type(LookupRetrieveCollateralResponse, lookup, path=["response"])
+        assert_matches_type(LookupGetCollateralAccountsResponse, lookup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_collateral_with_all_params(self, client: NeptuneAPIV2) -> None:
-        lookup = client.v1.users.markets.borrow.lookup.retrieve_collateral(
+    def test_method_get_collateral_accounts_with_all_params(self, client: NeptuneAPIV2) -> None:
+        lookup = client.v1.users.markets.borrow.lookup.get_collateral_accounts(
             address="address",
             asset_id="token;-K-//-//3-",
             with_text=True,
             with_value=True,
         )
-        assert_matches_type(LookupRetrieveCollateralResponse, lookup, path=["response"])
+        assert_matches_type(LookupGetCollateralAccountsResponse, lookup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_retrieve_collateral(self, client: NeptuneAPIV2) -> None:
-        response = client.v1.users.markets.borrow.lookup.with_raw_response.retrieve_collateral(
+    def test_raw_response_get_collateral_accounts(self, client: NeptuneAPIV2) -> None:
+        response = client.v1.users.markets.borrow.lookup.with_raw_response.get_collateral_accounts(
             address="address",
             asset_id="token;-K-//-//3-",
         )
@@ -51,12 +51,12 @@ class TestLookup:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lookup = response.parse()
-        assert_matches_type(LookupRetrieveCollateralResponse, lookup, path=["response"])
+        assert_matches_type(LookupGetCollateralAccountsResponse, lookup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve_collateral(self, client: NeptuneAPIV2) -> None:
-        with client.v1.users.markets.borrow.lookup.with_streaming_response.retrieve_collateral(
+    def test_streaming_response_get_collateral_accounts(self, client: NeptuneAPIV2) -> None:
+        with client.v1.users.markets.borrow.lookup.with_streaming_response.get_collateral_accounts(
             address="address",
             asset_id="token;-K-//-//3-",
         ) as response:
@@ -64,43 +64,43 @@ class TestLookup:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lookup = response.parse()
-            assert_matches_type(LookupRetrieveCollateralResponse, lookup, path=["response"])
+            assert_matches_type(LookupGetCollateralAccountsResponse, lookup, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_retrieve_collateral(self, client: NeptuneAPIV2) -> None:
+    def test_path_params_get_collateral_accounts(self, client: NeptuneAPIV2) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address` but received ''"):
-            client.v1.users.markets.borrow.lookup.with_raw_response.retrieve_collateral(
+            client.v1.users.markets.borrow.lookup.with_raw_response.get_collateral_accounts(
                 address="",
                 asset_id="token;-K-//-//3-",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_debt(self, client: NeptuneAPIV2) -> None:
-        lookup = client.v1.users.markets.borrow.lookup.retrieve_debt(
+    def test_method_get_debt_accounts(self, client: NeptuneAPIV2) -> None:
+        lookup = client.v1.users.markets.borrow.lookup.get_debt_accounts(
             address="address",
             asset_id="token;-K-//-//3-",
         )
-        assert_matches_type(LookupRetrieveDebtResponse, lookup, path=["response"])
+        assert_matches_type(LookupGetDebtAccountsResponse, lookup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_debt_with_all_params(self, client: NeptuneAPIV2) -> None:
-        lookup = client.v1.users.markets.borrow.lookup.retrieve_debt(
+    def test_method_get_debt_accounts_with_all_params(self, client: NeptuneAPIV2) -> None:
+        lookup = client.v1.users.markets.borrow.lookup.get_debt_accounts(
             address="address",
             asset_id="token;-K-//-//3-",
             with_text=True,
             with_value=True,
         )
-        assert_matches_type(LookupRetrieveDebtResponse, lookup, path=["response"])
+        assert_matches_type(LookupGetDebtAccountsResponse, lookup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_retrieve_debt(self, client: NeptuneAPIV2) -> None:
-        response = client.v1.users.markets.borrow.lookup.with_raw_response.retrieve_debt(
+    def test_raw_response_get_debt_accounts(self, client: NeptuneAPIV2) -> None:
+        response = client.v1.users.markets.borrow.lookup.with_raw_response.get_debt_accounts(
             address="address",
             asset_id="token;-K-//-//3-",
         )
@@ -108,12 +108,12 @@ class TestLookup:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lookup = response.parse()
-        assert_matches_type(LookupRetrieveDebtResponse, lookup, path=["response"])
+        assert_matches_type(LookupGetDebtAccountsResponse, lookup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve_debt(self, client: NeptuneAPIV2) -> None:
-        with client.v1.users.markets.borrow.lookup.with_streaming_response.retrieve_debt(
+    def test_streaming_response_get_debt_accounts(self, client: NeptuneAPIV2) -> None:
+        with client.v1.users.markets.borrow.lookup.with_streaming_response.get_debt_accounts(
             address="address",
             asset_id="token;-K-//-//3-",
         ) as response:
@@ -121,15 +121,15 @@ class TestLookup:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lookup = response.parse()
-            assert_matches_type(LookupRetrieveDebtResponse, lookup, path=["response"])
+            assert_matches_type(LookupGetDebtAccountsResponse, lookup, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_retrieve_debt(self, client: NeptuneAPIV2) -> None:
+    def test_path_params_get_debt_accounts(self, client: NeptuneAPIV2) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address` but received ''"):
-            client.v1.users.markets.borrow.lookup.with_raw_response.retrieve_debt(
+            client.v1.users.markets.borrow.lookup.with_raw_response.get_debt_accounts(
                 address="",
                 asset_id="token;-K-//-//3-",
             )
@@ -142,28 +142,28 @@ class TestAsyncLookup:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_collateral(self, async_client: AsyncNeptuneAPIV2) -> None:
-        lookup = await async_client.v1.users.markets.borrow.lookup.retrieve_collateral(
+    async def test_method_get_collateral_accounts(self, async_client: AsyncNeptuneAPIV2) -> None:
+        lookup = await async_client.v1.users.markets.borrow.lookup.get_collateral_accounts(
             address="address",
             asset_id="token;-K-//-//3-",
         )
-        assert_matches_type(LookupRetrieveCollateralResponse, lookup, path=["response"])
+        assert_matches_type(LookupGetCollateralAccountsResponse, lookup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_collateral_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
-        lookup = await async_client.v1.users.markets.borrow.lookup.retrieve_collateral(
+    async def test_method_get_collateral_accounts_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
+        lookup = await async_client.v1.users.markets.borrow.lookup.get_collateral_accounts(
             address="address",
             asset_id="token;-K-//-//3-",
             with_text=True,
             with_value=True,
         )
-        assert_matches_type(LookupRetrieveCollateralResponse, lookup, path=["response"])
+        assert_matches_type(LookupGetCollateralAccountsResponse, lookup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve_collateral(self, async_client: AsyncNeptuneAPIV2) -> None:
-        response = await async_client.v1.users.markets.borrow.lookup.with_raw_response.retrieve_collateral(
+    async def test_raw_response_get_collateral_accounts(self, async_client: AsyncNeptuneAPIV2) -> None:
+        response = await async_client.v1.users.markets.borrow.lookup.with_raw_response.get_collateral_accounts(
             address="address",
             asset_id="token;-K-//-//3-",
         )
@@ -171,12 +171,12 @@ class TestAsyncLookup:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lookup = await response.parse()
-        assert_matches_type(LookupRetrieveCollateralResponse, lookup, path=["response"])
+        assert_matches_type(LookupGetCollateralAccountsResponse, lookup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve_collateral(self, async_client: AsyncNeptuneAPIV2) -> None:
-        async with async_client.v1.users.markets.borrow.lookup.with_streaming_response.retrieve_collateral(
+    async def test_streaming_response_get_collateral_accounts(self, async_client: AsyncNeptuneAPIV2) -> None:
+        async with async_client.v1.users.markets.borrow.lookup.with_streaming_response.get_collateral_accounts(
             address="address",
             asset_id="token;-K-//-//3-",
         ) as response:
@@ -184,43 +184,43 @@ class TestAsyncLookup:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lookup = await response.parse()
-            assert_matches_type(LookupRetrieveCollateralResponse, lookup, path=["response"])
+            assert_matches_type(LookupGetCollateralAccountsResponse, lookup, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_retrieve_collateral(self, async_client: AsyncNeptuneAPIV2) -> None:
+    async def test_path_params_get_collateral_accounts(self, async_client: AsyncNeptuneAPIV2) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address` but received ''"):
-            await async_client.v1.users.markets.borrow.lookup.with_raw_response.retrieve_collateral(
+            await async_client.v1.users.markets.borrow.lookup.with_raw_response.get_collateral_accounts(
                 address="",
                 asset_id="token;-K-//-//3-",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_debt(self, async_client: AsyncNeptuneAPIV2) -> None:
-        lookup = await async_client.v1.users.markets.borrow.lookup.retrieve_debt(
+    async def test_method_get_debt_accounts(self, async_client: AsyncNeptuneAPIV2) -> None:
+        lookup = await async_client.v1.users.markets.borrow.lookup.get_debt_accounts(
             address="address",
             asset_id="token;-K-//-//3-",
         )
-        assert_matches_type(LookupRetrieveDebtResponse, lookup, path=["response"])
+        assert_matches_type(LookupGetDebtAccountsResponse, lookup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_debt_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
-        lookup = await async_client.v1.users.markets.borrow.lookup.retrieve_debt(
+    async def test_method_get_debt_accounts_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
+        lookup = await async_client.v1.users.markets.borrow.lookup.get_debt_accounts(
             address="address",
             asset_id="token;-K-//-//3-",
             with_text=True,
             with_value=True,
         )
-        assert_matches_type(LookupRetrieveDebtResponse, lookup, path=["response"])
+        assert_matches_type(LookupGetDebtAccountsResponse, lookup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve_debt(self, async_client: AsyncNeptuneAPIV2) -> None:
-        response = await async_client.v1.users.markets.borrow.lookup.with_raw_response.retrieve_debt(
+    async def test_raw_response_get_debt_accounts(self, async_client: AsyncNeptuneAPIV2) -> None:
+        response = await async_client.v1.users.markets.borrow.lookup.with_raw_response.get_debt_accounts(
             address="address",
             asset_id="token;-K-//-//3-",
         )
@@ -228,12 +228,12 @@ class TestAsyncLookup:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lookup = await response.parse()
-        assert_matches_type(LookupRetrieveDebtResponse, lookup, path=["response"])
+        assert_matches_type(LookupGetDebtAccountsResponse, lookup, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve_debt(self, async_client: AsyncNeptuneAPIV2) -> None:
-        async with async_client.v1.users.markets.borrow.lookup.with_streaming_response.retrieve_debt(
+    async def test_streaming_response_get_debt_accounts(self, async_client: AsyncNeptuneAPIV2) -> None:
+        async with async_client.v1.users.markets.borrow.lookup.with_streaming_response.get_debt_accounts(
             address="address",
             asset_id="token;-K-//-//3-",
         ) as response:
@@ -241,15 +241,15 @@ class TestAsyncLookup:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lookup = await response.parse()
-            assert_matches_type(LookupRetrieveDebtResponse, lookup, path=["response"])
+            assert_matches_type(LookupGetDebtAccountsResponse, lookup, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_retrieve_debt(self, async_client: AsyncNeptuneAPIV2) -> None:
+    async def test_path_params_get_debt_accounts(self, async_client: AsyncNeptuneAPIV2) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address` but received ''"):
-            await async_client.v1.users.markets.borrow.lookup.with_raw_response.retrieve_debt(
+            await async_client.v1.users.markets.borrow.lookup.with_raw_response.get_debt_accounts(
                 address="",
                 asset_id="token;-K-//-//3-",
             )

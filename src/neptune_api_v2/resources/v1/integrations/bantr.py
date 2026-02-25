@@ -17,8 +17,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.v1.integrations import bantr_retrieve_transactions_params
-from ....types.v1.integrations.bantr_retrieve_transactions_response import BantrRetrieveTransactionsResponse
+from ....types.v1.integrations import bantr_get_transactions_params
+from ....types.v1.integrations.bantr_get_transactions_response import BantrGetTransactionsResponse
 
 __all__ = ["BantrResource", "AsyncBantrResource"]
 
@@ -43,7 +43,7 @@ class BantrResource(SyncAPIResource):
         """
         return BantrResourceWithStreamingResponse(self)
 
-    def retrieve_transactions(
+    def get_transactions(
         self,
         *,
         end_block: int,
@@ -55,7 +55,7 @@ class BantrResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BantrRetrieveTransactionsResponse:
+    ) -> BantrGetTransactionsResponse:
         """
         .
 
@@ -87,10 +87,10 @@ class BantrResource(SyncAPIResource):
                         "start_block": start_block,
                         "limit": limit,
                     },
-                    bantr_retrieve_transactions_params.BantrRetrieveTransactionsParams,
+                    bantr_get_transactions_params.BantrGetTransactionsParams,
                 ),
             ),
-            cast_to=BantrRetrieveTransactionsResponse,
+            cast_to=BantrGetTransactionsResponse,
         )
 
 
@@ -114,7 +114,7 @@ class AsyncBantrResource(AsyncAPIResource):
         """
         return AsyncBantrResourceWithStreamingResponse(self)
 
-    async def retrieve_transactions(
+    async def get_transactions(
         self,
         *,
         end_block: int,
@@ -126,7 +126,7 @@ class AsyncBantrResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BantrRetrieveTransactionsResponse:
+    ) -> BantrGetTransactionsResponse:
         """
         .
 
@@ -158,10 +158,10 @@ class AsyncBantrResource(AsyncAPIResource):
                         "start_block": start_block,
                         "limit": limit,
                     },
-                    bantr_retrieve_transactions_params.BantrRetrieveTransactionsParams,
+                    bantr_get_transactions_params.BantrGetTransactionsParams,
                 ),
             ),
-            cast_to=BantrRetrieveTransactionsResponse,
+            cast_to=BantrGetTransactionsResponse,
         )
 
 
@@ -169,8 +169,8 @@ class BantrResourceWithRawResponse:
     def __init__(self, bantr: BantrResource) -> None:
         self._bantr = bantr
 
-        self.retrieve_transactions = to_raw_response_wrapper(
-            bantr.retrieve_transactions,
+        self.get_transactions = to_raw_response_wrapper(
+            bantr.get_transactions,
         )
 
 
@@ -178,8 +178,8 @@ class AsyncBantrResourceWithRawResponse:
     def __init__(self, bantr: AsyncBantrResource) -> None:
         self._bantr = bantr
 
-        self.retrieve_transactions = async_to_raw_response_wrapper(
-            bantr.retrieve_transactions,
+        self.get_transactions = async_to_raw_response_wrapper(
+            bantr.get_transactions,
         )
 
 
@@ -187,8 +187,8 @@ class BantrResourceWithStreamingResponse:
     def __init__(self, bantr: BantrResource) -> None:
         self._bantr = bantr
 
-        self.retrieve_transactions = to_streamed_response_wrapper(
-            bantr.retrieve_transactions,
+        self.get_transactions = to_streamed_response_wrapper(
+            bantr.get_transactions,
         )
 
 
@@ -196,6 +196,6 @@ class AsyncBantrResourceWithStreamingResponse:
     def __init__(self, bantr: AsyncBantrResource) -> None:
         self._bantr = bantr
 
-        self.retrieve_transactions = async_to_streamed_response_wrapper(
-            bantr.retrieve_transactions,
+        self.get_transactions = async_to_streamed_response_wrapper(
+            bantr.get_transactions,
         )

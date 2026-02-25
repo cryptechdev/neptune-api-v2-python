@@ -18,14 +18,12 @@ from ......_response import (
 from ......_base_client import make_request_options
 from ......types.v1.interval_unit import IntervalUnit
 from ......types.v1.analytics.market.history import (
-    loans_originated_retrieve_by_asset_params,
-    loans_originated_retrieve_loans_originated_params,
+    loans_originated_get_all_params,
+    loans_originated_get_by_asset_params,
 )
-from ......types.v1.analytics.market.history.loans_originated_retrieve_by_asset_response import (
-    LoansOriginatedRetrieveByAssetResponse,
-)
-from ......types.v1.analytics.market.history.loans_originated_retrieve_loans_originated_response import (
-    LoansOriginatedRetrieveLoansOriginatedResponse,
+from ......types.v1.analytics.market.history.loans_originated_get_all_response import LoansOriginatedGetAllResponse
+from ......types.v1.analytics.market.history.loans_originated_get_by_asset_response import (
+    LoansOriginatedGetByAssetResponse,
 )
 
 __all__ = ["LoansOriginatedResource", "AsyncLoansOriginatedResource"]
@@ -51,7 +49,91 @@ class LoansOriginatedResource(SyncAPIResource):
         """
         return LoansOriginatedResourceWithStreamingResponse(self)
 
-    def retrieve_by_asset(
+    def get_all(
+        self,
+        *,
+        end: int,
+        period: IntervalUnit,
+        start: int,
+        interval: int | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> LoansOriginatedGetAllResponse:
+        """
+        Get cumulative lending value history independent of assets
+
+        Args:
+          end: End timestamp for interval range (inclusive)
+
+              Must be provided as unix timestamp (in seconds)
+
+          period: Interval period
+
+              Values:
+
+              - `h`: Hourly
+              - `d`: Daily (accounts for offsets introduced by DST)
+              - `w`: Weekly (provided for convenience, equivalent to 7d)
+              - `m`: Monthly (accounts for varying # of days per month)
+              - `y`: Yearly (accounts for varying # of days per year)
+
+              E.g. for interval buckets of 2h `interval=2&period=h`
+
+          start: Start timestamp for interval range (inclusive)
+
+              Must be provided as unix timestamp (in seconds)
+
+          interval: Interval value
+
+              E.g. for interval buckets of 2h: `interval=2&period=h`
+
+          limit: Maximum number of time buckets/intervals to return.
+
+              For responses with multiple series, this limit is applied to each series
+              individually rather than accumulating across series. This is a limit of returned
+              _interval sections_, it is **not** a limit of returned _points_. In other words,
+              `limit=200` will provide 200 time points for a single series. For multi-series
+              responses, each series will also see the exact same set of 200 time points.
+
+          offset: Time series bucket offset
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/api/v1/analytics/market/history/loans-originated",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "end": end,
+                        "period": period,
+                        "start": start,
+                        "interval": interval,
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    loans_originated_get_all_params.LoansOriginatedGetAllParams,
+                ),
+            ),
+            cast_to=LoansOriginatedGetAllResponse,
+        )
+
+    def get_by_asset(
         self,
         *,
         end: int,
@@ -67,7 +149,7 @@ class LoansOriginatedResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoansOriginatedRetrieveByAssetResponse:
+    ) -> LoansOriginatedGetByAssetResponse:
         """
         Get cumulative lending value history assets
 
@@ -134,94 +216,10 @@ class LoansOriginatedResource(SyncAPIResource):
                         "limit": limit,
                         "offset": offset,
                     },
-                    loans_originated_retrieve_by_asset_params.LoansOriginatedRetrieveByAssetParams,
+                    loans_originated_get_by_asset_params.LoansOriginatedGetByAssetParams,
                 ),
             ),
-            cast_to=LoansOriginatedRetrieveByAssetResponse,
-        )
-
-    def retrieve_loans_originated(
-        self,
-        *,
-        end: int,
-        period: IntervalUnit,
-        start: int,
-        interval: int | Omit = omit,
-        limit: int | Omit = omit,
-        offset: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoansOriginatedRetrieveLoansOriginatedResponse:
-        """
-        Get cumulative lending value history independent of assets
-
-        Args:
-          end: End timestamp for interval range (inclusive)
-
-              Must be provided as unix timestamp (in seconds)
-
-          period: Interval period
-
-              Values:
-
-              - `h`: Hourly
-              - `d`: Daily (accounts for offsets introduced by DST)
-              - `w`: Weekly (provided for convenience, equivalent to 7d)
-              - `m`: Monthly (accounts for varying # of days per month)
-              - `y`: Yearly (accounts for varying # of days per year)
-
-              E.g. for interval buckets of 2h `interval=2&period=h`
-
-          start: Start timestamp for interval range (inclusive)
-
-              Must be provided as unix timestamp (in seconds)
-
-          interval: Interval value
-
-              E.g. for interval buckets of 2h: `interval=2&period=h`
-
-          limit: Maximum number of time buckets/intervals to return.
-
-              For responses with multiple series, this limit is applied to each series
-              individually rather than accumulating across series. This is a limit of returned
-              _interval sections_, it is **not** a limit of returned _points_. In other words,
-              `limit=200` will provide 200 time points for a single series. For multi-series
-              responses, each series will also see the exact same set of 200 time points.
-
-          offset: Time series bucket offset
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            "/api/v1/analytics/market/history/loans-originated",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "end": end,
-                        "period": period,
-                        "start": start,
-                        "interval": interval,
-                        "limit": limit,
-                        "offset": offset,
-                    },
-                    loans_originated_retrieve_loans_originated_params.LoansOriginatedRetrieveLoansOriginatedParams,
-                ),
-            ),
-            cast_to=LoansOriginatedRetrieveLoansOriginatedResponse,
+            cast_to=LoansOriginatedGetByAssetResponse,
         )
 
 
@@ -245,7 +243,91 @@ class AsyncLoansOriginatedResource(AsyncAPIResource):
         """
         return AsyncLoansOriginatedResourceWithStreamingResponse(self)
 
-    async def retrieve_by_asset(
+    async def get_all(
+        self,
+        *,
+        end: int,
+        period: IntervalUnit,
+        start: int,
+        interval: int | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> LoansOriginatedGetAllResponse:
+        """
+        Get cumulative lending value history independent of assets
+
+        Args:
+          end: End timestamp for interval range (inclusive)
+
+              Must be provided as unix timestamp (in seconds)
+
+          period: Interval period
+
+              Values:
+
+              - `h`: Hourly
+              - `d`: Daily (accounts for offsets introduced by DST)
+              - `w`: Weekly (provided for convenience, equivalent to 7d)
+              - `m`: Monthly (accounts for varying # of days per month)
+              - `y`: Yearly (accounts for varying # of days per year)
+
+              E.g. for interval buckets of 2h `interval=2&period=h`
+
+          start: Start timestamp for interval range (inclusive)
+
+              Must be provided as unix timestamp (in seconds)
+
+          interval: Interval value
+
+              E.g. for interval buckets of 2h: `interval=2&period=h`
+
+          limit: Maximum number of time buckets/intervals to return.
+
+              For responses with multiple series, this limit is applied to each series
+              individually rather than accumulating across series. This is a limit of returned
+              _interval sections_, it is **not** a limit of returned _points_. In other words,
+              `limit=200` will provide 200 time points for a single series. For multi-series
+              responses, each series will also see the exact same set of 200 time points.
+
+          offset: Time series bucket offset
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/api/v1/analytics/market/history/loans-originated",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "end": end,
+                        "period": period,
+                        "start": start,
+                        "interval": interval,
+                        "limit": limit,
+                        "offset": offset,
+                    },
+                    loans_originated_get_all_params.LoansOriginatedGetAllParams,
+                ),
+            ),
+            cast_to=LoansOriginatedGetAllResponse,
+        )
+
+    async def get_by_asset(
         self,
         *,
         end: int,
@@ -261,7 +343,7 @@ class AsyncLoansOriginatedResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoansOriginatedRetrieveByAssetResponse:
+    ) -> LoansOriginatedGetByAssetResponse:
         """
         Get cumulative lending value history assets
 
@@ -328,94 +410,10 @@ class AsyncLoansOriginatedResource(AsyncAPIResource):
                         "limit": limit,
                         "offset": offset,
                     },
-                    loans_originated_retrieve_by_asset_params.LoansOriginatedRetrieveByAssetParams,
+                    loans_originated_get_by_asset_params.LoansOriginatedGetByAssetParams,
                 ),
             ),
-            cast_to=LoansOriginatedRetrieveByAssetResponse,
-        )
-
-    async def retrieve_loans_originated(
-        self,
-        *,
-        end: int,
-        period: IntervalUnit,
-        start: int,
-        interval: int | Omit = omit,
-        limit: int | Omit = omit,
-        offset: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LoansOriginatedRetrieveLoansOriginatedResponse:
-        """
-        Get cumulative lending value history independent of assets
-
-        Args:
-          end: End timestamp for interval range (inclusive)
-
-              Must be provided as unix timestamp (in seconds)
-
-          period: Interval period
-
-              Values:
-
-              - `h`: Hourly
-              - `d`: Daily (accounts for offsets introduced by DST)
-              - `w`: Weekly (provided for convenience, equivalent to 7d)
-              - `m`: Monthly (accounts for varying # of days per month)
-              - `y`: Yearly (accounts for varying # of days per year)
-
-              E.g. for interval buckets of 2h `interval=2&period=h`
-
-          start: Start timestamp for interval range (inclusive)
-
-              Must be provided as unix timestamp (in seconds)
-
-          interval: Interval value
-
-              E.g. for interval buckets of 2h: `interval=2&period=h`
-
-          limit: Maximum number of time buckets/intervals to return.
-
-              For responses with multiple series, this limit is applied to each series
-              individually rather than accumulating across series. This is a limit of returned
-              _interval sections_, it is **not** a limit of returned _points_. In other words,
-              `limit=200` will provide 200 time points for a single series. For multi-series
-              responses, each series will also see the exact same set of 200 time points.
-
-          offset: Time series bucket offset
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            "/api/v1/analytics/market/history/loans-originated",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "end": end,
-                        "period": period,
-                        "start": start,
-                        "interval": interval,
-                        "limit": limit,
-                        "offset": offset,
-                    },
-                    loans_originated_retrieve_loans_originated_params.LoansOriginatedRetrieveLoansOriginatedParams,
-                ),
-            ),
-            cast_to=LoansOriginatedRetrieveLoansOriginatedResponse,
+            cast_to=LoansOriginatedGetByAssetResponse,
         )
 
 
@@ -423,11 +421,11 @@ class LoansOriginatedResourceWithRawResponse:
     def __init__(self, loans_originated: LoansOriginatedResource) -> None:
         self._loans_originated = loans_originated
 
-        self.retrieve_by_asset = to_raw_response_wrapper(
-            loans_originated.retrieve_by_asset,
+        self.get_all = to_raw_response_wrapper(
+            loans_originated.get_all,
         )
-        self.retrieve_loans_originated = to_raw_response_wrapper(
-            loans_originated.retrieve_loans_originated,
+        self.get_by_asset = to_raw_response_wrapper(
+            loans_originated.get_by_asset,
         )
 
 
@@ -435,11 +433,11 @@ class AsyncLoansOriginatedResourceWithRawResponse:
     def __init__(self, loans_originated: AsyncLoansOriginatedResource) -> None:
         self._loans_originated = loans_originated
 
-        self.retrieve_by_asset = async_to_raw_response_wrapper(
-            loans_originated.retrieve_by_asset,
+        self.get_all = async_to_raw_response_wrapper(
+            loans_originated.get_all,
         )
-        self.retrieve_loans_originated = async_to_raw_response_wrapper(
-            loans_originated.retrieve_loans_originated,
+        self.get_by_asset = async_to_raw_response_wrapper(
+            loans_originated.get_by_asset,
         )
 
 
@@ -447,11 +445,11 @@ class LoansOriginatedResourceWithStreamingResponse:
     def __init__(self, loans_originated: LoansOriginatedResource) -> None:
         self._loans_originated = loans_originated
 
-        self.retrieve_by_asset = to_streamed_response_wrapper(
-            loans_originated.retrieve_by_asset,
+        self.get_all = to_streamed_response_wrapper(
+            loans_originated.get_all,
         )
-        self.retrieve_loans_originated = to_streamed_response_wrapper(
-            loans_originated.retrieve_loans_originated,
+        self.get_by_asset = to_streamed_response_wrapper(
+            loans_originated.get_by_asset,
         )
 
 
@@ -459,9 +457,9 @@ class AsyncLoansOriginatedResourceWithStreamingResponse:
     def __init__(self, loans_originated: AsyncLoansOriginatedResource) -> None:
         self._loans_originated = loans_originated
 
-        self.retrieve_by_asset = async_to_streamed_response_wrapper(
-            loans_originated.retrieve_by_asset,
+        self.get_all = async_to_streamed_response_wrapper(
+            loans_originated.get_all,
         )
-        self.retrieve_loans_originated = async_to_streamed_response_wrapper(
-            loans_originated.retrieve_loans_originated,
+        self.get_by_asset = async_to_streamed_response_wrapper(
+            loans_originated.get_by_asset,
         )

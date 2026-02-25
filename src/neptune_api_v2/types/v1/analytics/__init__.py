@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .market_retrieve_state_response import MarketRetrieveStateResponse as MarketRetrieveStateResponse
+from .market_get_current_state_response import MarketGetCurrentStateResponse as MarketGetCurrentStateResponse

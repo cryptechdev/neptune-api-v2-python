@@ -17,14 +17,14 @@ from ......_response import (
 from ......_base_client import make_request_options
 from ......types.v1.users.markets.borrow import (
     account_retrieve_params,
-    account_retrieve_debts_params,
-    account_retrieve_health_params,
-    account_retrieve_collaterals_params,
+    account_get_debts_params,
+    account_get_health_params,
+    account_get_collaterals_params,
 )
 from ......types.v1.users.markets.borrow.account_retrieve_response import AccountRetrieveResponse
-from ......types.v1.users.markets.borrow.account_retrieve_debts_response import AccountRetrieveDebtsResponse
-from ......types.v1.users.markets.borrow.account_retrieve_health_response import AccountRetrieveHealthResponse
-from ......types.v1.users.markets.borrow.account_retrieve_collaterals_response import AccountRetrieveCollateralsResponse
+from ......types.v1.users.markets.borrow.account_get_debts_response import AccountGetDebtsResponse
+from ......types.v1.users.markets.borrow.account_get_health_response import AccountGetHealthResponse
+from ......types.v1.users.markets.borrow.account_get_collaterals_response import AccountGetCollateralsResponse
 
 __all__ = ["AccountsResource", "AsyncAccountsResource"]
 
@@ -103,7 +103,7 @@ class AccountsResource(SyncAPIResource):
             cast_to=AccountRetrieveResponse,
         )
 
-    def retrieve_collaterals(
+    def get_collaterals(
         self,
         index: int,
         *,
@@ -116,7 +116,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AccountRetrieveCollateralsResponse:
+    ) -> AccountGetCollateralsResponse:
         """
         Get user borrow subaccount collaterals
 
@@ -151,13 +151,13 @@ class AccountsResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    account_retrieve_collaterals_params.AccountRetrieveCollateralsParams,
+                    account_get_collaterals_params.AccountGetCollateralsParams,
                 ),
             ),
-            cast_to=AccountRetrieveCollateralsResponse,
+            cast_to=AccountGetCollateralsResponse,
         )
 
-    def retrieve_debts(
+    def get_debts(
         self,
         index: int,
         *,
@@ -170,7 +170,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AccountRetrieveDebtsResponse:
+    ) -> AccountGetDebtsResponse:
         """
         Get user borrow subaccount debts
 
@@ -205,13 +205,13 @@ class AccountsResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    account_retrieve_debts_params.AccountRetrieveDebtsParams,
+                    account_get_debts_params.AccountGetDebtsParams,
                 ),
             ),
-            cast_to=AccountRetrieveDebtsResponse,
+            cast_to=AccountGetDebtsResponse,
         )
 
-    def retrieve_health(
+    def get_health(
         self,
         index: int,
         *,
@@ -224,7 +224,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AccountRetrieveHealthResponse:
+    ) -> AccountGetHealthResponse:
         """
         Get user borrow subaccount health
 
@@ -259,10 +259,10 @@ class AccountsResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    account_retrieve_health_params.AccountRetrieveHealthParams,
+                    account_get_health_params.AccountGetHealthParams,
                 ),
             ),
-            cast_to=AccountRetrieveHealthResponse,
+            cast_to=AccountGetHealthResponse,
         )
 
 
@@ -340,7 +340,7 @@ class AsyncAccountsResource(AsyncAPIResource):
             cast_to=AccountRetrieveResponse,
         )
 
-    async def retrieve_collaterals(
+    async def get_collaterals(
         self,
         index: int,
         *,
@@ -353,7 +353,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AccountRetrieveCollateralsResponse:
+    ) -> AccountGetCollateralsResponse:
         """
         Get user borrow subaccount collaterals
 
@@ -388,13 +388,13 @@ class AsyncAccountsResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    account_retrieve_collaterals_params.AccountRetrieveCollateralsParams,
+                    account_get_collaterals_params.AccountGetCollateralsParams,
                 ),
             ),
-            cast_to=AccountRetrieveCollateralsResponse,
+            cast_to=AccountGetCollateralsResponse,
         )
 
-    async def retrieve_debts(
+    async def get_debts(
         self,
         index: int,
         *,
@@ -407,7 +407,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AccountRetrieveDebtsResponse:
+    ) -> AccountGetDebtsResponse:
         """
         Get user borrow subaccount debts
 
@@ -442,13 +442,13 @@ class AsyncAccountsResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    account_retrieve_debts_params.AccountRetrieveDebtsParams,
+                    account_get_debts_params.AccountGetDebtsParams,
                 ),
             ),
-            cast_to=AccountRetrieveDebtsResponse,
+            cast_to=AccountGetDebtsResponse,
         )
 
-    async def retrieve_health(
+    async def get_health(
         self,
         index: int,
         *,
@@ -461,7 +461,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AccountRetrieveHealthResponse:
+    ) -> AccountGetHealthResponse:
         """
         Get user borrow subaccount health
 
@@ -496,10 +496,10 @@ class AsyncAccountsResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    account_retrieve_health_params.AccountRetrieveHealthParams,
+                    account_get_health_params.AccountGetHealthParams,
                 ),
             ),
-            cast_to=AccountRetrieveHealthResponse,
+            cast_to=AccountGetHealthResponse,
         )
 
 
@@ -510,14 +510,14 @@ class AccountsResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             accounts.retrieve,
         )
-        self.retrieve_collaterals = to_raw_response_wrapper(
-            accounts.retrieve_collaterals,
+        self.get_collaterals = to_raw_response_wrapper(
+            accounts.get_collaterals,
         )
-        self.retrieve_debts = to_raw_response_wrapper(
-            accounts.retrieve_debts,
+        self.get_debts = to_raw_response_wrapper(
+            accounts.get_debts,
         )
-        self.retrieve_health = to_raw_response_wrapper(
-            accounts.retrieve_health,
+        self.get_health = to_raw_response_wrapper(
+            accounts.get_health,
         )
 
 
@@ -528,14 +528,14 @@ class AsyncAccountsResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             accounts.retrieve,
         )
-        self.retrieve_collaterals = async_to_raw_response_wrapper(
-            accounts.retrieve_collaterals,
+        self.get_collaterals = async_to_raw_response_wrapper(
+            accounts.get_collaterals,
         )
-        self.retrieve_debts = async_to_raw_response_wrapper(
-            accounts.retrieve_debts,
+        self.get_debts = async_to_raw_response_wrapper(
+            accounts.get_debts,
         )
-        self.retrieve_health = async_to_raw_response_wrapper(
-            accounts.retrieve_health,
+        self.get_health = async_to_raw_response_wrapper(
+            accounts.get_health,
         )
 
 
@@ -546,14 +546,14 @@ class AccountsResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             accounts.retrieve,
         )
-        self.retrieve_collaterals = to_streamed_response_wrapper(
-            accounts.retrieve_collaterals,
+        self.get_collaterals = to_streamed_response_wrapper(
+            accounts.get_collaterals,
         )
-        self.retrieve_debts = to_streamed_response_wrapper(
-            accounts.retrieve_debts,
+        self.get_debts = to_streamed_response_wrapper(
+            accounts.get_debts,
         )
-        self.retrieve_health = to_streamed_response_wrapper(
-            accounts.retrieve_health,
+        self.get_health = to_streamed_response_wrapper(
+            accounts.get_health,
         )
 
 
@@ -564,12 +564,12 @@ class AsyncAccountsResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             accounts.retrieve,
         )
-        self.retrieve_collaterals = async_to_streamed_response_wrapper(
-            accounts.retrieve_collaterals,
+        self.get_collaterals = async_to_streamed_response_wrapper(
+            accounts.get_collaterals,
         )
-        self.retrieve_debts = async_to_streamed_response_wrapper(
-            accounts.retrieve_debts,
+        self.get_debts = async_to_streamed_response_wrapper(
+            accounts.get_debts,
         )
-        self.retrieve_health = async_to_streamed_response_wrapper(
-            accounts.retrieve_health,
+        self.get_health = async_to_streamed_response_wrapper(
+            accounts.get_health,
         )

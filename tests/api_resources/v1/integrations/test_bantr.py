@@ -9,7 +9,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from neptune_api_v2 import NeptuneAPIV2, AsyncNeptuneAPIV2
-from neptune_api_v2.types.v1.integrations import BantrRetrieveTransactionsResponse
+from neptune_api_v2.types.v1.integrations import BantrGetTransactionsResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,27 +19,27 @@ class TestBantr:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_transactions(self, client: NeptuneAPIV2) -> None:
-        bantr = client.v1.integrations.bantr.retrieve_transactions(
+    def test_method_get_transactions(self, client: NeptuneAPIV2) -> None:
+        bantr = client.v1.integrations.bantr.get_transactions(
             end_block=0,
             start_block=0,
         )
-        assert_matches_type(BantrRetrieveTransactionsResponse, bantr, path=["response"])
+        assert_matches_type(BantrGetTransactionsResponse, bantr, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_transactions_with_all_params(self, client: NeptuneAPIV2) -> None:
-        bantr = client.v1.integrations.bantr.retrieve_transactions(
+    def test_method_get_transactions_with_all_params(self, client: NeptuneAPIV2) -> None:
+        bantr = client.v1.integrations.bantr.get_transactions(
             end_block=0,
             start_block=0,
             limit=0,
         )
-        assert_matches_type(BantrRetrieveTransactionsResponse, bantr, path=["response"])
+        assert_matches_type(BantrGetTransactionsResponse, bantr, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_retrieve_transactions(self, client: NeptuneAPIV2) -> None:
-        response = client.v1.integrations.bantr.with_raw_response.retrieve_transactions(
+    def test_raw_response_get_transactions(self, client: NeptuneAPIV2) -> None:
+        response = client.v1.integrations.bantr.with_raw_response.get_transactions(
             end_block=0,
             start_block=0,
         )
@@ -47,12 +47,12 @@ class TestBantr:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bantr = response.parse()
-        assert_matches_type(BantrRetrieveTransactionsResponse, bantr, path=["response"])
+        assert_matches_type(BantrGetTransactionsResponse, bantr, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve_transactions(self, client: NeptuneAPIV2) -> None:
-        with client.v1.integrations.bantr.with_streaming_response.retrieve_transactions(
+    def test_streaming_response_get_transactions(self, client: NeptuneAPIV2) -> None:
+        with client.v1.integrations.bantr.with_streaming_response.get_transactions(
             end_block=0,
             start_block=0,
         ) as response:
@@ -60,7 +60,7 @@ class TestBantr:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bantr = response.parse()
-            assert_matches_type(BantrRetrieveTransactionsResponse, bantr, path=["response"])
+            assert_matches_type(BantrGetTransactionsResponse, bantr, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -72,27 +72,27 @@ class TestAsyncBantr:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_transactions(self, async_client: AsyncNeptuneAPIV2) -> None:
-        bantr = await async_client.v1.integrations.bantr.retrieve_transactions(
+    async def test_method_get_transactions(self, async_client: AsyncNeptuneAPIV2) -> None:
+        bantr = await async_client.v1.integrations.bantr.get_transactions(
             end_block=0,
             start_block=0,
         )
-        assert_matches_type(BantrRetrieveTransactionsResponse, bantr, path=["response"])
+        assert_matches_type(BantrGetTransactionsResponse, bantr, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_transactions_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
-        bantr = await async_client.v1.integrations.bantr.retrieve_transactions(
+    async def test_method_get_transactions_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
+        bantr = await async_client.v1.integrations.bantr.get_transactions(
             end_block=0,
             start_block=0,
             limit=0,
         )
-        assert_matches_type(BantrRetrieveTransactionsResponse, bantr, path=["response"])
+        assert_matches_type(BantrGetTransactionsResponse, bantr, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve_transactions(self, async_client: AsyncNeptuneAPIV2) -> None:
-        response = await async_client.v1.integrations.bantr.with_raw_response.retrieve_transactions(
+    async def test_raw_response_get_transactions(self, async_client: AsyncNeptuneAPIV2) -> None:
+        response = await async_client.v1.integrations.bantr.with_raw_response.get_transactions(
             end_block=0,
             start_block=0,
         )
@@ -100,12 +100,12 @@ class TestAsyncBantr:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bantr = await response.parse()
-        assert_matches_type(BantrRetrieveTransactionsResponse, bantr, path=["response"])
+        assert_matches_type(BantrGetTransactionsResponse, bantr, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve_transactions(self, async_client: AsyncNeptuneAPIV2) -> None:
-        async with async_client.v1.integrations.bantr.with_streaming_response.retrieve_transactions(
+    async def test_streaming_response_get_transactions(self, async_client: AsyncNeptuneAPIV2) -> None:
+        async with async_client.v1.integrations.bantr.with_streaming_response.get_transactions(
             end_block=0,
             start_block=0,
         ) as response:
@@ -113,6 +113,6 @@ class TestAsyncBantr:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bantr = await response.parse()
-            assert_matches_type(BantrRetrieveTransactionsResponse, bantr, path=["response"])
+            assert_matches_type(BantrGetTransactionsResponse, bantr, path=["response"])
 
         assert cast(Any, response.is_closed) is True

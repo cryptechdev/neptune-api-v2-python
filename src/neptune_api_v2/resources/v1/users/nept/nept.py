@@ -23,8 +23,8 @@ from .staking.staking import (
     AsyncStakingResourceWithStreamingResponse,
 )
 from ....._base_client import make_request_options
-from .....types.v1.users import nept_retrieve_unlocks_params
-from .....types.v1.users.nept_retrieve_unlocks_response import NeptRetrieveUnlocksResponse
+from .....types.v1.users import nept_get_unlocks_params
+from .....types.v1.users.nept_get_unlocks_response import NeptGetUnlocksResponse
 
 __all__ = ["NeptResource", "AsyncNeptResource"]
 
@@ -53,7 +53,7 @@ class NeptResource(SyncAPIResource):
         """
         return NeptResourceWithStreamingResponse(self)
 
-    def retrieve_unlocks(
+    def get_unlocks(
         self,
         address: str,
         *,
@@ -66,7 +66,7 @@ class NeptResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NeptRetrieveUnlocksResponse:
+    ) -> NeptGetUnlocksResponse:
         """
         Get user NEPT unlocks
 
@@ -102,10 +102,10 @@ class NeptResource(SyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    nept_retrieve_unlocks_params.NeptRetrieveUnlocksParams,
+                    nept_get_unlocks_params.NeptGetUnlocksParams,
                 ),
             ),
-            cast_to=NeptRetrieveUnlocksResponse,
+            cast_to=NeptGetUnlocksResponse,
         )
 
 
@@ -133,7 +133,7 @@ class AsyncNeptResource(AsyncAPIResource):
         """
         return AsyncNeptResourceWithStreamingResponse(self)
 
-    async def retrieve_unlocks(
+    async def get_unlocks(
         self,
         address: str,
         *,
@@ -146,7 +146,7 @@ class AsyncNeptResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NeptRetrieveUnlocksResponse:
+    ) -> NeptGetUnlocksResponse:
         """
         Get user NEPT unlocks
 
@@ -182,10 +182,10 @@ class AsyncNeptResource(AsyncAPIResource):
                         "with_text": with_text,
                         "with_value": with_value,
                     },
-                    nept_retrieve_unlocks_params.NeptRetrieveUnlocksParams,
+                    nept_get_unlocks_params.NeptGetUnlocksParams,
                 ),
             ),
-            cast_to=NeptRetrieveUnlocksResponse,
+            cast_to=NeptGetUnlocksResponse,
         )
 
 
@@ -193,8 +193,8 @@ class NeptResourceWithRawResponse:
     def __init__(self, nept: NeptResource) -> None:
         self._nept = nept
 
-        self.retrieve_unlocks = to_raw_response_wrapper(
-            nept.retrieve_unlocks,
+        self.get_unlocks = to_raw_response_wrapper(
+            nept.get_unlocks,
         )
 
     @cached_property
@@ -206,8 +206,8 @@ class AsyncNeptResourceWithRawResponse:
     def __init__(self, nept: AsyncNeptResource) -> None:
         self._nept = nept
 
-        self.retrieve_unlocks = async_to_raw_response_wrapper(
-            nept.retrieve_unlocks,
+        self.get_unlocks = async_to_raw_response_wrapper(
+            nept.get_unlocks,
         )
 
     @cached_property
@@ -219,8 +219,8 @@ class NeptResourceWithStreamingResponse:
     def __init__(self, nept: NeptResource) -> None:
         self._nept = nept
 
-        self.retrieve_unlocks = to_streamed_response_wrapper(
-            nept.retrieve_unlocks,
+        self.get_unlocks = to_streamed_response_wrapper(
+            nept.get_unlocks,
         )
 
     @cached_property
@@ -232,8 +232,8 @@ class AsyncNeptResourceWithStreamingResponse:
     def __init__(self, nept: AsyncNeptResource) -> None:
         self._nept = nept
 
-        self.retrieve_unlocks = async_to_streamed_response_wrapper(
-            nept.retrieve_unlocks,
+        self.get_unlocks = async_to_streamed_response_wrapper(
+            nept.get_unlocks,
         )
 
     @cached_property

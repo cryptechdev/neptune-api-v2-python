@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .bantr_retrieve_transactions_params import BantrRetrieveTransactionsParams as BantrRetrieveTransactionsParams
-from .bantr_retrieve_transactions_response import BantrRetrieveTransactionsResponse as BantrRetrieveTransactionsResponse
+from .bantr_get_transactions_params import BantrGetTransactionsParams as BantrGetTransactionsParams
+from .bantr_get_transactions_response import BantrGetTransactionsResponse as BantrGetTransactionsResponse
