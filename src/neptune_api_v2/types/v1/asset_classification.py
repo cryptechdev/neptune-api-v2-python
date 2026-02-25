@@ -6,10 +6,10 @@ from typing_extensions import Literal, TypeAlias
 from ..._models import BaseModel
 from .asset_spec import AssetSpec
 
-__all__ = ["AssetClassification", "RegularAsset", "NeptuneReceiptAsset", "LiquidStakingTokenAsset"]
+__all__ = ["AssetClassification", "Regular", "NeptuneReceiptToken", "LiquidStakingToken"]
 
 
-class RegularAsset(BaseModel):
+class Regular(BaseModel):
     kind: Literal["regular"]
 
     neptune_receipt_asset: Optional[AssetSpec] = None
@@ -20,7 +20,7 @@ class RegularAsset(BaseModel):
     """
 
 
-class NeptuneReceiptAsset(BaseModel):
+class NeptuneReceiptToken(BaseModel):
     kind: Literal["neptune_receipt_token"]
 
     origin_asset: AssetSpec
@@ -31,7 +31,7 @@ class NeptuneReceiptAsset(BaseModel):
     """
 
 
-class LiquidStakingTokenAsset(BaseModel):
+class LiquidStakingToken(BaseModel):
     kind: Literal["liquid_staking_token"]
 
     origin_asset: Optional[AssetSpec] = None
@@ -42,4 +42,4 @@ class LiquidStakingTokenAsset(BaseModel):
     """
 
 
-AssetClassification: TypeAlias = Union[RegularAsset, NeptuneReceiptAsset, LiquidStakingTokenAsset]
+AssetClassification: TypeAlias = Union[Regular, NeptuneReceiptToken, LiquidStakingToken]
