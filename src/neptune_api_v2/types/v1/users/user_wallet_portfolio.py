@@ -17,7 +17,7 @@ __all__ = [
     "BalanceValuesUnionMember0ExtraValue",
     "BalanceValuesUnionMember0ExtraValueExtra",
     "BalanceValuesUnionMember0ExtraValueExtraText",
-    "BalanceValuesUnknownWalletValues",
+    "BalanceValuesUnionMember1",
     "Extra",
     "ExtraText",
 ]
@@ -77,13 +77,14 @@ class BalanceValuesUnionMember0(BaseModel):
     kind: Literal["known_asset"]
 
 
-class BalanceValuesUnknownWalletValues(BaseModel):
-    """`UnknownWalletValues`"""
+class BalanceValuesUnionMember1(BaseModel):
+    amount: str
+    """Wallet balance in native denom."""
 
     kind: Literal["unknown_asset"]
 
 
-BalanceValues: TypeAlias = Union[BalanceValuesUnionMember0, BalanceValuesUnknownWalletValues]
+BalanceValues: TypeAlias = Union[BalanceValuesUnionMember0, BalanceValuesUnionMember1]
 
 
 class Balance(BaseModel):
