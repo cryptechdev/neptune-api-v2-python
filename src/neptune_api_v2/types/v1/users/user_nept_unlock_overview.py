@@ -17,7 +17,7 @@ __all__ = [
     "ArrangementScheduleUnionMember0",
     "ArrangementScheduleUnionMember0Extra",
     "ArrangementScheduleUnionMember0ExtraText",
-    "ArrangementScheduleKind",
+    "ArrangementScheduleLumpSum",
     "ArrangementAdmin",
     "Extra",
     "ExtraText",
@@ -70,11 +70,11 @@ class ArrangementScheduleUnionMember0(BaseModel):
     kind: Literal["linear"]
 
 
-class ArrangementScheduleKind(BaseModel):
+class ArrangementScheduleLumpSum(BaseModel):
     kind: Literal["lump_sum"]
 
 
-ArrangementSchedule: TypeAlias = Union[ArrangementScheduleUnionMember0, ArrangementScheduleKind]
+ArrangementSchedule: TypeAlias = Union[ArrangementScheduleUnionMember0, ArrangementScheduleLumpSum]
 
 
 class ArrangementAdmin(BaseModel):
