@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import TypeAlias
 
 from ...._models import BaseModel
 from ..asset_info import AssetInfo
@@ -11,25 +11,27 @@ __all__ = [
     "UserWalletPortfolio",
     "Balance",
     "BalanceValues",
-    "BalanceValuesUnionMember0",
-    "BalanceValuesUnionMember0Extra",
-    "BalanceValuesUnionMember0ExtraText",
-    "BalanceValuesUnionMember0ExtraValue",
-    "BalanceValuesUnionMember0ExtraValueExtra",
-    "BalanceValuesUnionMember0ExtraValueExtraText",
-    "BalanceValuesUnionMember1",
+    "BalanceValuesKnownAsset",
+    "BalanceValuesKnownAssetKnownAsset",
+    "BalanceValuesKnownAssetKnownAssetExtra",
+    "BalanceValuesKnownAssetKnownAssetExtraText",
+    "BalanceValuesKnownAssetKnownAssetExtraValue",
+    "BalanceValuesKnownAssetKnownAssetExtraValueExtra",
+    "BalanceValuesKnownAssetKnownAssetExtraValueExtraText",
+    "BalanceValuesUnknownAsset",
+    "BalanceValuesUnknownAssetUnknownAsset",
     "Extra",
     "ExtraText",
 ]
 
 
-class BalanceValuesUnionMember0ExtraText(BaseModel):
+class BalanceValuesKnownAssetKnownAssetExtraText(BaseModel):
     """Human-readable field variants. Must provide `?with-text=true`"""
 
     amount: str
 
 
-class BalanceValuesUnionMember0ExtraValueExtraText(BaseModel):
+class BalanceValuesKnownAssetKnownAssetExtraValueExtraText(BaseModel):
     """Human-readable variants of USD values.
 
     Must provide `?with-text=true&with-value=true`
@@ -38,31 +40,33 @@ class BalanceValuesUnionMember0ExtraValueExtraText(BaseModel):
     amount: str
 
 
-class BalanceValuesUnionMember0ExtraValueExtra(BaseModel):
-    text: Optional[BalanceValuesUnionMember0ExtraValueExtraText] = None
+class BalanceValuesKnownAssetKnownAssetExtraValueExtra(BaseModel):
+    text: Optional[BalanceValuesKnownAssetKnownAssetExtraValueExtraText] = None
     """Human-readable variants of USD values.
 
     Must provide `?with-text=true&with-value=true`
     """
 
 
-class BalanceValuesUnionMember0ExtraValue(BaseModel):
+class BalanceValuesKnownAssetKnownAssetExtraValue(BaseModel):
     """USD values for the corresponding amounts above. Must provide `?with-value=true`"""
 
     amount: str
 
-    extra: BalanceValuesUnionMember0ExtraValueExtra
+    extra: BalanceValuesKnownAssetKnownAssetExtraValueExtra
 
 
-class BalanceValuesUnionMember0Extra(BaseModel):
-    text: Optional[BalanceValuesUnionMember0ExtraText] = None
+class BalanceValuesKnownAssetKnownAssetExtra(BaseModel):
+    text: Optional[BalanceValuesKnownAssetKnownAssetExtraText] = None
     """Human-readable field variants. Must provide `?with-text=true`"""
 
-    value: Optional[BalanceValuesUnionMember0ExtraValue] = None
+    value: Optional[BalanceValuesKnownAssetKnownAssetExtraValue] = None
     """USD values for the corresponding amounts above. Must provide `?with-value=true`"""
 
 
-class BalanceValuesUnionMember0(BaseModel):
+class BalanceValuesKnownAssetKnownAsset(BaseModel):
+    """`KnownWalletValues`"""
+
     amount: str
     """Wallet balance in native denom."""
 
@@ -72,19 +76,31 @@ class BalanceValuesUnionMember0(BaseModel):
     asset_info: AssetInfo
     """`AssetInfo`"""
 
-    extra: BalanceValuesUnionMember0Extra
-
-    kind: Literal["known_asset"]
+    extra: BalanceValuesKnownAssetKnownAssetExtra
 
 
-class BalanceValuesUnionMember1(BaseModel):
+class BalanceValuesKnownAsset(BaseModel):
+    """
+    This will be provided given the denom matches that of an asset included in the /assets endpoint.
+    """
+
+    known_asset: BalanceValuesKnownAssetKnownAsset
+    """`KnownWalletValues`"""
+
+
+class BalanceValuesUnknownAssetUnknownAsset(BaseModel):
+    """`UnknownWalletValues`"""
+
     amount: str
     """Wallet balance in native denom."""
 
-    kind: Literal["unknown_asset"]
+
+class BalanceValuesUnknownAsset(BaseModel):
+    unknown_asset: BalanceValuesUnknownAssetUnknownAsset
+    """`UnknownWalletValues`"""
 
 
-BalanceValues: TypeAlias = Union[BalanceValuesUnionMember0, BalanceValuesUnionMember1]
+BalanceValues: TypeAlias = Union[BalanceValuesKnownAsset, BalanceValuesUnknownAsset]
 
 
 class Balance(BaseModel):
