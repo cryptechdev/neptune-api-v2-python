@@ -15,9 +15,10 @@ __all__ = [
     "ArrangementExtraText",
     "ArrangementSchedule",
     "ArrangementScheduleLinear",
-    "ArrangementScheduleLinearLinear",
-    "ArrangementScheduleLinearLinearExtra",
-    "ArrangementScheduleLinearLinearExtraText",
+    "ArrangementScheduleLinearProperties",
+    "ArrangementScheduleLinearPropertiesExtra",
+    "ArrangementScheduleLinearPropertiesExtraText",
+    "ArrangementScheduleLumpSum",
     "ArrangementAdmin",
     "Extra",
     "ExtraText",
@@ -39,7 +40,7 @@ class ArrangementExtra(BaseModel):
     """Human-readable field variants. Must provide `?with-text=true`"""
 
 
-class ArrangementScheduleLinearLinearExtraText(BaseModel):
+class ArrangementScheduleLinearPropertiesExtraText(BaseModel):
     """Human-readable field variants. Must provide `?with-text=true`"""
 
     duration: str
@@ -47,12 +48,12 @@ class ArrangementScheduleLinearLinearExtraText(BaseModel):
     ends_at: str
 
 
-class ArrangementScheduleLinearLinearExtra(BaseModel):
-    text: Optional[ArrangementScheduleLinearLinearExtraText] = None
+class ArrangementScheduleLinearPropertiesExtra(BaseModel):
+    text: Optional[ArrangementScheduleLinearPropertiesExtraText] = None
     """Human-readable field variants. Must provide `?with-text=true`"""
 
 
-class ArrangementScheduleLinearLinear(BaseModel):
+class ArrangementScheduleLinearProperties(BaseModel):
     duration: Duration
     """The duration of the unlock"""
 
@@ -65,14 +66,20 @@ class ArrangementScheduleLinearLinear(BaseModel):
     Therefore, it should not be used as a validity check.
     """
 
-    extra: ArrangementScheduleLinearLinearExtra
+    extra: ArrangementScheduleLinearPropertiesExtra
 
 
 class ArrangementScheduleLinear(BaseModel):
-    linear: ArrangementScheduleLinearLinear
+    kind: Literal["linear"]
+
+    properties: ArrangementScheduleLinearProperties
 
 
-ArrangementSchedule: TypeAlias = Union[ArrangementScheduleLinear, Literal["lump_sum"]]
+class ArrangementScheduleLumpSum(BaseModel):
+    kind: Literal["lump_sum"]
+
+
+ArrangementSchedule: TypeAlias = Union[ArrangementScheduleLinear, ArrangementScheduleLumpSum]
 
 
 class ArrangementAdmin(BaseModel):
