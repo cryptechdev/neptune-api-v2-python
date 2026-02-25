@@ -14,10 +14,10 @@ __all__ = [
     "ArrangementExtra",
     "ArrangementExtraText",
     "ArrangementSchedule",
-    "ArrangementScheduleUnionMember0",
-    "ArrangementScheduleUnionMember0Extra",
-    "ArrangementScheduleUnionMember0ExtraText",
-    "ArrangementScheduleLumpSum",
+    "ArrangementScheduleLinear",
+    "ArrangementScheduleLinearLinear",
+    "ArrangementScheduleLinearLinearExtra",
+    "ArrangementScheduleLinearLinearExtraText",
     "ArrangementAdmin",
     "Extra",
     "ExtraText",
@@ -39,7 +39,7 @@ class ArrangementExtra(BaseModel):
     """Human-readable field variants. Must provide `?with-text=true`"""
 
 
-class ArrangementScheduleUnionMember0ExtraText(BaseModel):
+class ArrangementScheduleLinearLinearExtraText(BaseModel):
     """Human-readable field variants. Must provide `?with-text=true`"""
 
     duration: str
@@ -47,12 +47,12 @@ class ArrangementScheduleUnionMember0ExtraText(BaseModel):
     ends_at: str
 
 
-class ArrangementScheduleUnionMember0Extra(BaseModel):
-    text: Optional[ArrangementScheduleUnionMember0ExtraText] = None
+class ArrangementScheduleLinearLinearExtra(BaseModel):
+    text: Optional[ArrangementScheduleLinearLinearExtraText] = None
     """Human-readable field variants. Must provide `?with-text=true`"""
 
 
-class ArrangementScheduleUnionMember0(BaseModel):
+class ArrangementScheduleLinearLinear(BaseModel):
     duration: Duration
     """The duration of the unlock"""
 
@@ -65,16 +65,14 @@ class ArrangementScheduleUnionMember0(BaseModel):
     Therefore, it should not be used as a validity check.
     """
 
-    extra: ArrangementScheduleUnionMember0Extra
-
-    kind: Literal["linear"]
+    extra: ArrangementScheduleLinearLinearExtra
 
 
-class ArrangementScheduleLumpSum(BaseModel):
-    kind: Literal["lump_sum"]
+class ArrangementScheduleLinear(BaseModel):
+    linear: ArrangementScheduleLinearLinear
 
 
-ArrangementSchedule: TypeAlias = Union[ArrangementScheduleUnionMember0, ArrangementScheduleLumpSum]
+ArrangementSchedule: TypeAlias = Union[ArrangementScheduleLinear, Literal["lump_sum"]]
 
 
 class ArrangementAdmin(BaseModel):
