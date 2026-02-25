@@ -28,34 +28,23 @@ pip install git+ssh://git@github.com/stainless-sdks/neptune-api-v2-python.git
 The full API of this library can be found in [api.md](api.md).
 
 ```python
-import os
 from neptune_api_v2 import NeptuneAPIV2
 
-client = NeptuneAPIV2(
-    api_key=os.environ.get("NEPTUNE_API_V2_API_KEY"),  # This is the default and can be omitted
-)
+client = NeptuneAPIV2()
 
 response = client.v1.status.check_health()
 print(response.status)
 ```
-
-While you can provide an `api_key` keyword argument,
-we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `NEPTUNE_API_V2_API_KEY="My API Key"` to your `.env` file
-so that your API Key is not stored in source control.
 
 ## Async usage
 
 Simply import `AsyncNeptuneAPIV2` instead of `NeptuneAPIV2` and use `await` with each API call:
 
 ```python
-import os
 import asyncio
 from neptune_api_v2 import AsyncNeptuneAPIV2
 
-client = AsyncNeptuneAPIV2(
-    api_key=os.environ.get("NEPTUNE_API_V2_API_KEY"),  # This is the default and can be omitted
-)
+client = AsyncNeptuneAPIV2()
 
 
 async def main() -> None:
@@ -82,7 +71,6 @@ pip install 'neptune_api_v2[aiohttp] @ git+ssh://git@github.com/stainless-sdks/n
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
-import os
 import asyncio
 from neptune_api_v2 import DefaultAioHttpClient
 from neptune_api_v2 import AsyncNeptuneAPIV2
@@ -90,7 +78,6 @@ from neptune_api_v2 import AsyncNeptuneAPIV2
 
 async def main() -> None:
     async with AsyncNeptuneAPIV2(
-        api_key=os.environ.get("NEPTUNE_API_V2_API_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         response = await client.v1.status.check_health()
