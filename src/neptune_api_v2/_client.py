@@ -81,7 +81,7 @@ class NeptuneAPIV2(SyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("NEPTUNE_API_V2_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.example.com"
+            base_url = f"https://api-v2.nept.finance"
 
         super().__init__(
             version=__version__,
@@ -270,7 +270,7 @@ class AsyncNeptuneAPIV2(AsyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("NEPTUNE_API_V2_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.example.com"
+            base_url = f"https://api-v2.nept.finance"
 
         super().__init__(
             version=__version__,
