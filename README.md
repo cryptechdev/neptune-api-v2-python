@@ -32,7 +32,7 @@ from neptune_api_v2 import NeptuneAPIV2
 
 client = NeptuneAPIV2()
 
-response = client.v1.status.check_health()
+response = client.status.check_health()
 print(response.status)
 ```
 
@@ -48,7 +48,7 @@ client = AsyncNeptuneAPIV2()
 
 
 async def main() -> None:
-    response = await client.v1.status.check_health()
+    response = await client.status.check_health()
     print(response.status)
 
 
@@ -80,7 +80,7 @@ async def main() -> None:
     async with AsyncNeptuneAPIV2(
         http_client=DefaultAioHttpClient(),
     ) as client:
-        response = await client.v1.status.check_health()
+        response = await client.status.check_health()
         print(response.status)
 
 
@@ -112,7 +112,7 @@ from neptune_api_v2 import NeptuneAPIV2
 client = NeptuneAPIV2()
 
 try:
-    client.v1.status.check_health()
+    client.status.check_health()
 except neptune_api_v2.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -155,7 +155,7 @@ client = NeptuneAPIV2(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).v1.status.check_health()
+client.with_options(max_retries=5).status.check_health()
 ```
 
 ### Timeouts
@@ -178,7 +178,7 @@ client = NeptuneAPIV2(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).v1.status.check_health()
+client.with_options(timeout=5.0).status.check_health()
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -219,10 +219,10 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from neptune_api_v2 import NeptuneAPIV2
 
 client = NeptuneAPIV2()
-response = client.v1.status.with_raw_response.check_health()
+response = client.status.with_raw_response.check_health()
 print(response.headers.get('X-My-Header'))
 
-status = response.parse()  # get the object that `v1.status.check_health()` would have returned
+status = response.parse()  # get the object that `status.check_health()` would have returned
 print(status.status)
 ```
 
@@ -237,7 +237,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.v1.status.with_streaming_response.check_health() as response:
+with client.status.with_streaming_response.check_health() as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
