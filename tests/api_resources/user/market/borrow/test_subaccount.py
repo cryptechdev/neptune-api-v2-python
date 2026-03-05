@@ -209,7 +209,6 @@ class TestSubaccount:
             index=0,
             address="address",
             with_text=True,
-            with_value=True,
         )
         assert_matches_type(SubaccountGetSubaccountHealthResponse, subaccount, path=["response"])
 
@@ -443,7 +442,6 @@ class TestAsyncSubaccount:
             index=0,
             address="address",
             with_text=True,
-            with_value=True,
         )
         assert_matches_type(SubaccountGetSubaccountHealthResponse, subaccount, path=["response"])
 

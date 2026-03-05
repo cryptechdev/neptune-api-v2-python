@@ -221,7 +221,6 @@ class SubaccountResource(SyncAPIResource):
         *,
         address: str,
         with_text: bool | Omit = omit,
-        with_value: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -238,8 +237,6 @@ class SubaccountResource(SyncAPIResource):
           index: The user account index
 
           with_text: Include text variation fields
-
-          with_value: Calculate and include USD values for amounts, where applicable
 
           extra_headers: Send extra headers
 
@@ -259,10 +256,7 @@ class SubaccountResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {
-                        "with_text": with_text,
-                        "with_value": with_value,
-                    },
+                    {"with_text": with_text},
                     subaccount_get_subaccount_health_params.SubaccountGetSubaccountHealthParams,
                 ),
             ),
@@ -458,7 +452,6 @@ class AsyncSubaccountResource(AsyncAPIResource):
         *,
         address: str,
         with_text: bool | Omit = omit,
-        with_value: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -475,8 +468,6 @@ class AsyncSubaccountResource(AsyncAPIResource):
           index: The user account index
 
           with_text: Include text variation fields
-
-          with_value: Calculate and include USD values for amounts, where applicable
 
           extra_headers: Send extra headers
 
@@ -496,10 +487,7 @@ class AsyncSubaccountResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {
-                        "with_text": with_text,
-                        "with_value": with_value,
-                    },
+                    {"with_text": with_text},
                     subaccount_get_subaccount_health_params.SubaccountGetSubaccountHealthParams,
                 ),
             ),

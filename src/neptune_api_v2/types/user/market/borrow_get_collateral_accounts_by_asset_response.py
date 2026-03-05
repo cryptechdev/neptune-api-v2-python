@@ -83,10 +83,7 @@ class Data(BaseModel):
     """Object data"""
 
     accounts: List[DataAccount]
-    """
-    All collateral subaccounts for the associated asset type Collateral sub-accounts
-    for the user
-    """
+    """All collateral subaccounts for the associated asset type"""
 
     asset_info: AssetInfo
     """Asset identifiers with associated metadata"""
