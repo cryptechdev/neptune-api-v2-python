@@ -43,7 +43,7 @@ class DataGlobalState(BaseModel):
     """When staking rewards were last distributed"""
 
     stake_acc: str
-    """**TODO:** rename, proper description
+    """**TODO:** rename, proper description, text/value?
 
     stake_acc = ∫ ( emission_rate / total_reward_weight ) dt
     """

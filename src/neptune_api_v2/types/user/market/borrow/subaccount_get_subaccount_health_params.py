@@ -13,6 +13,3 @@ class SubaccountGetSubaccountHealthParams(TypedDict, total=False):
 
     with_text: bool
     """Include text variation fields"""
-
-    with_value: bool
-    """Calculate and include USD values for amounts, where applicable"""
