@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -76,7 +76,7 @@ class LendResource(SyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return self._get(
-            f"/api/v1/users/{address}/markets/lend",
+            path_template("/api/v1/users/{address}/markets/lend", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -130,7 +130,7 @@ class LendResource(SyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return self._get(
-            f"/api/v1/users/{address}/markets/lend/lookup",
+            path_template("/api/v1/users/{address}/markets/lend/lookup", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -203,7 +203,7 @@ class AsyncLendResource(AsyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return await self._get(
-            f"/api/v1/users/{address}/markets/lend",
+            path_template("/api/v1/users/{address}/markets/lend", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -257,7 +257,7 @@ class AsyncLendResource(AsyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return await self._get(
-            f"/api/v1/users/{address}/markets/lend/lookup",
+            path_template("/api/v1/users/{address}/markets/lend/lookup", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

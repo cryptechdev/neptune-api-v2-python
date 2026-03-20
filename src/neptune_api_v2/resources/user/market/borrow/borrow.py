@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from .subaccount import (
     SubaccountResource,
     AsyncSubaccountResource,
@@ -102,7 +102,7 @@ class BorrowResource(SyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return self._get(
-            f"/api/v1/users/{address}/markets/borrow/lookup/collateral",
+            path_template("/api/v1/users/{address}/markets/borrow/lookup/collateral", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -154,7 +154,7 @@ class BorrowResource(SyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return self._get(
-            f"/api/v1/users/{address}/markets/borrow/sum/collaterals",
+            path_template("/api/v1/users/{address}/markets/borrow/sum/collaterals", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -208,7 +208,7 @@ class BorrowResource(SyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return self._get(
-            f"/api/v1/users/{address}/markets/borrow/lookup/debt",
+            path_template("/api/v1/users/{address}/markets/borrow/lookup/debt", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -260,7 +260,7 @@ class BorrowResource(SyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return self._get(
-            f"/api/v1/users/{address}/markets/borrow/sum/debts",
+            path_template("/api/v1/users/{address}/markets/borrow/sum/debts", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -311,7 +311,7 @@ class BorrowResource(SyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return self._get(
-            f"/api/v1/users/{address}/markets/borrow",
+            path_template("/api/v1/users/{address}/markets/borrow", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -390,7 +390,7 @@ class AsyncBorrowResource(AsyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return await self._get(
-            f"/api/v1/users/{address}/markets/borrow/lookup/collateral",
+            path_template("/api/v1/users/{address}/markets/borrow/lookup/collateral", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -442,7 +442,7 @@ class AsyncBorrowResource(AsyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return await self._get(
-            f"/api/v1/users/{address}/markets/borrow/sum/collaterals",
+            path_template("/api/v1/users/{address}/markets/borrow/sum/collaterals", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -496,7 +496,7 @@ class AsyncBorrowResource(AsyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return await self._get(
-            f"/api/v1/users/{address}/markets/borrow/lookup/debt",
+            path_template("/api/v1/users/{address}/markets/borrow/lookup/debt", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -548,7 +548,7 @@ class AsyncBorrowResource(AsyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return await self._get(
-            f"/api/v1/users/{address}/markets/borrow/sum/debts",
+            path_template("/api/v1/users/{address}/markets/borrow/sum/debts", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -599,7 +599,7 @@ class AsyncBorrowResource(AsyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return await self._get(
-            f"/api/v1/users/{address}/markets/borrow",
+            path_template("/api/v1/users/{address}/markets/borrow", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
