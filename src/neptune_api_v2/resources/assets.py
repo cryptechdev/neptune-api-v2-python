@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
 from ..types import IntervalUnit, asset_list_prices_params, asset_get_price_history_params
@@ -69,7 +71,7 @@ class AssetsResource(SyncAPIResource):
         end: int,
         period: IntervalUnit,
         start: int,
-        asset_ids: str | Omit = omit,
+        asset_ids: Optional[str] | Omit = omit,
         interval: int | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
@@ -235,7 +237,7 @@ class AsyncAssetsResource(AsyncAPIResource):
         end: int,
         period: IntervalUnit,
         start: int,
-        asset_ids: str | Omit = omit,
+        asset_ids: Optional[str] | Omit = omit,
         interval: int | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
 from ....types import IntervalUnit
@@ -136,7 +138,7 @@ class HistoryResource(SyncAPIResource):
         end: int,
         period: IntervalUnit,
         start: int,
-        asset_ids: str | Omit = omit,
+        asset_ids: Optional[str] | Omit = omit,
         interval: int | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
@@ -330,7 +332,7 @@ class AsyncHistoryResource(AsyncAPIResource):
         end: int,
         period: IntervalUnit,
         start: int,
-        asset_ids: str | Omit = omit,
+        asset_ids: Optional[str] | Omit = omit,
         interval: int | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,

@@ -5,7 +5,6 @@ from __future__ import annotations
 from .interval import Interval as Interval
 from .asset_info import AssetInfo as AssetInfo
 from .asset_spec import AssetSpec as AssetSpec
-from .error_data import ErrorData as ErrorData
 from .event_action import EventAction as EventAction
 from .interval_unit import IntervalUnit as IntervalUnit
 from .merged_market import MergedMarket as MergedMarket

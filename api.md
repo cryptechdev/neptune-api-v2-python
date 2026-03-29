@@ -3,7 +3,7 @@
 Types:
 
 ```python
-from neptune_api_v2.types import ErrorData, Interval, IntervalUnit
+from neptune_api_v2.types import Interval, IntervalUnit
 ```
 
 # Status

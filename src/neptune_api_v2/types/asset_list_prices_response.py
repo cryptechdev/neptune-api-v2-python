@@ -5,7 +5,6 @@ from datetime import datetime
 
 from .._models import BaseModel
 from .asset_spec import AssetSpec
-from .error_data import ErrorData
 from .asset_metadata import AssetMetadata
 from .asset_classification import AssetClassification
 
@@ -73,17 +72,23 @@ class Data(BaseModel):
 
 
 class AssetListPricesResponse(BaseModel):
-    count: Optional[int] = None
-    """Total number of objects in all pages"""
+    """List data success response"""
 
-    data: Optional[List[Data]] = None
-    """List contents"""
+    count: int
+    """Total number of objects irrespective of any pagination parameters."""
 
-    error: Optional[ErrorData] = None
-    """Error message, if any"""
+    data: List[Data]
+    """Primary response content (list)"""
+
+    error: None = None
+    """Error data. Guaranteed `null` for successful response."""
 
     status: int
-    """Request status"""
+    """HTTP status.
+
+    Successful responses are guaranteed to be < `400`. Conversely, error responses
+    are guaranteed to be >= `400`.
+    """
 
     status_text: str
-    """Request status text"""
+    """HTTP status text"""

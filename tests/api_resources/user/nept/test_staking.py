@@ -26,7 +26,7 @@ class TestStaking:
     @parametrize
     def test_method_get_overview(self, client: NeptuneAPIV2) -> None:
         staking = client.user.nept.staking.get_overview(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(StakingGetOverviewResponse, staking, path=["response"])
 
@@ -34,7 +34,7 @@ class TestStaking:
     @parametrize
     def test_method_get_overview_with_all_params(self, client: NeptuneAPIV2) -> None:
         staking = client.user.nept.staking.get_overview(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -44,7 +44,7 @@ class TestStaking:
     @parametrize
     def test_raw_response_get_overview(self, client: NeptuneAPIV2) -> None:
         response = client.user.nept.staking.with_raw_response.get_overview(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -56,7 +56,7 @@ class TestStaking:
     @parametrize
     def test_streaming_response_get_overview(self, client: NeptuneAPIV2) -> None:
         with client.user.nept.staking.with_streaming_response.get_overview(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -78,7 +78,7 @@ class TestStaking:
     @parametrize
     def test_method_get_staking_pool(self, client: NeptuneAPIV2) -> None:
         staking = client.user.nept.staking.get_staking_pool(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(StakingGetStakingPoolResponse, staking, path=["response"])
 
@@ -86,7 +86,7 @@ class TestStaking:
     @parametrize
     def test_method_get_staking_pool_with_all_params(self, client: NeptuneAPIV2) -> None:
         staking = client.user.nept.staking.get_staking_pool(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             duration=0,
             index=0,
             with_text=True,
@@ -98,7 +98,7 @@ class TestStaking:
     @parametrize
     def test_raw_response_get_staking_pool(self, client: NeptuneAPIV2) -> None:
         response = client.user.nept.staking.with_raw_response.get_staking_pool(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -110,7 +110,7 @@ class TestStaking:
     @parametrize
     def test_streaming_response_get_staking_pool(self, client: NeptuneAPIV2) -> None:
         with client.user.nept.staking.with_streaming_response.get_staking_pool(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -132,7 +132,7 @@ class TestStaking:
     @parametrize
     def test_method_get_staking_pools(self, client: NeptuneAPIV2) -> None:
         staking = client.user.nept.staking.get_staking_pools(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(StakingGetStakingPoolsResponse, staking, path=["response"])
 
@@ -140,7 +140,7 @@ class TestStaking:
     @parametrize
     def test_method_get_staking_pools_with_all_params(self, client: NeptuneAPIV2) -> None:
         staking = client.user.nept.staking.get_staking_pools(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -150,7 +150,7 @@ class TestStaking:
     @parametrize
     def test_raw_response_get_staking_pools(self, client: NeptuneAPIV2) -> None:
         response = client.user.nept.staking.with_raw_response.get_staking_pools(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -162,7 +162,7 @@ class TestStaking:
     @parametrize
     def test_streaming_response_get_staking_pools(self, client: NeptuneAPIV2) -> None:
         with client.user.nept.staking.with_streaming_response.get_staking_pools(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -184,7 +184,7 @@ class TestStaking:
     @parametrize
     def test_method_get_unstaking(self, client: NeptuneAPIV2) -> None:
         staking = client.user.nept.staking.get_unstaking(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(StakingGetUnstakingResponse, staking, path=["response"])
 
@@ -192,7 +192,7 @@ class TestStaking:
     @parametrize
     def test_method_get_unstaking_with_all_params(self, client: NeptuneAPIV2) -> None:
         staking = client.user.nept.staking.get_unstaking(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -202,7 +202,7 @@ class TestStaking:
     @parametrize
     def test_raw_response_get_unstaking(self, client: NeptuneAPIV2) -> None:
         response = client.user.nept.staking.with_raw_response.get_unstaking(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -214,7 +214,7 @@ class TestStaking:
     @parametrize
     def test_streaming_response_get_unstaking(self, client: NeptuneAPIV2) -> None:
         with client.user.nept.staking.with_streaming_response.get_unstaking(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -242,7 +242,7 @@ class TestAsyncStaking:
     @parametrize
     async def test_method_get_overview(self, async_client: AsyncNeptuneAPIV2) -> None:
         staking = await async_client.user.nept.staking.get_overview(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(StakingGetOverviewResponse, staking, path=["response"])
 
@@ -250,7 +250,7 @@ class TestAsyncStaking:
     @parametrize
     async def test_method_get_overview_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         staking = await async_client.user.nept.staking.get_overview(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -260,7 +260,7 @@ class TestAsyncStaking:
     @parametrize
     async def test_raw_response_get_overview(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.nept.staking.with_raw_response.get_overview(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -272,7 +272,7 @@ class TestAsyncStaking:
     @parametrize
     async def test_streaming_response_get_overview(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.nept.staking.with_streaming_response.get_overview(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -294,7 +294,7 @@ class TestAsyncStaking:
     @parametrize
     async def test_method_get_staking_pool(self, async_client: AsyncNeptuneAPIV2) -> None:
         staking = await async_client.user.nept.staking.get_staking_pool(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(StakingGetStakingPoolResponse, staking, path=["response"])
 
@@ -302,7 +302,7 @@ class TestAsyncStaking:
     @parametrize
     async def test_method_get_staking_pool_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         staking = await async_client.user.nept.staking.get_staking_pool(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             duration=0,
             index=0,
             with_text=True,
@@ -314,7 +314,7 @@ class TestAsyncStaking:
     @parametrize
     async def test_raw_response_get_staking_pool(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.nept.staking.with_raw_response.get_staking_pool(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -326,7 +326,7 @@ class TestAsyncStaking:
     @parametrize
     async def test_streaming_response_get_staking_pool(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.nept.staking.with_streaming_response.get_staking_pool(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -348,7 +348,7 @@ class TestAsyncStaking:
     @parametrize
     async def test_method_get_staking_pools(self, async_client: AsyncNeptuneAPIV2) -> None:
         staking = await async_client.user.nept.staking.get_staking_pools(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(StakingGetStakingPoolsResponse, staking, path=["response"])
 
@@ -356,7 +356,7 @@ class TestAsyncStaking:
     @parametrize
     async def test_method_get_staking_pools_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         staking = await async_client.user.nept.staking.get_staking_pools(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -366,7 +366,7 @@ class TestAsyncStaking:
     @parametrize
     async def test_raw_response_get_staking_pools(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.nept.staking.with_raw_response.get_staking_pools(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -378,7 +378,7 @@ class TestAsyncStaking:
     @parametrize
     async def test_streaming_response_get_staking_pools(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.nept.staking.with_streaming_response.get_staking_pools(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -400,7 +400,7 @@ class TestAsyncStaking:
     @parametrize
     async def test_method_get_unstaking(self, async_client: AsyncNeptuneAPIV2) -> None:
         staking = await async_client.user.nept.staking.get_unstaking(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(StakingGetUnstakingResponse, staking, path=["response"])
 
@@ -408,7 +408,7 @@ class TestAsyncStaking:
     @parametrize
     async def test_method_get_unstaking_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         staking = await async_client.user.nept.staking.get_unstaking(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -418,7 +418,7 @@ class TestAsyncStaking:
     @parametrize
     async def test_raw_response_get_unstaking(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.nept.staking.with_raw_response.get_unstaking(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -430,7 +430,7 @@ class TestAsyncStaking:
     @parametrize
     async def test_streaming_response_get_unstaking(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.nept.staking.with_streaming_response.get_unstaking(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

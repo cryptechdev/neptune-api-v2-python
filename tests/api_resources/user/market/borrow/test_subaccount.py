@@ -27,7 +27,7 @@ class TestSubaccount:
     def test_method_get_subaccount(self, client: NeptuneAPIV2) -> None:
         subaccount = client.user.market.borrow.subaccount.get_subaccount(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(SubaccountGetSubaccountResponse, subaccount, path=["response"])
 
@@ -36,7 +36,7 @@ class TestSubaccount:
     def test_method_get_subaccount_with_all_params(self, client: NeptuneAPIV2) -> None:
         subaccount = client.user.market.borrow.subaccount.get_subaccount(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -47,7 +47,7 @@ class TestSubaccount:
     def test_raw_response_get_subaccount(self, client: NeptuneAPIV2) -> None:
         response = client.user.market.borrow.subaccount.with_raw_response.get_subaccount(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -60,7 +60,7 @@ class TestSubaccount:
     def test_streaming_response_get_subaccount(self, client: NeptuneAPIV2) -> None:
         with client.user.market.borrow.subaccount.with_streaming_response.get_subaccount(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -84,7 +84,7 @@ class TestSubaccount:
     def test_method_get_subaccount_collaterals(self, client: NeptuneAPIV2) -> None:
         subaccount = client.user.market.borrow.subaccount.get_subaccount_collaterals(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(SubaccountGetSubaccountCollateralsResponse, subaccount, path=["response"])
 
@@ -93,7 +93,7 @@ class TestSubaccount:
     def test_method_get_subaccount_collaterals_with_all_params(self, client: NeptuneAPIV2) -> None:
         subaccount = client.user.market.borrow.subaccount.get_subaccount_collaterals(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -104,7 +104,7 @@ class TestSubaccount:
     def test_raw_response_get_subaccount_collaterals(self, client: NeptuneAPIV2) -> None:
         response = client.user.market.borrow.subaccount.with_raw_response.get_subaccount_collaterals(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -117,7 +117,7 @@ class TestSubaccount:
     def test_streaming_response_get_subaccount_collaterals(self, client: NeptuneAPIV2) -> None:
         with client.user.market.borrow.subaccount.with_streaming_response.get_subaccount_collaterals(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -141,7 +141,7 @@ class TestSubaccount:
     def test_method_get_subaccount_debts(self, client: NeptuneAPIV2) -> None:
         subaccount = client.user.market.borrow.subaccount.get_subaccount_debts(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(SubaccountGetSubaccountDebtsResponse, subaccount, path=["response"])
 
@@ -150,7 +150,7 @@ class TestSubaccount:
     def test_method_get_subaccount_debts_with_all_params(self, client: NeptuneAPIV2) -> None:
         subaccount = client.user.market.borrow.subaccount.get_subaccount_debts(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -161,7 +161,7 @@ class TestSubaccount:
     def test_raw_response_get_subaccount_debts(self, client: NeptuneAPIV2) -> None:
         response = client.user.market.borrow.subaccount.with_raw_response.get_subaccount_debts(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -174,7 +174,7 @@ class TestSubaccount:
     def test_streaming_response_get_subaccount_debts(self, client: NeptuneAPIV2) -> None:
         with client.user.market.borrow.subaccount.with_streaming_response.get_subaccount_debts(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -198,7 +198,7 @@ class TestSubaccount:
     def test_method_get_subaccount_health(self, client: NeptuneAPIV2) -> None:
         subaccount = client.user.market.borrow.subaccount.get_subaccount_health(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(SubaccountGetSubaccountHealthResponse, subaccount, path=["response"])
 
@@ -207,7 +207,7 @@ class TestSubaccount:
     def test_method_get_subaccount_health_with_all_params(self, client: NeptuneAPIV2) -> None:
         subaccount = client.user.market.borrow.subaccount.get_subaccount_health(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
         )
         assert_matches_type(SubaccountGetSubaccountHealthResponse, subaccount, path=["response"])
@@ -217,7 +217,7 @@ class TestSubaccount:
     def test_raw_response_get_subaccount_health(self, client: NeptuneAPIV2) -> None:
         response = client.user.market.borrow.subaccount.with_raw_response.get_subaccount_health(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -230,7 +230,7 @@ class TestSubaccount:
     def test_streaming_response_get_subaccount_health(self, client: NeptuneAPIV2) -> None:
         with client.user.market.borrow.subaccount.with_streaming_response.get_subaccount_health(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -260,7 +260,7 @@ class TestAsyncSubaccount:
     async def test_method_get_subaccount(self, async_client: AsyncNeptuneAPIV2) -> None:
         subaccount = await async_client.user.market.borrow.subaccount.get_subaccount(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(SubaccountGetSubaccountResponse, subaccount, path=["response"])
 
@@ -269,7 +269,7 @@ class TestAsyncSubaccount:
     async def test_method_get_subaccount_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         subaccount = await async_client.user.market.borrow.subaccount.get_subaccount(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -280,7 +280,7 @@ class TestAsyncSubaccount:
     async def test_raw_response_get_subaccount(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.market.borrow.subaccount.with_raw_response.get_subaccount(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -293,7 +293,7 @@ class TestAsyncSubaccount:
     async def test_streaming_response_get_subaccount(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.market.borrow.subaccount.with_streaming_response.get_subaccount(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -317,7 +317,7 @@ class TestAsyncSubaccount:
     async def test_method_get_subaccount_collaterals(self, async_client: AsyncNeptuneAPIV2) -> None:
         subaccount = await async_client.user.market.borrow.subaccount.get_subaccount_collaterals(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(SubaccountGetSubaccountCollateralsResponse, subaccount, path=["response"])
 
@@ -326,7 +326,7 @@ class TestAsyncSubaccount:
     async def test_method_get_subaccount_collaterals_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         subaccount = await async_client.user.market.borrow.subaccount.get_subaccount_collaterals(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -337,7 +337,7 @@ class TestAsyncSubaccount:
     async def test_raw_response_get_subaccount_collaterals(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.market.borrow.subaccount.with_raw_response.get_subaccount_collaterals(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -350,7 +350,7 @@ class TestAsyncSubaccount:
     async def test_streaming_response_get_subaccount_collaterals(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.market.borrow.subaccount.with_streaming_response.get_subaccount_collaterals(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -374,7 +374,7 @@ class TestAsyncSubaccount:
     async def test_method_get_subaccount_debts(self, async_client: AsyncNeptuneAPIV2) -> None:
         subaccount = await async_client.user.market.borrow.subaccount.get_subaccount_debts(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(SubaccountGetSubaccountDebtsResponse, subaccount, path=["response"])
 
@@ -383,7 +383,7 @@ class TestAsyncSubaccount:
     async def test_method_get_subaccount_debts_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         subaccount = await async_client.user.market.borrow.subaccount.get_subaccount_debts(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -394,7 +394,7 @@ class TestAsyncSubaccount:
     async def test_raw_response_get_subaccount_debts(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.market.borrow.subaccount.with_raw_response.get_subaccount_debts(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -407,7 +407,7 @@ class TestAsyncSubaccount:
     async def test_streaming_response_get_subaccount_debts(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.market.borrow.subaccount.with_streaming_response.get_subaccount_debts(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -431,7 +431,7 @@ class TestAsyncSubaccount:
     async def test_method_get_subaccount_health(self, async_client: AsyncNeptuneAPIV2) -> None:
         subaccount = await async_client.user.market.borrow.subaccount.get_subaccount_health(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(SubaccountGetSubaccountHealthResponse, subaccount, path=["response"])
 
@@ -440,7 +440,7 @@ class TestAsyncSubaccount:
     async def test_method_get_subaccount_health_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         subaccount = await async_client.user.market.borrow.subaccount.get_subaccount_health(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
         )
         assert_matches_type(SubaccountGetSubaccountHealthResponse, subaccount, path=["response"])
@@ -450,7 +450,7 @@ class TestAsyncSubaccount:
     async def test_raw_response_get_subaccount_health(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.market.borrow.subaccount.with_raw_response.get_subaccount_health(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -463,7 +463,7 @@ class TestAsyncSubaccount:
     async def test_streaming_response_get_subaccount_health(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.market.borrow.subaccount.with_streaming_response.get_subaccount_health(
             index=0,
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

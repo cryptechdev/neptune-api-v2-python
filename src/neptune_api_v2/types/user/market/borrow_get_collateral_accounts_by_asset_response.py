@@ -4,7 +4,6 @@ from typing import List, Optional
 
 from ...._models import BaseModel
 from ...asset_info import AssetInfo
-from ...error_data import ErrorData
 
 __all__ = [
     "BorrowGetCollateralAccountsByAssetResponse",
@@ -80,7 +79,7 @@ class DataAccount(BaseModel):
 
 
 class Data(BaseModel):
-    """Object data"""
+    """Primary response content (object)"""
 
     accounts: List[DataAccount]
     """All collateral subaccounts for the associated asset type"""
@@ -90,14 +89,20 @@ class Data(BaseModel):
 
 
 class BorrowGetCollateralAccountsByAssetResponse(BaseModel):
-    data: Optional[Data] = None
-    """Object data"""
+    """Object data success response"""
 
-    error: Optional[ErrorData] = None
-    """Error content, only set if an error occurs"""
+    data: Data
+    """Primary response content (object)"""
+
+    error: None = None
+    """Error data. Guaranteed `null` for successful response."""
 
     status: int
-    """Request status"""
+    """HTTP status.
+
+    Successful responses are guaranteed to be < `400`. Conversely, error responses
+    are guaranteed to be >= `400`.
+    """
 
     status_text: str
-    """Request status text"""
+    """HTTP status text"""

@@ -24,7 +24,7 @@ class TestLend:
     @parametrize
     def test_method_list(self, client: NeptuneAPIV2) -> None:
         lend = client.user.market.lend.list(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(LendListResponse, lend, path=["response"])
 
@@ -32,7 +32,7 @@ class TestLend:
     @parametrize
     def test_method_list_with_all_params(self, client: NeptuneAPIV2) -> None:
         lend = client.user.market.lend.list(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -42,7 +42,7 @@ class TestLend:
     @parametrize
     def test_raw_response_list(self, client: NeptuneAPIV2) -> None:
         response = client.user.market.lend.with_raw_response.list(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -54,7 +54,7 @@ class TestLend:
     @parametrize
     def test_streaming_response_list(self, client: NeptuneAPIV2) -> None:
         with client.user.market.lend.with_streaming_response.list(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -76,7 +76,7 @@ class TestLend:
     @parametrize
     def test_method_get_by_asset(self, client: NeptuneAPIV2) -> None:
         lend = client.user.market.lend.get_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         )
         assert_matches_type(LendGetByAssetResponse, lend, path=["response"])
@@ -85,7 +85,7 @@ class TestLend:
     @parametrize
     def test_method_get_by_asset_with_all_params(self, client: NeptuneAPIV2) -> None:
         lend = client.user.market.lend.get_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
             with_text=True,
             with_value=True,
@@ -96,7 +96,7 @@ class TestLend:
     @parametrize
     def test_raw_response_get_by_asset(self, client: NeptuneAPIV2) -> None:
         response = client.user.market.lend.with_raw_response.get_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         )
 
@@ -109,7 +109,7 @@ class TestLend:
     @parametrize
     def test_streaming_response_get_by_asset(self, client: NeptuneAPIV2) -> None:
         with client.user.market.lend.with_streaming_response.get_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         ) as response:
             assert not response.is_closed
@@ -139,7 +139,7 @@ class TestAsyncLend:
     @parametrize
     async def test_method_list(self, async_client: AsyncNeptuneAPIV2) -> None:
         lend = await async_client.user.market.lend.list(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(LendListResponse, lend, path=["response"])
 
@@ -147,7 +147,7 @@ class TestAsyncLend:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         lend = await async_client.user.market.lend.list(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -157,7 +157,7 @@ class TestAsyncLend:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.market.lend.with_raw_response.list(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -169,7 +169,7 @@ class TestAsyncLend:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.market.lend.with_streaming_response.list(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -191,7 +191,7 @@ class TestAsyncLend:
     @parametrize
     async def test_method_get_by_asset(self, async_client: AsyncNeptuneAPIV2) -> None:
         lend = await async_client.user.market.lend.get_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         )
         assert_matches_type(LendGetByAssetResponse, lend, path=["response"])
@@ -200,7 +200,7 @@ class TestAsyncLend:
     @parametrize
     async def test_method_get_by_asset_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         lend = await async_client.user.market.lend.get_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
             with_text=True,
             with_value=True,
@@ -211,7 +211,7 @@ class TestAsyncLend:
     @parametrize
     async def test_raw_response_get_by_asset(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.market.lend.with_raw_response.get_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         )
 
@@ -224,7 +224,7 @@ class TestAsyncLend:
     @parametrize
     async def test_streaming_response_get_by_asset(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.market.lend.with_streaming_response.get_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         ) as response:
             assert not response.is_closed

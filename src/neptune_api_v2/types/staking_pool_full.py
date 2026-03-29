@@ -40,7 +40,7 @@ class StakingPoolFull(BaseModel):
     """The ordered index (position) of this pool"""
 
     params: StakingPoolParams
-    """-- Staking pool contract parameters"""
+    """Staking pool contract parameters"""
 
     state: StakingPoolState
-    """-- Current contract state of staking pool"""
+    """Current contract state of staking pool"""

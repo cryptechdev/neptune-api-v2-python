@@ -3,7 +3,6 @@
 from typing import List, Optional
 
 from .._models import BaseModel
-from .error_data import ErrorData
 from .staking_pool_state import StakingPoolState
 
 __all__ = [
@@ -120,11 +119,11 @@ class DataStaking(BaseModel):
     """The ordered index (position) of this pool"""
 
     state: StakingPoolState
-    """-- Current contract state of staking pool"""
+    """Current contract state of staking pool"""
 
 
 class Data(BaseModel):
-    """Object data"""
+    """Primary response content (object)"""
 
     extra: DataExtra
 
@@ -157,14 +156,20 @@ class Data(BaseModel):
 
 
 class NeptGetStateResponse(BaseModel):
-    data: Optional[Data] = None
-    """Object data"""
+    """Object data success response"""
 
-    error: Optional[ErrorData] = None
-    """Error content, only set if an error occurs"""
+    data: Data
+    """Primary response content (object)"""
+
+    error: None = None
+    """Error data. Guaranteed `null` for successful response."""
 
     status: int
-    """Request status"""
+    """HTTP status.
+
+    Successful responses are guaranteed to be < `400`. Conversely, error responses
+    are guaranteed to be >= `400`.
+    """
 
     status_text: str
-    """Request status text"""
+    """HTTP status text"""
