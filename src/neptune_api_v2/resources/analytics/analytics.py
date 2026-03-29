@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .nept import (
+    NeptResource,
+    AsyncNeptResource,
+    NeptResourceWithRawResponse,
+    AsyncNeptResourceWithRawResponse,
+    NeptResourceWithStreamingResponse,
+    AsyncNeptResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .market.market import (
@@ -20,6 +28,10 @@ class AnalyticsResource(SyncAPIResource):
     @cached_property
     def market(self) -> MarketResource:
         return MarketResource(self._client)
+
+    @cached_property
+    def nept(self) -> NeptResource:
+        return NeptResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AnalyticsResourceWithRawResponse:
@@ -45,6 +57,10 @@ class AsyncAnalyticsResource(AsyncAPIResource):
     @cached_property
     def market(self) -> AsyncMarketResource:
         return AsyncMarketResource(self._client)
+
+    @cached_property
+    def nept(self) -> AsyncNeptResource:
+        return AsyncNeptResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAnalyticsResourceWithRawResponse:
@@ -74,6 +90,10 @@ class AnalyticsResourceWithRawResponse:
     def market(self) -> MarketResourceWithRawResponse:
         return MarketResourceWithRawResponse(self._analytics.market)
 
+    @cached_property
+    def nept(self) -> NeptResourceWithRawResponse:
+        return NeptResourceWithRawResponse(self._analytics.nept)
+
 
 class AsyncAnalyticsResourceWithRawResponse:
     def __init__(self, analytics: AsyncAnalyticsResource) -> None:
@@ -82,6 +102,10 @@ class AsyncAnalyticsResourceWithRawResponse:
     @cached_property
     def market(self) -> AsyncMarketResourceWithRawResponse:
         return AsyncMarketResourceWithRawResponse(self._analytics.market)
+
+    @cached_property
+    def nept(self) -> AsyncNeptResourceWithRawResponse:
+        return AsyncNeptResourceWithRawResponse(self._analytics.nept)
 
 
 class AnalyticsResourceWithStreamingResponse:
@@ -92,6 +116,10 @@ class AnalyticsResourceWithStreamingResponse:
     def market(self) -> MarketResourceWithStreamingResponse:
         return MarketResourceWithStreamingResponse(self._analytics.market)
 
+    @cached_property
+    def nept(self) -> NeptResourceWithStreamingResponse:
+        return NeptResourceWithStreamingResponse(self._analytics.nept)
+
 
 class AsyncAnalyticsResourceWithStreamingResponse:
     def __init__(self, analytics: AsyncAnalyticsResource) -> None:
@@ -100,3 +128,7 @@ class AsyncAnalyticsResourceWithStreamingResponse:
     @cached_property
     def market(self) -> AsyncMarketResourceWithStreamingResponse:
         return AsyncMarketResourceWithStreamingResponse(self._analytics.market)
+
+    @cached_property
+    def nept(self) -> AsyncNeptResourceWithStreamingResponse:
+        return AsyncNeptResourceWithStreamingResponse(self._analytics.nept)
