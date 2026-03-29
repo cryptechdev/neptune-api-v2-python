@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Required, TypedDict
 
 from ..interval_unit import IntervalUnit
@@ -36,7 +37,7 @@ class BorrowGetRateHistoryParams(TypedDict, total=False):
     Must be provided as unix timestamp (in seconds)
     """
 
-    asset_ids: str
+    asset_ids: Optional[str]
     """Optional comma-separated list of asset IDs to filter for.
 
     If excluded, values will be returned for all assets.

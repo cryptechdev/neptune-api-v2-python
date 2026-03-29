@@ -6,7 +6,6 @@ from datetime import datetime
 from .._models import BaseModel
 from .interval import Interval
 from .asset_spec import AssetSpec
-from .error_data import ErrorData
 
 __all__ = ["AssetGetPriceHistoryResponse", "Data", "DataPagination", "DataRange", "DataSeries", "DataSeriesPoint"]
 
@@ -59,7 +58,7 @@ class DataSeries(BaseModel):
 
 
 class Data(BaseModel):
-    """Historical prices for assets"""
+    """Primary response content (object)"""
 
     pagination: DataPagination
     """Values used for paginating the time series data"""
@@ -75,14 +74,20 @@ class Data(BaseModel):
 
 
 class AssetGetPriceHistoryResponse(BaseModel):
-    data: Optional[Data] = None
-    """Historical prices for assets"""
+    """Object data success response"""
 
-    error: Optional[ErrorData] = None
-    """Error content, only set if an error occurs"""
+    data: Data
+    """Primary response content (object)"""
+
+    error: None = None
+    """Error data. Guaranteed `null` for successful response."""
 
     status: int
-    """Request status"""
+    """HTTP status.
+
+    Successful responses are guaranteed to be < `400`. Conversely, error responses
+    are guaranteed to be >= `400`.
+    """
 
     status_text: str
-    """Request status text"""
+    """HTTP status text"""

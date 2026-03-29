@@ -141,7 +141,7 @@ class Extra(BaseModel):
 
 class UserNeptUnlockOverview(BaseModel):
     arrangements: List[Arrangement]
-    """-- A list of the user's active unlock arrangements"""
+    """A list of the user's active unlock arrangements"""
 
     extra: Extra
 
@@ -149,4 +149,4 @@ class UserNeptUnlockOverview(BaseModel):
     """The time at which the most recent unlock claim occurred, if any"""
 
     totals: UserNeptUnlockAmounts
-    """-- Contains pre-calculated total amounts for all unlock agreements"""
+    """Contains pre-calculated total amounts for all unlock agreements"""

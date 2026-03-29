@@ -21,7 +21,7 @@ class TestNept:
     @parametrize
     def test_method_get_unlocks(self, client: NeptuneAPIV2) -> None:
         nept = client.user.nept.get_unlocks(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(NeptGetUnlocksResponse, nept, path=["response"])
 
@@ -29,7 +29,7 @@ class TestNept:
     @parametrize
     def test_method_get_unlocks_with_all_params(self, client: NeptuneAPIV2) -> None:
         nept = client.user.nept.get_unlocks(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_percent=True,
             with_text=True,
             with_value=True,
@@ -40,7 +40,7 @@ class TestNept:
     @parametrize
     def test_raw_response_get_unlocks(self, client: NeptuneAPIV2) -> None:
         response = client.user.nept.with_raw_response.get_unlocks(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -52,7 +52,7 @@ class TestNept:
     @parametrize
     def test_streaming_response_get_unlocks(self, client: NeptuneAPIV2) -> None:
         with client.user.nept.with_streaming_response.get_unlocks(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -80,7 +80,7 @@ class TestAsyncNept:
     @parametrize
     async def test_method_get_unlocks(self, async_client: AsyncNeptuneAPIV2) -> None:
         nept = await async_client.user.nept.get_unlocks(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(NeptGetUnlocksResponse, nept, path=["response"])
 
@@ -88,7 +88,7 @@ class TestAsyncNept:
     @parametrize
     async def test_method_get_unlocks_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         nept = await async_client.user.nept.get_unlocks(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_percent=True,
             with_text=True,
             with_value=True,
@@ -99,7 +99,7 @@ class TestAsyncNept:
     @parametrize
     async def test_raw_response_get_unlocks(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.nept.with_raw_response.get_unlocks(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -111,7 +111,7 @@ class TestAsyncNept:
     @parametrize
     async def test_streaming_response_get_unlocks(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.nept.with_streaming_response.get_unlocks(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

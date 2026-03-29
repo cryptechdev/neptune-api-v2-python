@@ -1,26 +1,31 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List
 
 from ..._models import BaseModel
-from ..error_data import ErrorData
 from .user_merged_market import UserMergedMarket
 
 __all__ = ["MarketGetMergedResponse"]
 
 
 class MarketGetMergedResponse(BaseModel):
-    count: Optional[int] = None
-    """Total number of objects in all pages"""
+    """List data success response"""
 
-    data: Optional[List[UserMergedMarket]] = None
-    """List contents"""
+    count: int
+    """Total number of objects irrespective of any pagination parameters."""
 
-    error: Optional[ErrorData] = None
-    """Error message, if any"""
+    data: List[UserMergedMarket]
+    """Primary response content (list)"""
+
+    error: None = None
+    """Error data. Guaranteed `null` for successful response."""
 
     status: int
-    """Request status"""
+    """HTTP status.
+
+    Successful responses are guaranteed to be < `400`. Conversely, error responses
+    are guaranteed to be >= `400`.
+    """
 
     status_text: str
-    """Request status text"""
+    """HTTP status text"""

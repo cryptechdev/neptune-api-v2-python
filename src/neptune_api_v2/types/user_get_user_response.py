@@ -1,9 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-
 from .._models import BaseModel
-from .error_data import ErrorData
 from .user.user_market import UserMarket
 from .user.nept.user_stake import UserStake
 from .user.user_wallet_portfolio import UserWalletPortfolio
@@ -16,14 +13,14 @@ class DataNept(BaseModel):
     """User's NEPT associations (e.g. stake, unlocks)"""
 
     staking: UserStake
-    """-- Overview of the user's staking contributions/activity"""
+    """Overview of the user's staking contributions/activity"""
 
     unlocks: UserNeptUnlockOverview
-    """-- Overview of the user's unlock arrangements and claim statistics"""
+    """Overview of the user's unlock arrangements and claim statistics"""
 
 
 class Data(BaseModel):
-    """Object data"""
+    """Primary response content (object)"""
 
     markets: UserMarket
     """User's market contribution overview"""
@@ -36,14 +33,20 @@ class Data(BaseModel):
 
 
 class UserGetUserResponse(BaseModel):
-    data: Optional[Data] = None
-    """Object data"""
+    """Object data success response"""
 
-    error: Optional[ErrorData] = None
-    """Error content, only set if an error occurs"""
+    data: Data
+    """Primary response content (object)"""
+
+    error: None = None
+    """Error data. Guaranteed `null` for successful response."""
 
     status: int
-    """Request status"""
+    """HTTP status.
+
+    Successful responses are guaranteed to be < `400`. Conversely, error responses
+    are guaranteed to be >= `400`.
+    """
 
     status_text: str
-    """Request status text"""
+    """HTTP status text"""

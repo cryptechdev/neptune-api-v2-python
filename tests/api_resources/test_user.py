@@ -24,7 +24,7 @@ class TestUser:
     @parametrize
     def test_method_get_tx_history(self, client: NeptuneAPIV2) -> None:
         user = client.user.get_tx_history(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(UserGetTxHistoryResponse, user, path=["response"])
 
@@ -32,7 +32,7 @@ class TestUser:
     @parametrize
     def test_method_get_tx_history_with_all_params(self, client: NeptuneAPIV2) -> None:
         user = client.user.get_tx_history(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             action="borrow_flash_loan",
             limit=1,
             prev_event_uuid="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -46,7 +46,7 @@ class TestUser:
     @parametrize
     def test_raw_response_get_tx_history(self, client: NeptuneAPIV2) -> None:
         response = client.user.with_raw_response.get_tx_history(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -58,7 +58,7 @@ class TestUser:
     @parametrize
     def test_streaming_response_get_tx_history(self, client: NeptuneAPIV2) -> None:
         with client.user.with_streaming_response.get_tx_history(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -80,7 +80,7 @@ class TestUser:
     @parametrize
     def test_method_get_user(self, client: NeptuneAPIV2) -> None:
         user = client.user.get_user(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(UserGetUserResponse, user, path=["response"])
 
@@ -88,7 +88,7 @@ class TestUser:
     @parametrize
     def test_method_get_user_with_all_params(self, client: NeptuneAPIV2) -> None:
         user = client.user.get_user(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_percent=True,
             with_text=True,
             with_value=True,
@@ -99,7 +99,7 @@ class TestUser:
     @parametrize
     def test_raw_response_get_user(self, client: NeptuneAPIV2) -> None:
         response = client.user.with_raw_response.get_user(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -111,7 +111,7 @@ class TestUser:
     @parametrize
     def test_streaming_response_get_user(self, client: NeptuneAPIV2) -> None:
         with client.user.with_streaming_response.get_user(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -139,7 +139,7 @@ class TestAsyncUser:
     @parametrize
     async def test_method_get_tx_history(self, async_client: AsyncNeptuneAPIV2) -> None:
         user = await async_client.user.get_tx_history(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(UserGetTxHistoryResponse, user, path=["response"])
 
@@ -147,7 +147,7 @@ class TestAsyncUser:
     @parametrize
     async def test_method_get_tx_history_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         user = await async_client.user.get_tx_history(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             action="borrow_flash_loan",
             limit=1,
             prev_event_uuid="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -161,7 +161,7 @@ class TestAsyncUser:
     @parametrize
     async def test_raw_response_get_tx_history(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.with_raw_response.get_tx_history(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -173,7 +173,7 @@ class TestAsyncUser:
     @parametrize
     async def test_streaming_response_get_tx_history(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.with_streaming_response.get_tx_history(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -195,7 +195,7 @@ class TestAsyncUser:
     @parametrize
     async def test_method_get_user(self, async_client: AsyncNeptuneAPIV2) -> None:
         user = await async_client.user.get_user(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(UserGetUserResponse, user, path=["response"])
 
@@ -203,7 +203,7 @@ class TestAsyncUser:
     @parametrize
     async def test_method_get_user_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         user = await async_client.user.get_user(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_percent=True,
             with_text=True,
             with_value=True,
@@ -214,7 +214,7 @@ class TestAsyncUser:
     @parametrize
     async def test_raw_response_get_user(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.with_raw_response.get_user(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -226,7 +226,7 @@ class TestAsyncUser:
     @parametrize
     async def test_streaming_response_get_user(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.with_streaming_response.get_user(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
