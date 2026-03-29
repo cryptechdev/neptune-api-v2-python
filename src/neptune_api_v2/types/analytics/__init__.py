@@ -2,4 +2,6 @@
 
 from __future__ import annotations
 
+from .nept_unlocks_distribution_params import NeptUnlocksDistributionParams as NeptUnlocksDistributionParams
 from .market_get_current_state_response import MarketGetCurrentStateResponse as MarketGetCurrentStateResponse
+from .nept_unlocks_distribution_response import NeptUnlocksDistributionResponse as NeptUnlocksDistributionResponse

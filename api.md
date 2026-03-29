@@ -344,6 +344,18 @@ Methods:
 - <code title="get /api/v1/analytics/market/history/loans-originated">client.analytics.market.history.<a href="./src/neptune_api_v2/resources/analytics/market/history.py">get_loans_originated</a>(\*\*<a href="src/neptune_api_v2/types/analytics/market/history_get_loans_originated_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/analytics/market/history_get_loans_originated_response.py">HistoryGetLoansOriginatedResponse</a></code>
 - <code title="get /api/v1/analytics/market/history/loans-originated/by-asset">client.analytics.market.history.<a href="./src/neptune_api_v2/resources/analytics/market/history.py">get_loans_originated_by_asset</a>(\*\*<a href="src/neptune_api_v2/types/analytics/market/history_get_loans_originated_by_asset_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/analytics/market/history_get_loans_originated_by_asset_response.py">HistoryGetLoansOriginatedByAssetResponse</a></code>
 
+## Nept
+
+Types:
+
+```python
+from neptune_api_v2.types.analytics import NeptUnlocksDistributionResponse
+```
+
+Methods:
+
+- <code title="get /api/v1/analytics/nept/unlocks-distribution">client.analytics.nept.<a href="./src/neptune_api_v2/resources/analytics/nept.py">unlocks_distribution</a>(\*\*<a href="src/neptune_api_v2/types/analytics/nept_unlocks_distribution_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/analytics/nept_unlocks_distribution_response.py">NeptUnlocksDistributionResponse</a></code>
+
 # Integrations
 
 ## Bantr
