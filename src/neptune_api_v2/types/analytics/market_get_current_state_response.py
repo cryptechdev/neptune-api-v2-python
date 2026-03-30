@@ -42,8 +42,6 @@ class DataLoansOriginated(BaseModel):
 
 
 class Data(BaseModel):
-    """Primary response content (object)"""
-
     assets: List[DataAsset]
 
     borrower_account_active: int
@@ -62,7 +60,6 @@ class MarketGetCurrentStateResponse(BaseModel):
     """Object data success response"""
 
     data: Data
-    """Primary response content (object)"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

@@ -4,7 +4,7 @@ from typing import Optional
 
 from ..._models import BaseModel
 from ..asset_info import AssetInfo
-from .market_rate import MarketRate
+from ..market_rate import MarketRate
 from .lend_market_state import LendMarketState
 
 __all__ = ["LendMarket"]

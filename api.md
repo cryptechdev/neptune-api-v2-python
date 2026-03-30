@@ -3,7 +3,20 @@
 Types:
 
 ```python
-from neptune_api_v2.types import Interval, IntervalUnit
+from neptune_api_v2.types import (
+    ErrorData,
+    ErrorDataVariants,
+    ErrorKind,
+    ErrorResponseVariants,
+    ErrorScope,
+    FieldValidationError,
+    Interval,
+    IntervalUnit,
+    ListErrorResponse,
+    ObjErrorResponse,
+    ValidationErrorData,
+    ValidationFieldSource,
+)
 ```
 
 # Status
@@ -27,6 +40,9 @@ from neptune_api_v2.types import (
     AssetClassification,
     AssetInfo,
     AssetMetadata,
+    AssetPrice,
+    AssetPriceHistory,
+    AssetRateHistory,
     AssetSpec,
     AssetListResponse,
     AssetGetPriceHistoryResponse,
@@ -46,8 +62,8 @@ Types:
 
 ```python
 from neptune_api_v2.types import (
-    AssetRateHistory,
     GlobalMarketConfig,
+    MarketRate,
     MergedMarket,
     MarketGetMergedResponse,
     MarketGetMergedByAssetResponse,
@@ -70,8 +86,8 @@ Types:
 ```python
 from neptune_api_v2.types.markets import (
     LendMarket,
+    LendMarketData,
     LendMarketState,
-    MarketRate,
     LendListResponse,
     LendGetByAssetResponse,
     LendGetRateHistoryResponse,
@@ -109,6 +125,7 @@ Types:
 from neptune_api_v2.types.markets.borrow import (
     BorrowCollateralConfig,
     BorrowCollateralMarket,
+    BorrowCollateralMarketData,
     BorrowCollateralState,
     CollateralListResponse,
     CollateralGetByAssetResponse,
@@ -128,6 +145,7 @@ Types:
 from neptune_api_v2.types.markets.borrow import (
     BorrowDebtConfig,
     BorrowDebtMarket,
+    BorrowDebtMarketData,
     BorrowDebtState,
     DebtListResponse,
     DebtGetByAssetResponse,
@@ -145,6 +163,9 @@ Types:
 
 ```python
 from neptune_api_v2.types import (
+    NeptParams,
+    NeptState,
+    NeptUnlockDistributionGroup,
     StakingPoolFull,
     StakingPoolParams,
     StakingPoolState,
@@ -165,7 +186,13 @@ Methods:
 Types:
 
 ```python
-from neptune_api_v2.types import EventAction, UserGetTxHistoryResponse, UserGetUserResponse
+from neptune_api_v2.types import (
+    EventAction,
+    User,
+    UserTx,
+    UserGetTxHistoryResponse,
+    UserGetUserResponse,
+)
 ```
 
 Methods:
@@ -199,7 +226,7 @@ Types:
 
 ```python
 from neptune_api_v2.types.user.market import (
-    UserDebtAssetPool,
+    UserLendMarket,
     LendListResponse,
     LendGetByAssetResponse,
 )
@@ -217,6 +244,7 @@ Types:
 ```python
 from neptune_api_v2.types.user.market import (
     UserBorrowMarket,
+    UserBorrowMarketPools,
     BorrowGetCollateralAccountsByAssetResponse,
     BorrowGetCollateralTotalsResponse,
     BorrowGetDebtAccountsByAssetResponse,
@@ -241,7 +269,10 @@ Types:
 from neptune_api_v2.types.user.market.borrow import (
     UserAccountHealth,
     UserBorrowMarketAccount,
+    UserCollateralAccountPool,
     UserCollateralAssetPool,
+    UserDebtAccountPool,
+    UserDebtAssetPool,
     SubaccountGetSubaccountResponse,
     SubaccountGetSubaccountCollateralsResponse,
     SubaccountGetSubaccountDebtsResponse,
@@ -262,8 +293,11 @@ Types:
 
 ```python
 from neptune_api_v2.types.user import (
-    UserNeptUnlockAmounts,
-    UserNeptUnlockOverview,
+    UserUnlockAmounts,
+    UserUnlockOverview,
+    UserUnlockSchedule,
+    UserUnlockScheduleLinear,
+    UserUnlockScheduleLumpSum,
     NeptGetUnlocksResponse,
 )
 ```
@@ -279,7 +313,9 @@ Types:
 ```python
 from neptune_api_v2.types.user.nept import (
     UserStake,
+    UserStakeBondingEntry,
     UserStakePool,
+    UserStakeUnbonding,
     UserStakeUnbondingEntry,
     StakingGetOverviewResponse,
     StakingGetStakingPoolResponse,
@@ -302,7 +338,9 @@ Types:
 ```python
 from neptune_api_v2.types.user import (
     UserWalletPortfolio,
+    WalletAsset,
     WalletAssetKnown,
+    WalletAssetUnknown,
     WalletBalance,
     WalletGetBalanceByAssetResponse,
     WalletGetBalancesResponse,

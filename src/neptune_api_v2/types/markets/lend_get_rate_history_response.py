@@ -10,7 +10,7 @@ class LendGetRateHistoryResponse(BaseModel):
     """Object data success response"""
 
     data: AssetRateHistory
-    """Primary response content (object)"""
+    """Historical rates for assets"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

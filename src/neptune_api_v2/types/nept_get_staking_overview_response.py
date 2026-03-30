@@ -49,8 +49,6 @@ class DataGlobalState(BaseModel):
 
 
 class Data(BaseModel):
-    """Primary response content (object)"""
-
     asset_info: AssetInfo
     """Asset identifiers with associated metadata"""
 
@@ -68,7 +66,6 @@ class NeptGetStakingOverviewResponse(BaseModel):
     """Object data success response"""
 
     data: Data
-    """Primary response content (object)"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

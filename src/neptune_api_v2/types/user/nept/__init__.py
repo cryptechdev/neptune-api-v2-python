@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from .user_stake import UserStake as UserStake
 from .user_stake_pool import UserStakePool as UserStakePool
+from .user_stake_unbonding import UserStakeUnbonding as UserStakeUnbonding
+from .user_stake_bonding_entry import UserStakeBondingEntry as UserStakeBondingEntry
 from .user_stake_unbonding_entry import UserStakeUnbondingEntry as UserStakeUnbondingEntry
 from .staking_get_overview_params import StakingGetOverviewParams as StakingGetOverviewParams
 from .staking_get_unstaking_params import StakingGetUnstakingParams as StakingGetUnstakingParams

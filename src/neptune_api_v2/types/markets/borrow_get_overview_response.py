@@ -10,7 +10,6 @@ class BorrowGetOverviewResponse(BaseModel):
     """Object data success response"""
 
     data: BorrowMarketOverview
-    """Primary response content (object)"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

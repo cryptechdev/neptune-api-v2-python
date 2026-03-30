@@ -15,7 +15,6 @@ class StakingGetStakingPoolsResponse(BaseModel):
     """Total number of objects irrespective of any pagination parameters."""
 
     data: List[UserStakePool]
-    """Primary response content (list)"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

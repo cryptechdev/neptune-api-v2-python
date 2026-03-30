@@ -10,7 +10,6 @@ class WalletGetBalanceByAssetResponse(BaseModel):
     """Object data success response"""
 
     data: WalletBalance
-    """Primary response content (object)"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

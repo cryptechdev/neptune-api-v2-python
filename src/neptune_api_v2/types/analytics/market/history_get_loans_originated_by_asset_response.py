@@ -65,7 +65,7 @@ class DataSeries(BaseModel):
 
 
 class Data(BaseModel):
-    """Primary response content (object)"""
+    """Historical cumulative lend value for assets"""
 
     pagination: DataPagination
     """Values used for paginating the time series data"""
@@ -84,7 +84,7 @@ class HistoryGetLoansOriginatedByAssetResponse(BaseModel):
     """Object data success response"""
 
     data: Data
-    """Primary response content (object)"""
+    """Historical cumulative lend value for assets"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

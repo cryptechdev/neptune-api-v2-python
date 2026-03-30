@@ -3,7 +3,7 @@
 from typing import List
 
 from ...._models import BaseModel
-from .user_debt_asset_pool import UserDebtAssetPool
+from .borrow.user_debt_asset_pool import UserDebtAssetPool
 
 __all__ = ["LendListResponse"]
 
@@ -15,7 +15,6 @@ class LendListResponse(BaseModel):
     """Total number of objects irrespective of any pagination parameters."""
 
     data: List[UserDebtAssetPool]
-    """Primary response content (list)"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""
