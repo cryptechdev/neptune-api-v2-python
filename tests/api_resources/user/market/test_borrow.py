@@ -27,7 +27,7 @@ class TestBorrow:
     @parametrize
     def test_method_get_collateral_accounts_by_asset(self, client: NeptuneAPIV2) -> None:
         borrow = client.user.market.borrow.get_collateral_accounts_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         )
         assert_matches_type(BorrowGetCollateralAccountsByAssetResponse, borrow, path=["response"])
@@ -36,7 +36,7 @@ class TestBorrow:
     @parametrize
     def test_method_get_collateral_accounts_by_asset_with_all_params(self, client: NeptuneAPIV2) -> None:
         borrow = client.user.market.borrow.get_collateral_accounts_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
             with_text=True,
             with_value=True,
@@ -47,7 +47,7 @@ class TestBorrow:
     @parametrize
     def test_raw_response_get_collateral_accounts_by_asset(self, client: NeptuneAPIV2) -> None:
         response = client.user.market.borrow.with_raw_response.get_collateral_accounts_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         )
 
@@ -60,7 +60,7 @@ class TestBorrow:
     @parametrize
     def test_streaming_response_get_collateral_accounts_by_asset(self, client: NeptuneAPIV2) -> None:
         with client.user.market.borrow.with_streaming_response.get_collateral_accounts_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         ) as response:
             assert not response.is_closed
@@ -84,7 +84,7 @@ class TestBorrow:
     @parametrize
     def test_method_get_collateral_totals(self, client: NeptuneAPIV2) -> None:
         borrow = client.user.market.borrow.get_collateral_totals(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(BorrowGetCollateralTotalsResponse, borrow, path=["response"])
 
@@ -92,7 +92,7 @@ class TestBorrow:
     @parametrize
     def test_method_get_collateral_totals_with_all_params(self, client: NeptuneAPIV2) -> None:
         borrow = client.user.market.borrow.get_collateral_totals(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -102,7 +102,7 @@ class TestBorrow:
     @parametrize
     def test_raw_response_get_collateral_totals(self, client: NeptuneAPIV2) -> None:
         response = client.user.market.borrow.with_raw_response.get_collateral_totals(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -114,7 +114,7 @@ class TestBorrow:
     @parametrize
     def test_streaming_response_get_collateral_totals(self, client: NeptuneAPIV2) -> None:
         with client.user.market.borrow.with_streaming_response.get_collateral_totals(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -136,7 +136,7 @@ class TestBorrow:
     @parametrize
     def test_method_get_debt_accounts_by_asset(self, client: NeptuneAPIV2) -> None:
         borrow = client.user.market.borrow.get_debt_accounts_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         )
         assert_matches_type(BorrowGetDebtAccountsByAssetResponse, borrow, path=["response"])
@@ -145,7 +145,7 @@ class TestBorrow:
     @parametrize
     def test_method_get_debt_accounts_by_asset_with_all_params(self, client: NeptuneAPIV2) -> None:
         borrow = client.user.market.borrow.get_debt_accounts_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
             with_text=True,
             with_value=True,
@@ -156,7 +156,7 @@ class TestBorrow:
     @parametrize
     def test_raw_response_get_debt_accounts_by_asset(self, client: NeptuneAPIV2) -> None:
         response = client.user.market.borrow.with_raw_response.get_debt_accounts_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         )
 
@@ -169,7 +169,7 @@ class TestBorrow:
     @parametrize
     def test_streaming_response_get_debt_accounts_by_asset(self, client: NeptuneAPIV2) -> None:
         with client.user.market.borrow.with_streaming_response.get_debt_accounts_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         ) as response:
             assert not response.is_closed
@@ -193,7 +193,7 @@ class TestBorrow:
     @parametrize
     def test_method_get_debts_totals(self, client: NeptuneAPIV2) -> None:
         borrow = client.user.market.borrow.get_debts_totals(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(BorrowGetDebtsTotalsResponse, borrow, path=["response"])
 
@@ -201,7 +201,7 @@ class TestBorrow:
     @parametrize
     def test_method_get_debts_totals_with_all_params(self, client: NeptuneAPIV2) -> None:
         borrow = client.user.market.borrow.get_debts_totals(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -211,7 +211,7 @@ class TestBorrow:
     @parametrize
     def test_raw_response_get_debts_totals(self, client: NeptuneAPIV2) -> None:
         response = client.user.market.borrow.with_raw_response.get_debts_totals(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -223,7 +223,7 @@ class TestBorrow:
     @parametrize
     def test_streaming_response_get_debts_totals(self, client: NeptuneAPIV2) -> None:
         with client.user.market.borrow.with_streaming_response.get_debts_totals(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -245,7 +245,7 @@ class TestBorrow:
     @parametrize
     def test_method_get_portfolio(self, client: NeptuneAPIV2) -> None:
         borrow = client.user.market.borrow.get_portfolio(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(BorrowGetPortfolioResponse, borrow, path=["response"])
 
@@ -253,7 +253,7 @@ class TestBorrow:
     @parametrize
     def test_method_get_portfolio_with_all_params(self, client: NeptuneAPIV2) -> None:
         borrow = client.user.market.borrow.get_portfolio(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -263,7 +263,7 @@ class TestBorrow:
     @parametrize
     def test_raw_response_get_portfolio(self, client: NeptuneAPIV2) -> None:
         response = client.user.market.borrow.with_raw_response.get_portfolio(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -275,7 +275,7 @@ class TestBorrow:
     @parametrize
     def test_streaming_response_get_portfolio(self, client: NeptuneAPIV2) -> None:
         with client.user.market.borrow.with_streaming_response.get_portfolio(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -303,7 +303,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_method_get_collateral_accounts_by_asset(self, async_client: AsyncNeptuneAPIV2) -> None:
         borrow = await async_client.user.market.borrow.get_collateral_accounts_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         )
         assert_matches_type(BorrowGetCollateralAccountsByAssetResponse, borrow, path=["response"])
@@ -314,7 +314,7 @@ class TestAsyncBorrow:
         self, async_client: AsyncNeptuneAPIV2
     ) -> None:
         borrow = await async_client.user.market.borrow.get_collateral_accounts_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
             with_text=True,
             with_value=True,
@@ -325,7 +325,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_raw_response_get_collateral_accounts_by_asset(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.market.borrow.with_raw_response.get_collateral_accounts_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         )
 
@@ -338,7 +338,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_streaming_response_get_collateral_accounts_by_asset(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.market.borrow.with_streaming_response.get_collateral_accounts_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         ) as response:
             assert not response.is_closed
@@ -362,7 +362,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_method_get_collateral_totals(self, async_client: AsyncNeptuneAPIV2) -> None:
         borrow = await async_client.user.market.borrow.get_collateral_totals(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(BorrowGetCollateralTotalsResponse, borrow, path=["response"])
 
@@ -370,7 +370,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_method_get_collateral_totals_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         borrow = await async_client.user.market.borrow.get_collateral_totals(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -380,7 +380,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_raw_response_get_collateral_totals(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.market.borrow.with_raw_response.get_collateral_totals(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -392,7 +392,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_streaming_response_get_collateral_totals(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.market.borrow.with_streaming_response.get_collateral_totals(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -414,7 +414,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_method_get_debt_accounts_by_asset(self, async_client: AsyncNeptuneAPIV2) -> None:
         borrow = await async_client.user.market.borrow.get_debt_accounts_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         )
         assert_matches_type(BorrowGetDebtAccountsByAssetResponse, borrow, path=["response"])
@@ -423,7 +423,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_method_get_debt_accounts_by_asset_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         borrow = await async_client.user.market.borrow.get_debt_accounts_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
             with_text=True,
             with_value=True,
@@ -434,7 +434,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_raw_response_get_debt_accounts_by_asset(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.market.borrow.with_raw_response.get_debt_accounts_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         )
 
@@ -447,7 +447,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_streaming_response_get_debt_accounts_by_asset(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.market.borrow.with_streaming_response.get_debt_accounts_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         ) as response:
             assert not response.is_closed
@@ -471,7 +471,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_method_get_debts_totals(self, async_client: AsyncNeptuneAPIV2) -> None:
         borrow = await async_client.user.market.borrow.get_debts_totals(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(BorrowGetDebtsTotalsResponse, borrow, path=["response"])
 
@@ -479,7 +479,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_method_get_debts_totals_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         borrow = await async_client.user.market.borrow.get_debts_totals(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -489,7 +489,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_raw_response_get_debts_totals(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.market.borrow.with_raw_response.get_debts_totals(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -501,7 +501,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_streaming_response_get_debts_totals(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.market.borrow.with_streaming_response.get_debts_totals(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -523,7 +523,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_method_get_portfolio(self, async_client: AsyncNeptuneAPIV2) -> None:
         borrow = await async_client.user.market.borrow.get_portfolio(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(BorrowGetPortfolioResponse, borrow, path=["response"])
 
@@ -531,7 +531,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_method_get_portfolio_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         borrow = await async_client.user.market.borrow.get_portfolio(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -541,7 +541,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_raw_response_get_portfolio(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.market.borrow.with_raw_response.get_portfolio(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -553,7 +553,7 @@ class TestAsyncBorrow:
     @parametrize
     async def test_streaming_response_get_portfolio(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.market.borrow.with_streaming_response.get_portfolio(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

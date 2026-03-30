@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 from .lend_market import LendMarket as LendMarket
-from .market_rate import MarketRate as MarketRate
 from .lend_list_params import LendListParams as LendListParams
+from .lend_market_data import LendMarketData as LendMarketData
 from .lend_market_state import LendMarketState as LendMarketState
 from .lend_list_response import LendListResponse as LendListResponse
 from .borrow_market_overview import BorrowMarketOverview as BorrowMarketOverview

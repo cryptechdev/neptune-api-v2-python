@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
 from ...types import IntervalUnit
@@ -32,7 +34,7 @@ class LendResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#accessing-raw-response-data-eg-headers
         """
         return LendResourceWithRawResponse(self)
 
@@ -41,7 +43,7 @@ class LendResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#with_streaming_response
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#with_streaming_response
         """
         return LendResourceWithStreamingResponse(self)
 
@@ -147,7 +149,7 @@ class LendResource(SyncAPIResource):
         end: int,
         period: IntervalUnit,
         start: int,
-        asset_ids: str | Omit = omit,
+        asset_ids: Optional[str] | Omit = omit,
         interval: int | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
@@ -238,7 +240,7 @@ class AsyncLendResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#accessing-raw-response-data-eg-headers
         """
         return AsyncLendResourceWithRawResponse(self)
 
@@ -247,7 +249,7 @@ class AsyncLendResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#with_streaming_response
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#with_streaming_response
         """
         return AsyncLendResourceWithStreamingResponse(self)
 
@@ -353,7 +355,7 @@ class AsyncLendResource(AsyncAPIResource):
         end: int,
         period: IntervalUnit,
         start: int,
-        asset_ids: str | Omit = omit,
+        asset_ids: Optional[str] | Omit = omit,
         interval: int | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,

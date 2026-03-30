@@ -1,23 +1,25 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-
 from ..._models import BaseModel
-from ..error_data import ErrorData
 from .lend_market import LendMarket
 
 __all__ = ["LendGetByAssetResponse"]
 
 
 class LendGetByAssetResponse(BaseModel):
-    data: Optional[LendMarket] = None
-    """Object data"""
+    """Object data success response"""
 
-    error: Optional[ErrorData] = None
-    """Error content, only set if an error occurs"""
+    data: LendMarket
+
+    error: None = None
+    """Error data. Guaranteed `null` for successful response."""
 
     status: int
-    """Request status"""
+    """HTTP status.
+
+    Successful responses are guaranteed to be < `400`. Conversely, error responses
+    are guaranteed to be >= `400`.
+    """
 
     status_text: str
-    """Request status text"""
+    """HTTP status text"""

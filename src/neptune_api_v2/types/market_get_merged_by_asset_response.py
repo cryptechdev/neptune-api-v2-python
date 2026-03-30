@@ -1,23 +1,26 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-
 from .._models import BaseModel
-from .error_data import ErrorData
 from .merged_market import MergedMarket
 
 __all__ = ["MarketGetMergedByAssetResponse"]
 
 
 class MarketGetMergedByAssetResponse(BaseModel):
-    data: Optional[MergedMarket] = None
+    """Object data success response"""
+
+    data: MergedMarket
     """Data for all of an assets markets"""
 
-    error: Optional[ErrorData] = None
-    """Error content, only set if an error occurs"""
+    error: None = None
+    """Error data. Guaranteed `null` for successful response."""
 
     status: int
-    """Request status"""
+    """HTTP status.
+
+    Successful responses are guaranteed to be < `400`. Conversely, error responses
+    are guaranteed to be >= `400`.
+    """
 
     status_text: str
-    """Request status text"""
+    """HTTP status text"""

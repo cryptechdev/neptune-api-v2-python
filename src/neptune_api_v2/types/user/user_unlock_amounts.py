@@ -5,7 +5,7 @@ from typing import Optional
 from ..._models import BaseModel
 
 __all__ = [
-    "UserNeptUnlockAmounts",
+    "UserUnlockAmounts",
     "Extra",
     "ExtraPercent",
     "ExtraPercentExtra",
@@ -148,16 +148,16 @@ class Extra(BaseModel):
     """
 
 
-class UserNeptUnlockAmounts(BaseModel):
+class UserUnlockAmounts(BaseModel):
     amount: str
-    """The full unlock amount.
+    """The full unlock amount
 
     This value is immutable and does not change with regards to
     expiry/reclamation/lock states.
     """
 
     claimable: str
-    """The amount currently claimable.
+    """The amount currently claimable
 
     This takes into account: reclamation, lock state, expiry, and previously
     claimed. In other words, this is an accurate representation of what the user can
@@ -170,7 +170,7 @@ class UserNeptUnlockAmounts(BaseModel):
     expired: str
     """
     The amount that was claimable but has now expired due to the presence and
-    subsequent passing of `expires_at`.
+    subsequent passing of `expires_at`
     """
 
     extra: Extra

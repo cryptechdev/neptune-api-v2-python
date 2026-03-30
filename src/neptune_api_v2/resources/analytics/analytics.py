@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .nept import (
+    NeptResource,
+    AsyncNeptResource,
+    NeptResourceWithRawResponse,
+    AsyncNeptResourceWithRawResponse,
+    NeptResourceWithStreamingResponse,
+    AsyncNeptResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .market.market import (
@@ -22,12 +30,16 @@ class AnalyticsResource(SyncAPIResource):
         return MarketResource(self._client)
 
     @cached_property
+    def nept(self) -> NeptResource:
+        return NeptResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AnalyticsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#accessing-raw-response-data-eg-headers
         """
         return AnalyticsResourceWithRawResponse(self)
 
@@ -36,7 +48,7 @@ class AnalyticsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#with_streaming_response
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#with_streaming_response
         """
         return AnalyticsResourceWithStreamingResponse(self)
 
@@ -47,12 +59,16 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         return AsyncMarketResource(self._client)
 
     @cached_property
+    def nept(self) -> AsyncNeptResource:
+        return AsyncNeptResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncAnalyticsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#accessing-raw-response-data-eg-headers
         """
         return AsyncAnalyticsResourceWithRawResponse(self)
 
@@ -61,7 +77,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#with_streaming_response
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#with_streaming_response
         """
         return AsyncAnalyticsResourceWithStreamingResponse(self)
 
@@ -74,6 +90,10 @@ class AnalyticsResourceWithRawResponse:
     def market(self) -> MarketResourceWithRawResponse:
         return MarketResourceWithRawResponse(self._analytics.market)
 
+    @cached_property
+    def nept(self) -> NeptResourceWithRawResponse:
+        return NeptResourceWithRawResponse(self._analytics.nept)
+
 
 class AsyncAnalyticsResourceWithRawResponse:
     def __init__(self, analytics: AsyncAnalyticsResource) -> None:
@@ -82,6 +102,10 @@ class AsyncAnalyticsResourceWithRawResponse:
     @cached_property
     def market(self) -> AsyncMarketResourceWithRawResponse:
         return AsyncMarketResourceWithRawResponse(self._analytics.market)
+
+    @cached_property
+    def nept(self) -> AsyncNeptResourceWithRawResponse:
+        return AsyncNeptResourceWithRawResponse(self._analytics.nept)
 
 
 class AnalyticsResourceWithStreamingResponse:
@@ -92,6 +116,10 @@ class AnalyticsResourceWithStreamingResponse:
     def market(self) -> MarketResourceWithStreamingResponse:
         return MarketResourceWithStreamingResponse(self._analytics.market)
 
+    @cached_property
+    def nept(self) -> NeptResourceWithStreamingResponse:
+        return NeptResourceWithStreamingResponse(self._analytics.nept)
+
 
 class AsyncAnalyticsResourceWithStreamingResponse:
     def __init__(self, analytics: AsyncAnalyticsResource) -> None:
@@ -100,3 +128,7 @@ class AsyncAnalyticsResourceWithStreamingResponse:
     @cached_property
     def market(self) -> AsyncMarketResourceWithStreamingResponse:
         return AsyncMarketResourceWithStreamingResponse(self._analytics.market)
+
+    @cached_property
+    def nept(self) -> AsyncNeptResourceWithStreamingResponse:
+        return AsyncNeptResourceWithStreamingResponse(self._analytics.nept)

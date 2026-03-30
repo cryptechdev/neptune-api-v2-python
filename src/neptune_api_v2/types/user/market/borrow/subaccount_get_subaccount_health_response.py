@@ -1,23 +1,25 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-
 from ....._models import BaseModel
-from ....error_data import ErrorData
 from .user_account_health import UserAccountHealth
 
 __all__ = ["SubaccountGetSubaccountHealthResponse"]
 
 
 class SubaccountGetSubaccountHealthResponse(BaseModel):
-    data: Optional[UserAccountHealth] = None
-    """Object data"""
+    """Object data success response"""
 
-    error: Optional[ErrorData] = None
-    """Error content, only set if an error occurs"""
+    data: UserAccountHealth
+
+    error: None = None
+    """Error data. Guaranteed `null` for successful response."""
 
     status: int
-    """Request status"""
+    """HTTP status.
+
+    Successful responses are guaranteed to be < `400`. Conversely, error responses
+    are guaranteed to be >= `400`.
+    """
 
     status_text: str
-    """Request status text"""
+    """HTTP status text"""

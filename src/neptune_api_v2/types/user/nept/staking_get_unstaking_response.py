@@ -1,17 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List
 
 from ...._models import BaseModel
-from ...error_data import ErrorData
 from .user_stake_unbonding_entry import UserStakeUnbondingEntry
 
 __all__ = ["StakingGetUnstakingResponse", "Data"]
 
 
 class Data(BaseModel):
-    """Object data"""
-
     amount_sum: str
     """Total amount of all unbond entries
 
@@ -28,14 +25,19 @@ class Data(BaseModel):
 
 
 class StakingGetUnstakingResponse(BaseModel):
-    data: Optional[Data] = None
-    """Object data"""
+    """Object data success response"""
 
-    error: Optional[ErrorData] = None
-    """Error content, only set if an error occurs"""
+    data: Data
+
+    error: None = None
+    """Error data. Guaranteed `null` for successful response."""
 
     status: int
-    """Request status"""
+    """HTTP status.
+
+    Successful responses are guaranteed to be < `400`. Conversely, error responses
+    are guaranteed to be >= `400`.
+    """
 
     status_text: str
-    """Request status text"""
+    """HTTP status text"""

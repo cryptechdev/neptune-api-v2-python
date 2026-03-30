@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
 from ..types import IntervalUnit, asset_list_prices_params, asset_get_price_history_params
@@ -31,7 +33,7 @@ class AssetsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#accessing-raw-response-data-eg-headers
         """
         return AssetsResourceWithRawResponse(self)
 
@@ -40,7 +42,7 @@ class AssetsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#with_streaming_response
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#with_streaming_response
         """
         return AssetsResourceWithStreamingResponse(self)
 
@@ -69,7 +71,7 @@ class AssetsResource(SyncAPIResource):
         end: int,
         period: IntervalUnit,
         start: int,
-        asset_ids: str | Omit = omit,
+        asset_ids: Optional[str] | Omit = omit,
         interval: int | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,
@@ -197,7 +199,7 @@ class AsyncAssetsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#accessing-raw-response-data-eg-headers
         """
         return AsyncAssetsResourceWithRawResponse(self)
 
@@ -206,7 +208,7 @@ class AsyncAssetsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#with_streaming_response
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#with_streaming_response
         """
         return AsyncAssetsResourceWithStreamingResponse(self)
 
@@ -235,7 +237,7 @@ class AsyncAssetsResource(AsyncAPIResource):
         end: int,
         period: IntervalUnit,
         start: int,
-        asset_ids: str | Omit = omit,
+        asset_ids: Optional[str] | Omit = omit,
         interval: int | Omit = omit,
         limit: int | Omit = omit,
         offset: int | Omit = omit,

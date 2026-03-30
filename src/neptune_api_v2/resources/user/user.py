@@ -17,7 +17,7 @@ from .wallet import (
 )
 from ...types import EventAction, user_get_user_params, user_get_tx_history_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .nept.nept import (
     NeptResource,
@@ -69,7 +69,7 @@ class UserResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#accessing-raw-response-data-eg-headers
         """
         return UserResourceWithRawResponse(self)
 
@@ -78,7 +78,7 @@ class UserResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#with_streaming_response
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#with_streaming_response
         """
         return UserResourceWithStreamingResponse(self)
 
@@ -138,7 +138,7 @@ class UserResource(SyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return self._get(
-            f"/api/v1/users/{address}/tx-history",
+            path_template("/api/v1/users/{address}/tx-history", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -196,7 +196,7 @@ class UserResource(SyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return self._get(
-            f"/api/v1/users/{address}/user",
+            path_template("/api/v1/users/{address}/user", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -234,7 +234,7 @@ class AsyncUserResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#accessing-raw-response-data-eg-headers
         """
         return AsyncUserResourceWithRawResponse(self)
 
@@ -243,7 +243,7 @@ class AsyncUserResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#with_streaming_response
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#with_streaming_response
         """
         return AsyncUserResourceWithStreamingResponse(self)
 
@@ -303,7 +303,7 @@ class AsyncUserResource(AsyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return await self._get(
-            f"/api/v1/users/{address}/tx-history",
+            path_template("/api/v1/users/{address}/tx-history", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -361,7 +361,7 @@ class AsyncUserResource(AsyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return await self._get(
-            f"/api/v1/users/{address}/user",
+            path_template("/api/v1/users/{address}/user", address=address),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -25,7 +25,7 @@ class TestMarket:
     @parametrize
     def test_method_get_merged(self, client: NeptuneAPIV2) -> None:
         market = client.user.market.get_merged(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(MarketGetMergedResponse, market, path=["response"])
 
@@ -33,7 +33,7 @@ class TestMarket:
     @parametrize
     def test_method_get_merged_with_all_params(self, client: NeptuneAPIV2) -> None:
         market = client.user.market.get_merged(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -43,7 +43,7 @@ class TestMarket:
     @parametrize
     def test_raw_response_get_merged(self, client: NeptuneAPIV2) -> None:
         response = client.user.market.with_raw_response.get_merged(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -55,7 +55,7 @@ class TestMarket:
     @parametrize
     def test_streaming_response_get_merged(self, client: NeptuneAPIV2) -> None:
         with client.user.market.with_streaming_response.get_merged(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -77,7 +77,7 @@ class TestMarket:
     @parametrize
     def test_method_get_merged_by_asset(self, client: NeptuneAPIV2) -> None:
         market = client.user.market.get_merged_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         )
         assert_matches_type(MarketGetMergedByAssetResponse, market, path=["response"])
@@ -86,7 +86,7 @@ class TestMarket:
     @parametrize
     def test_method_get_merged_by_asset_with_all_params(self, client: NeptuneAPIV2) -> None:
         market = client.user.market.get_merged_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
             with_text=True,
             with_value=True,
@@ -97,7 +97,7 @@ class TestMarket:
     @parametrize
     def test_raw_response_get_merged_by_asset(self, client: NeptuneAPIV2) -> None:
         response = client.user.market.with_raw_response.get_merged_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         )
 
@@ -110,7 +110,7 @@ class TestMarket:
     @parametrize
     def test_streaming_response_get_merged_by_asset(self, client: NeptuneAPIV2) -> None:
         with client.user.market.with_streaming_response.get_merged_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         ) as response:
             assert not response.is_closed
@@ -134,7 +134,7 @@ class TestMarket:
     @parametrize
     def test_method_get_portfolio(self, client: NeptuneAPIV2) -> None:
         market = client.user.market.get_portfolio(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(MarketGetPortfolioResponse, market, path=["response"])
 
@@ -142,7 +142,7 @@ class TestMarket:
     @parametrize
     def test_method_get_portfolio_with_all_params(self, client: NeptuneAPIV2) -> None:
         market = client.user.market.get_portfolio(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -152,7 +152,7 @@ class TestMarket:
     @parametrize
     def test_raw_response_get_portfolio(self, client: NeptuneAPIV2) -> None:
         response = client.user.market.with_raw_response.get_portfolio(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -164,7 +164,7 @@ class TestMarket:
     @parametrize
     def test_streaming_response_get_portfolio(self, client: NeptuneAPIV2) -> None:
         with client.user.market.with_streaming_response.get_portfolio(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -192,7 +192,7 @@ class TestAsyncMarket:
     @parametrize
     async def test_method_get_merged(self, async_client: AsyncNeptuneAPIV2) -> None:
         market = await async_client.user.market.get_merged(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(MarketGetMergedResponse, market, path=["response"])
 
@@ -200,7 +200,7 @@ class TestAsyncMarket:
     @parametrize
     async def test_method_get_merged_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         market = await async_client.user.market.get_merged(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -210,7 +210,7 @@ class TestAsyncMarket:
     @parametrize
     async def test_raw_response_get_merged(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.market.with_raw_response.get_merged(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -222,7 +222,7 @@ class TestAsyncMarket:
     @parametrize
     async def test_streaming_response_get_merged(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.market.with_streaming_response.get_merged(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -244,7 +244,7 @@ class TestAsyncMarket:
     @parametrize
     async def test_method_get_merged_by_asset(self, async_client: AsyncNeptuneAPIV2) -> None:
         market = await async_client.user.market.get_merged_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         )
         assert_matches_type(MarketGetMergedByAssetResponse, market, path=["response"])
@@ -253,7 +253,7 @@ class TestAsyncMarket:
     @parametrize
     async def test_method_get_merged_by_asset_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         market = await async_client.user.market.get_merged_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
             with_text=True,
             with_value=True,
@@ -264,7 +264,7 @@ class TestAsyncMarket:
     @parametrize
     async def test_raw_response_get_merged_by_asset(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.market.with_raw_response.get_merged_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         )
 
@@ -277,7 +277,7 @@ class TestAsyncMarket:
     @parametrize
     async def test_streaming_response_get_merged_by_asset(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.market.with_streaming_response.get_merged_by_asset(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             asset_id="token;-K-//-//3-",
         ) as response:
             assert not response.is_closed
@@ -301,7 +301,7 @@ class TestAsyncMarket:
     @parametrize
     async def test_method_get_portfolio(self, async_client: AsyncNeptuneAPIV2) -> None:
         market = await async_client.user.market.get_portfolio(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
         assert_matches_type(MarketGetPortfolioResponse, market, path=["response"])
 
@@ -309,7 +309,7 @@ class TestAsyncMarket:
     @parametrize
     async def test_method_get_portfolio_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
         market = await async_client.user.market.get_portfolio(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
             with_text=True,
             with_value=True,
         )
@@ -319,7 +319,7 @@ class TestAsyncMarket:
     @parametrize
     async def test_raw_response_get_portfolio(self, async_client: AsyncNeptuneAPIV2) -> None:
         response = await async_client.user.market.with_raw_response.get_portfolio(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
 
         assert response.is_closed is True
@@ -331,7 +331,7 @@ class TestAsyncMarket:
     @parametrize
     async def test_streaming_response_get_portfolio(self, async_client: AsyncNeptuneAPIV2) -> None:
         async with async_client.user.market.with_streaming_response.get_portfolio(
-            address="address",
+            address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

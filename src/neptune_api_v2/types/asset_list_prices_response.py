@@ -1,46 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
+from typing import List
 
 from .._models import BaseModel
 from .asset_spec import AssetSpec
-from .error_data import ErrorData
+from .asset_price import AssetPrice
 from .asset_metadata import AssetMetadata
 from .asset_classification import AssetClassification
 
-__all__ = ["AssetListPricesResponse", "Data", "DataPrice", "DataPriceExtra", "DataPriceExtraText"]
-
-
-class DataPriceExtraText(BaseModel):
-    """Human-readable field variants.
-
-    Will not be null when query param `with-text` is `true`.
-    """
-
-    last_updated_at: str
-
-    price: str
-
-
-class DataPriceExtra(BaseModel):
-    text: Optional[DataPriceExtraText] = None
-    """Human-readable field variants.
-
-    Will not be null when query param `with-text` is `true`.
-    """
-
-
-class DataPrice(BaseModel):
-    """> **Note**: Prices are sourced from Neptune's Price Oracle"""
-
-    extra: DataPriceExtra
-
-    last_updated_at: datetime
-    """Asset price value, as per Neptune Price Oracle"""
-
-    price: str
-    """Asset price"""
+__all__ = ["AssetListPricesResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -68,22 +36,27 @@ class Data(BaseModel):
     metadata: AssetMetadata
     """Additional metadata for assets"""
 
-    price: DataPrice
+    price: AssetPrice
     """> **Note**: Prices are sourced from Neptune's Price Oracle"""
 
 
 class AssetListPricesResponse(BaseModel):
-    count: Optional[int] = None
-    """Total number of objects in all pages"""
+    """List data success response"""
 
-    data: Optional[List[Data]] = None
-    """List contents"""
+    count: int
+    """Total number of objects irrespective of any pagination parameters."""
 
-    error: Optional[ErrorData] = None
-    """Error message, if any"""
+    data: List[Data]
+
+    error: None = None
+    """Error data. Guaranteed `null` for successful response."""
 
     status: int
-    """Request status"""
+    """HTTP status.
+
+    Successful responses are guaranteed to be < `400`. Conversely, error responses
+    are guaranteed to be >= `400`.
+    """
 
     status_text: str
-    """Request status text"""
+    """HTTP status text"""

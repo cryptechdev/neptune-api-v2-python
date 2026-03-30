@@ -1,106 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List
 
 from ...._models import BaseModel
 from ...asset_info import AssetInfo
-from ...error_data import ErrorData
+from .borrow.user_debt_account_pool import UserDebtAccountPool
 
-__all__ = [
-    "BorrowGetDebtAccountsByAssetResponse",
-    "Data",
-    "DataAccount",
-    "DataAccountExtra",
-    "DataAccountExtraText",
-    "DataAccountExtraValue",
-    "DataAccountExtraValueExtra",
-    "DataAccountExtraValueExtraText",
-]
-
-
-class DataAccountExtraText(BaseModel):
-    """Human-readable field variants.
-
-    Will not be null when query param `with_text` is `true`.
-    """
-
-    debt: str
-
-    interest: str
-
-    principal: str
-
-
-class DataAccountExtraValueExtraText(BaseModel):
-    """Human-readable variants of USD values.
-
-    Will not be null when query params `with_text` and `with_value` are `true`.
-    """
-
-    debt: str
-
-    interest: str
-
-    principal: str
-
-
-class DataAccountExtraValueExtra(BaseModel):
-    text: Optional[DataAccountExtraValueExtraText] = None
-    """Human-readable variants of USD values.
-
-    Will not be null when query params `with_text` and `with_value` are `true`.
-    """
-
-
-class DataAccountExtraValue(BaseModel):
-    """USD values for the corresponding amounts above.
-
-    Will not be null when query param `with_value` is `true`.
-    """
-
-    debt: str
-
-    extra: DataAccountExtraValueExtra
-
-    interest: str
-
-    principal: str
-
-
-class DataAccountExtra(BaseModel):
-    text: Optional[DataAccountExtraText] = None
-    """Human-readable field variants.
-
-    Will not be null when query param `with_text` is `true`.
-    """
-
-    value: Optional[DataAccountExtraValue] = None
-    """USD values for the corresponding amounts above.
-
-    Will not be null when query param `with_value` is `true`.
-    """
-
-
-class DataAccount(BaseModel):
-    debt: str
-    """Sum open debt amount (this is simply the principal + interest)"""
-
-    extra: DataAccountExtra
-
-    index: int
-    """Account index"""
-
-    interest: str
-    """Sum of accrued interest for open debt position"""
-
-    principal: str
-    """Initial amount borrowed (of debts which have not yet been repaid)"""
+__all__ = ["BorrowGetDebtAccountsByAssetResponse", "Data"]
 
 
 class Data(BaseModel):
-    """Object data"""
-
-    accounts: List[DataAccount]
+    accounts: List[UserDebtAccountPool]
     """All debt subaccounts for the associated asset type"""
 
     asset_info: AssetInfo
@@ -108,14 +18,19 @@ class Data(BaseModel):
 
 
 class BorrowGetDebtAccountsByAssetResponse(BaseModel):
-    data: Optional[Data] = None
-    """Object data"""
+    """Object data success response"""
 
-    error: Optional[ErrorData] = None
-    """Error content, only set if an error occurs"""
+    data: Data
+
+    error: None = None
+    """Error data. Guaranteed `null` for successful response."""
 
     status: int
-    """Request status"""
+    """HTTP status.
+
+    Successful responses are guaranteed to be < `400`. Conversely, error responses
+    are guaranteed to be >= `400`.
+    """
 
     status_text: str
-    """Request status text"""
+    """HTTP status text"""

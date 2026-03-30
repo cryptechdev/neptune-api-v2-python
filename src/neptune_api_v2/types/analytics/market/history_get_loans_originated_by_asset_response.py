@@ -6,7 +6,6 @@ from datetime import datetime
 from ...._models import BaseModel
 from ...interval import Interval
 from ...asset_spec import AssetSpec
-from ...error_data import ErrorData
 
 __all__ = [
     "HistoryGetLoansOriginatedByAssetResponse",
@@ -82,14 +81,20 @@ class Data(BaseModel):
 
 
 class HistoryGetLoansOriginatedByAssetResponse(BaseModel):
-    data: Optional[Data] = None
+    """Object data success response"""
+
+    data: Data
     """Historical cumulative lend value for assets"""
 
-    error: Optional[ErrorData] = None
-    """Error content, only set if an error occurs"""
+    error: None = None
+    """Error data. Guaranteed `null` for successful response."""
 
     status: int
-    """Request status"""
+    """HTTP status.
+
+    Successful responses are guaranteed to be < `400`. Conversely, error responses
+    are guaranteed to be >= `400`.
+    """
 
     status_text: str
-    """Request status text"""
+    """HTTP status text"""

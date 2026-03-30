@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -40,7 +40,7 @@ class SubaccountResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#accessing-raw-response-data-eg-headers
         """
         return SubaccountResourceWithRawResponse(self)
 
@@ -49,7 +49,7 @@ class SubaccountResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#with_streaming_response
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#with_streaming_response
         """
         return SubaccountResourceWithStreamingResponse(self)
 
@@ -90,7 +90,7 @@ class SubaccountResource(SyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return self._get(
-            f"/api/v1/users/{address}/markets/borrow/accounts/{index}",
+            path_template("/api/v1/users/{address}/markets/borrow/accounts/{index}", address=address, index=index),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -144,7 +144,9 @@ class SubaccountResource(SyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return self._get(
-            f"/api/v1/users/{address}/markets/borrow/accounts/{index}/collaterals",
+            path_template(
+                "/api/v1/users/{address}/markets/borrow/accounts/{index}/collaterals", address=address, index=index
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -198,7 +200,9 @@ class SubaccountResource(SyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return self._get(
-            f"/api/v1/users/{address}/markets/borrow/accounts/{index}/debts",
+            path_template(
+                "/api/v1/users/{address}/markets/borrow/accounts/{index}/debts", address=address, index=index
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -221,7 +225,6 @@ class SubaccountResource(SyncAPIResource):
         *,
         address: str,
         with_text: bool | Omit = omit,
-        with_value: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -239,8 +242,6 @@ class SubaccountResource(SyncAPIResource):
 
           with_text: Include text variation fields
 
-          with_value: Calculate and include USD values for amounts, where applicable
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -252,17 +253,16 @@ class SubaccountResource(SyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return self._get(
-            f"/api/v1/users/{address}/markets/borrow/accounts/{index}/health",
+            path_template(
+                "/api/v1/users/{address}/markets/borrow/accounts/{index}/health", address=address, index=index
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {
-                        "with_text": with_text,
-                        "with_value": with_value,
-                    },
+                    {"with_text": with_text},
                     subaccount_get_subaccount_health_params.SubaccountGetSubaccountHealthParams,
                 ),
             ),
@@ -277,7 +277,7 @@ class AsyncSubaccountResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#accessing-raw-response-data-eg-headers
         """
         return AsyncSubaccountResourceWithRawResponse(self)
 
@@ -286,7 +286,7 @@ class AsyncSubaccountResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/cryptechdev/stainless-api-v2-python#with_streaming_response
+        For more information, see https://www.github.com/cryptechdev/neptune-api-v2-python#with_streaming_response
         """
         return AsyncSubaccountResourceWithStreamingResponse(self)
 
@@ -327,7 +327,7 @@ class AsyncSubaccountResource(AsyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return await self._get(
-            f"/api/v1/users/{address}/markets/borrow/accounts/{index}",
+            path_template("/api/v1/users/{address}/markets/borrow/accounts/{index}", address=address, index=index),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -381,7 +381,9 @@ class AsyncSubaccountResource(AsyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return await self._get(
-            f"/api/v1/users/{address}/markets/borrow/accounts/{index}/collaterals",
+            path_template(
+                "/api/v1/users/{address}/markets/borrow/accounts/{index}/collaterals", address=address, index=index
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -435,7 +437,9 @@ class AsyncSubaccountResource(AsyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return await self._get(
-            f"/api/v1/users/{address}/markets/borrow/accounts/{index}/debts",
+            path_template(
+                "/api/v1/users/{address}/markets/borrow/accounts/{index}/debts", address=address, index=index
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -458,7 +462,6 @@ class AsyncSubaccountResource(AsyncAPIResource):
         *,
         address: str,
         with_text: bool | Omit = omit,
-        with_value: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -476,8 +479,6 @@ class AsyncSubaccountResource(AsyncAPIResource):
 
           with_text: Include text variation fields
 
-          with_value: Calculate and include USD values for amounts, where applicable
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -489,17 +490,16 @@ class AsyncSubaccountResource(AsyncAPIResource):
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
         return await self._get(
-            f"/api/v1/users/{address}/markets/borrow/accounts/{index}/health",
+            path_template(
+                "/api/v1/users/{address}/markets/borrow/accounts/{index}/health", address=address, index=index
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {
-                        "with_text": with_text,
-                        "with_value": with_value,
-                    },
+                    {"with_text": with_text},
                     subaccount_get_subaccount_health_params.SubaccountGetSubaccountHealthParams,
                 ),
             ),

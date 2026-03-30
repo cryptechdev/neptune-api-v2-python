@@ -1,94 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from datetime import datetime
 
 from ...._models import BaseModel
 from ...staking_pool_full import StakingPoolFull
+from .user_stake_bonding_entry import UserStakeBondingEntry
 
-__all__ = [
-    "UserStakePool",
-    "Content",
-    "ContentExtra",
-    "ContentExtraText",
-    "ContentExtraValue",
-    "ContentExtraValueExtra",
-    "ContentExtraValueExtraText",
-    "Extra",
-    "ExtraText",
-    "ExtraValue",
-    "ExtraValueExtra",
-    "ExtraValueExtraText",
-]
-
-
-class ContentExtraText(BaseModel):
-    """Human-readable field variants.
-
-    Will not be null when query param `with_text` is `true`.
-    """
-
-    amount: str
-
-    transition_at: str
-
-
-class ContentExtraValueExtraText(BaseModel):
-    """Human-readable variants of USD values.
-
-    Will not be null when query params `with_text` and `with_value` are `true`.
-    """
-
-    amount: str
-
-
-class ContentExtraValueExtra(BaseModel):
-    text: Optional[ContentExtraValueExtraText] = None
-    """Human-readable variants of USD values.
-
-    Will not be null when query params `with_text` and `with_value` are `true`.
-    """
-
-
-class ContentExtraValue(BaseModel):
-    """USD values for the corresponding amounts above.
-
-    Will not be null when query param `with_value` is `true`.
-    """
-
-    amount: str
-
-    extra: ContentExtraValueExtra
-
-
-class ContentExtra(BaseModel):
-    text: Optional[ContentExtraText] = None
-    """Human-readable field variants.
-
-    Will not be null when query param `with_text` is `true`.
-    """
-
-    value: Optional[ContentExtraValue] = None
-    """USD values for the corresponding amounts above.
-
-    Will not be null when query param `with_value` is `true`.
-    """
-
-
-class Content(BaseModel):
-    account_index: int
-    """User account index"""
-
-    amount: str
-    """Bonding amount"""
-
-    cascade: bool
-
-    extra: ContentExtra
-
-    last_stake_acc: str
-
-    transition_at: Optional[datetime] = None
+__all__ = ["UserStakePool", "Extra", "ExtraText", "ExtraValue", "ExtraValueExtra", "ExtraValueExtraText"]
 
 
 class ExtraText(BaseModel):
@@ -153,7 +71,7 @@ class UserStakePool(BaseModel):
     common: StakingPoolFull
     """Merges `StakingPool` with both `StakingPoolWithParams` and `StakingPoolState`"""
 
-    contents: List[Content]
+    contents: List[UserStakeBondingEntry]
     """Bonding/stake entries
 
     **NOTE:** entries that differ only in amount are merged upon creation

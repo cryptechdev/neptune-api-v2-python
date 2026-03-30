@@ -5,22 +5,9 @@ from typing import List, Optional
 from ...._models import BaseModel
 from ...asset_info import AssetInfo
 from .user_stake_pool import UserStakePool
-from .user_stake_unbonding_entry import UserStakeUnbondingEntry
+from .user_stake_unbonding import UserStakeUnbonding
 
-__all__ = [
-    "UserStake",
-    "Extra",
-    "ExtraText",
-    "ExtraValue",
-    "ExtraValueExtra",
-    "ExtraValueExtraText",
-    "Unbonding",
-    "UnbondingExtra",
-    "UnbondingExtraText",
-    "UnbondingExtraValue",
-    "UnbondingExtraValueExtra",
-    "UnbondingExtraValueExtraText",
-]
+__all__ = ["UserStake", "Extra", "ExtraText", "ExtraValue", "ExtraValueExtra", "ExtraValueExtraText"]
 
 
 class ExtraText(BaseModel):
@@ -92,77 +79,6 @@ class Extra(BaseModel):
     """
 
 
-class UnbondingExtraText(BaseModel):
-    """Human-readable field variants.
-
-    Will not be null when query param `with_text` is `true`.
-    """
-
-    amount_sum: str
-
-
-class UnbondingExtraValueExtraText(BaseModel):
-    """Human-readable variants of USD values.
-
-    Will not be null when query params `with_text` and `with_value` are `true`.
-    """
-
-    amount_sum: str
-
-
-class UnbondingExtraValueExtra(BaseModel):
-    text: Optional[UnbondingExtraValueExtraText] = None
-    """Human-readable variants of USD values.
-
-    Will not be null when query params `with_text` and `with_value` are `true`.
-    """
-
-
-class UnbondingExtraValue(BaseModel):
-    """USD values for the corresponding amounts above.
-
-    Will not be null when query param `with_value` is `true`.
-    """
-
-    amount_sum: str
-
-    extra: UnbondingExtraValueExtra
-
-
-class UnbondingExtra(BaseModel):
-    text: Optional[UnbondingExtraText] = None
-    """Human-readable field variants.
-
-    Will not be null when query param `with_text` is `true`.
-    """
-
-    value: Optional[UnbondingExtraValue] = None
-    """USD values for the corresponding amounts above.
-
-    Will not be null when query param `with_value` is `true`.
-    """
-
-
-class Unbonding(BaseModel):
-    """User unstake/unbonding data"""
-
-    amount_sum: str
-    """Total amount of all unbond entries
-
-    **NOTE:** this value is affected by active filters, if any (e.g. filtering over
-    account index)
-    """
-
-    contents: List[UserStakeUnbondingEntry]
-    """Unbonding/unstake entries
-
-    **NOTE:** cascade unbondings from pool >= 2 are contained in the bondings list
-    of the lower adjacent pool from which the unbond occurred.
-    """
-
-    extra: UnbondingExtra
-
-
 class UserStake(BaseModel):
     asset_info: AssetInfo
     """Asset identifiers with associated metadata"""
@@ -188,7 +104,7 @@ class UserStake(BaseModel):
     pools: List[UserStakePool]
     """User allocations for each staking pool"""
 
-    unbonding: Unbonding
+    unbonding: UserStakeUnbonding
     """User unstake/unbonding data"""
 
     unclaimed: str
