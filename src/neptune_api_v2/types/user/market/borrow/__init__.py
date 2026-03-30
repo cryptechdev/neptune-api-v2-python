@@ -3,8 +3,11 @@
 from __future__ import annotations
 
 from .user_account_health import UserAccountHealth as UserAccountHealth
+from .user_debt_asset_pool import UserDebtAssetPool as UserDebtAssetPool
+from .user_debt_account_pool import UserDebtAccountPool as UserDebtAccountPool
 from .user_borrow_market_account import UserBorrowMarketAccount as UserBorrowMarketAccount
 from .user_collateral_asset_pool import UserCollateralAssetPool as UserCollateralAssetPool
+from .user_collateral_account_pool import UserCollateralAccountPool as UserCollateralAccountPool
 from .subaccount_get_subaccount_params import SubaccountGetSubaccountParams as SubaccountGetSubaccountParams
 from .subaccount_get_subaccount_response import SubaccountGetSubaccountResponse as SubaccountGetSubaccountResponse
 from .subaccount_get_subaccount_debts_params import (

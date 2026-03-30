@@ -9,8 +9,6 @@ __all__ = ["StakingGetUnstakingResponse", "Data"]
 
 
 class Data(BaseModel):
-    """Primary response content (object)"""
-
     amount_sum: str
     """Total amount of all unbond entries
 
@@ -30,7 +28,6 @@ class StakingGetUnstakingResponse(BaseModel):
     """Object data success response"""
 
     data: Data
-    """Primary response content (object)"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

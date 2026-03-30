@@ -9,8 +9,6 @@ __all__ = ["WalletGetBalancesResponse", "Data"]
 
 
 class Data(BaseModel):
-    """Primary response content (object)"""
-
     balances: List[WalletBalance]
     """Array of each wallet balance"""
 
@@ -28,7 +26,6 @@ class WalletGetBalancesResponse(BaseModel):
     """Object data success response"""
 
     data: Data
-    """Primary response content (object)"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

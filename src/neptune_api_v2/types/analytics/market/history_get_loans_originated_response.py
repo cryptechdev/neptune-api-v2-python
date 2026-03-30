@@ -45,7 +45,7 @@ class DataRange(BaseModel):
 
 
 class Data(BaseModel):
-    """Primary response content (object)"""
+    """Historical cumulative lend value for assets"""
 
     pagination: DataPagination
     """Pagination parameters for the interval response"""
@@ -60,7 +60,7 @@ class HistoryGetLoansOriginatedResponse(BaseModel):
     """Object data success response"""
 
     data: Data
-    """Primary response content (object)"""
+    """Historical cumulative lend value for assets"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

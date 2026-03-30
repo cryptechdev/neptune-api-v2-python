@@ -15,7 +15,6 @@ class MarketGetMergedResponse(BaseModel):
     """Total number of objects irrespective of any pagination parameters."""
 
     data: List[MergedMarket]
-    """Primary response content (list)"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

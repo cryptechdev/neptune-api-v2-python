@@ -11,8 +11,6 @@ __all__ = ["MarketGetOverviewResponse", "Data"]
 
 
 class Data(BaseModel):
-    """Primary response content (object)"""
-
     borrow: BorrowMarketOverview
     """Borrow market overview"""
 
@@ -27,7 +25,6 @@ class MarketGetOverviewResponse(BaseModel):
     """Object data success response"""
 
     data: Data
-    """Primary response content (object)"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

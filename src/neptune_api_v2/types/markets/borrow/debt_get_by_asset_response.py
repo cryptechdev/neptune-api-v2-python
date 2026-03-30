@@ -10,7 +10,6 @@ class DebtGetByAssetResponse(BaseModel):
     """Object data success response"""
 
     data: BorrowDebtMarket
-    """Primary response content (object)"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

@@ -10,7 +10,6 @@ class LendGetByAssetResponse(BaseModel):
     """Object data success response"""
 
     data: LendMarket
-    """Primary response content (object)"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

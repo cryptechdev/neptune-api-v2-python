@@ -1,11 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from datetime import datetime
 
 from ...._models import BaseModel
-from ...asset_info import AssetInfo
 
-__all__ = ["UserDebtAssetPool", "Extra", "ExtraText", "ExtraValue", "ExtraValueExtra", "ExtraValueExtraText"]
+__all__ = ["UserStakeBondingEntry", "Extra", "ExtraText", "ExtraValue", "ExtraValueExtra", "ExtraValueExtraText"]
 
 
 class ExtraText(BaseModel):
@@ -14,11 +14,9 @@ class ExtraText(BaseModel):
     Will not be null when query param `with_text` is `true`.
     """
 
-    debt: str
+    amount: str
 
-    interest: str
-
-    principal: str
+    transition_at: str
 
 
 class ExtraValueExtraText(BaseModel):
@@ -27,11 +25,7 @@ class ExtraValueExtraText(BaseModel):
     Will not be null when query params `with_text` and `with_value` are `true`.
     """
 
-    debt: str
-
-    interest: str
-
-    principal: str
+    amount: str
 
 
 class ExtraValueExtra(BaseModel):
@@ -48,13 +42,9 @@ class ExtraValue(BaseModel):
     Will not be null when query param `with_value` is `true`.
     """
 
-    debt: str
+    amount: str
 
     extra: ExtraValueExtra
-
-    interest: str
-
-    principal: str
 
 
 class Extra(BaseModel):
@@ -71,17 +61,17 @@ class Extra(BaseModel):
     """
 
 
-class UserDebtAssetPool(BaseModel):
-    asset_info: AssetInfo
-    """Asset identifiers with associated metadata"""
+class UserStakeBondingEntry(BaseModel):
+    account_index: int
+    """User account index"""
 
-    debt: str
-    """Sum open debt amount (this is simply the principal + interest)"""
+    amount: str
+    """Bonding amount"""
+
+    cascade: bool
 
     extra: Extra
 
-    interest: str
-    """Sum of accrued interest for open debt position"""
+    last_stake_acc: str
 
-    principal: str
-    """Initial amount borrowed (of debts which have not yet been repaid)"""
+    transition_at: Optional[datetime] = None

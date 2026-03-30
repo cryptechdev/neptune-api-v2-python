@@ -5,7 +5,7 @@ from typing import Optional
 from ..._models import BaseModel
 
 __all__ = [
-    "UserNeptUnlockAmounts",
+    "UserUnlockAmounts",
     "Extra",
     "ExtraPercent",
     "ExtraPercentExtra",
@@ -148,7 +148,7 @@ class Extra(BaseModel):
     """
 
 
-class UserNeptUnlockAmounts(BaseModel):
+class UserUnlockAmounts(BaseModel):
     amount: str
     """The full unlock amount
 

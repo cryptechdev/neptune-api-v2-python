@@ -10,7 +10,6 @@ class MarketGetMergedByAssetResponse(BaseModel):
     """Object data success response"""
 
     data: UserMergedMarket
-    """Primary response content (object)"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

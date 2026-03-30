@@ -3,26 +3,15 @@
 from typing import List
 
 from ...._models import BaseModel
-from .user_debt_asset_pool import UserDebtAssetPool
+from .user_borrow_market_pools import UserBorrowMarketPools
 from .borrow.user_borrow_market_account import UserBorrowMarketAccount
-from .borrow.user_collateral_asset_pool import UserCollateralAssetPool
 
-__all__ = ["UserBorrowMarket", "Totals"]
-
-
-class Totals(BaseModel):
-    """Collateral/debt totals of all sub-accounts by asset"""
-
-    collaterals: List[UserCollateralAssetPool]
-    """Account collateral allocations"""
-
-    debts: List[UserDebtAssetPool]
-    """Account debt allocations"""
+__all__ = ["UserBorrowMarket"]
 
 
 class UserBorrowMarket(BaseModel):
     accounts: List[UserBorrowMarketAccount]
     """Market sub-accounts for the user"""
 
-    totals: Totals
+    totals: UserBorrowMarketPools
     """Collateral/debt totals of all sub-accounts by asset"""

@@ -4,7 +4,7 @@ from typing import Optional
 
 from ...._models import BaseModel
 from ...asset_info import AssetInfo
-from ..market_rate import MarketRate
+from ...market_rate import MarketRate
 from .borrow_debt_state import BorrowDebtState
 from .borrow_debt_config import BorrowDebtConfig
 

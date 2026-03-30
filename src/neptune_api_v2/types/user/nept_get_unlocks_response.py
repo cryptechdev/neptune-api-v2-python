@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from ..._models import BaseModel
-from .user_nept_unlock_overview import UserNeptUnlockOverview
+from .user_unlock_overview import UserUnlockOverview
 
 __all__ = ["NeptGetUnlocksResponse"]
 
@@ -9,8 +9,7 @@ __all__ = ["NeptGetUnlocksResponse"]
 class NeptGetUnlocksResponse(BaseModel):
     """Object data success response"""
 
-    data: UserNeptUnlockOverview
-    """Primary response content (object)"""
+    data: UserUnlockOverview
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

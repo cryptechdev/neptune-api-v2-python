@@ -1,45 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
+from typing import List
 
 from .._models import BaseModel
 from .asset_spec import AssetSpec
+from .asset_price import AssetPrice
 from .asset_metadata import AssetMetadata
 from .asset_classification import AssetClassification
 
-__all__ = ["AssetListPricesResponse", "Data", "DataPrice", "DataPriceExtra", "DataPriceExtraText"]
-
-
-class DataPriceExtraText(BaseModel):
-    """Human-readable field variants.
-
-    Will not be null when query param `with-text` is `true`.
-    """
-
-    last_updated_at: str
-
-    price: str
-
-
-class DataPriceExtra(BaseModel):
-    text: Optional[DataPriceExtraText] = None
-    """Human-readable field variants.
-
-    Will not be null when query param `with-text` is `true`.
-    """
-
-
-class DataPrice(BaseModel):
-    """> **Note**: Prices are sourced from Neptune's Price Oracle"""
-
-    extra: DataPriceExtra
-
-    last_updated_at: datetime
-    """Asset price value, as per Neptune Price Oracle"""
-
-    price: str
-    """Asset price"""
+__all__ = ["AssetListPricesResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -67,7 +36,7 @@ class Data(BaseModel):
     metadata: AssetMetadata
     """Additional metadata for assets"""
 
-    price: DataPrice
+    price: AssetPrice
     """> **Note**: Prices are sourced from Neptune's Price Oracle"""
 
 
@@ -78,7 +47,6 @@ class AssetListPricesResponse(BaseModel):
     """Total number of objects irrespective of any pagination parameters."""
 
     data: List[Data]
-    """Primary response content (list)"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""
