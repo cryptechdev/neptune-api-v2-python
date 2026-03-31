@@ -107,7 +107,7 @@ class StakingExtra(BaseModel):
 
 
 class Staking(BaseModel):
-    """Merges `StakingPool` with `StakingPoolState`"""
+    """Staking pool contents along with associated pool state"""
 
     duration: int
     """The lockup duration for this pool in seconds"""

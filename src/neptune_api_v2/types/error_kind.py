@@ -17,6 +17,5 @@ ErrorKind: TypeAlias = Literal[
     "json_decode",
     "json_body_deserialize_failure",
     "content_type_unsupported",
-    "validation",
     "internal",
 ]

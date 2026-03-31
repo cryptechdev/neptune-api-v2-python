@@ -29,7 +29,7 @@ class Extra(BaseModel):
 
 
 class StakingPoolFull(BaseModel):
-    """Merges `StakingPool` with both `StakingPoolWithParams` and `StakingPoolState`"""
+    """Staking pool contents along with associated pool state and pool params"""
 
     duration: int
     """The lockup duration for this pool in seconds"""

@@ -7,8 +7,6 @@ __all__ = ["StakingGetOverviewResponse"]
 
 
 class StakingGetOverviewResponse(BaseModel):
-    """Object data success response"""
-
     data: UserStake
 
     error: None = None

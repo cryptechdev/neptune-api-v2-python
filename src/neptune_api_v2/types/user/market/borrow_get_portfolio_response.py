@@ -7,8 +7,6 @@ __all__ = ["BorrowGetPortfolioResponse"]
 
 
 class BorrowGetPortfolioResponse(BaseModel):
-    """Object data success response"""
-
     data: UserBorrowMarket
 
     error: None = None

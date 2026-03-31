@@ -56,15 +56,10 @@ class Data(BaseModel):
     """Staking state values that are not directly associated to a pool"""
 
     pools: List[StakingPoolFull]
-    """Staking pool contract parameter.
-
-    List of available staking pools
-    """
+    """List of available staking pools"""
 
 
 class NeptGetStakingOverviewResponse(BaseModel):
-    """Object data success response"""
-
     data: Data
 
     error: None = None

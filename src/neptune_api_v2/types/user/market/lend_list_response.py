@@ -3,18 +3,16 @@
 from typing import List
 
 from ...._models import BaseModel
-from .borrow.user_debt_asset_pool import UserDebtAssetPool
+from .user_lend_market import UserLendMarket
 
 __all__ = ["LendListResponse"]
 
 
 class LendListResponse(BaseModel):
-    """List data success response"""
-
     count: int
     """Total number of objects irrespective of any pagination parameters."""
 
-    data: List[UserDebtAssetPool]
+    data: List[UserLendMarket]
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

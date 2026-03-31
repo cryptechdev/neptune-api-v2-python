@@ -7,8 +7,6 @@ __all__ = ["SubaccountGetSubaccountHealthResponse"]
 
 
 class SubaccountGetSubaccountHealthResponse(BaseModel):
-    """Object data success response"""
-
     data: UserAccountHealth
 
     error: None = None

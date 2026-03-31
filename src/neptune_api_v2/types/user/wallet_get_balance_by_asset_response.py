@@ -7,9 +7,8 @@ __all__ = ["WalletGetBalanceByAssetResponse"]
 
 
 class WalletGetBalanceByAssetResponse(BaseModel):
-    """Object data success response"""
-
     data: WalletBalance
+    """Asset and balance contents for a given wallet"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

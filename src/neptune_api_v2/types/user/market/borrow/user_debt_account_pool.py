@@ -71,6 +71,13 @@ class Extra(BaseModel):
 
 
 class UserDebtAccountPool(BaseModel):
+    """Associates a subaccount's index with it's inner allocations for a given asset.
+
+    This type is identical to `UserDebtAssetPool`, except the asset association is interchanged for an account index.
+
+    Typically used in contexts where multiple subaccounts with a shared underlying asset are batched together.
+    """
+
     debt: str
     """Sum open debt amount (this is simply the principal + interest)"""
 

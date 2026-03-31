@@ -9,8 +9,6 @@ __all__ = ["UserGetTxHistoryResponse"]
 
 
 class UserGetTxHistoryResponse(BaseModel):
-    """List data success response"""
-
     count: int
     """Total number of objects irrespective of any pagination parameters."""
 

@@ -7,8 +7,6 @@ __all__ = ["NeptGetUnlocksResponse"]
 
 
 class NeptGetUnlocksResponse(BaseModel):
-    """Object data success response"""
-
     data: UserUnlockOverview
 
     error: None = None

@@ -7,13 +7,10 @@ from neptune_api_v2.types import (
     ErrorData,
     ErrorDataVariants,
     ErrorKind,
-    ErrorResponseVariants,
     ErrorScope,
     FieldValidationError,
     Interval,
     IntervalUnit,
-    ListErrorResponse,
-    ObjErrorResponse,
     ValidationErrorData,
     ValidationFieldSource,
 )

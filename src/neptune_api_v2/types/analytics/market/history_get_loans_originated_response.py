@@ -57,8 +57,6 @@ class Data(BaseModel):
 
 
 class HistoryGetLoansOriginatedResponse(BaseModel):
-    """Object data success response"""
-
     data: Data
     """Historical cumulative lend value for assets"""
 

@@ -25,8 +25,6 @@ class Data(BaseModel):
 
 
 class StakingGetUnstakingResponse(BaseModel):
-    """Object data success response"""
-
     data: Data
 
     error: None = None

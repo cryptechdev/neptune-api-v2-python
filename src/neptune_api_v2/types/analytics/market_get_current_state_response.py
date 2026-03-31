@@ -57,8 +57,6 @@ class Data(BaseModel):
 
 
 class MarketGetCurrentStateResponse(BaseModel):
-    """Object data success response"""
-
     data: Data
 
     error: None = None

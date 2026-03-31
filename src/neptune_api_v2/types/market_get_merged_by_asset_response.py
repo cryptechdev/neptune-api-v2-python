@@ -7,8 +7,6 @@ __all__ = ["MarketGetMergedByAssetResponse"]
 
 
 class MarketGetMergedByAssetResponse(BaseModel):
-    """Object data success response"""
-
     data: MergedMarket
     """Data for all of an assets markets"""
 

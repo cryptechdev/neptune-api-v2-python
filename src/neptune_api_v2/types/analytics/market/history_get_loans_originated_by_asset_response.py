@@ -55,6 +55,8 @@ class DataSeriesPoint(BaseModel):
 
 
 class DataSeries(BaseModel):
+    """Item and associated points"""
+
     asset: AssetSpec
     """Provides a unique identifier for an asset for use throughout the Neptune API.
 
@@ -77,12 +79,9 @@ class Data(BaseModel):
     """
 
     series: List[DataSeries]
-    """Pairs of items and their associated points"""
 
 
 class HistoryGetLoansOriginatedByAssetResponse(BaseModel):
-    """Object data success response"""
-
     data: Data
     """Historical cumulative lend value for assets"""
 

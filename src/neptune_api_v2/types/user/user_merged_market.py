@@ -20,11 +20,15 @@ __all__ = [
     "BorrowDebtExtraValueExtra",
     "BorrowDebtExtraValueExtraText",
     "Lend",
-    "LendExtra",
-    "LendExtraText",
-    "LendExtraValue",
-    "LendExtraValueExtra",
-    "LendExtraValueExtraText",
+    "LendOriginEquivalent",
+    "LendOriginEquivalentExtra",
+    "LendOriginEquivalentExtraText",
+    "LendReceiptAmounts",
+    "LendReceiptAmountsExtra",
+    "LendReceiptAmountsExtraText",
+    "LendReceiptAmountsExtraValue",
+    "LendReceiptAmountsExtraValueExtra",
+    "LendReceiptAmountsExtraValueExtraText",
 ]
 
 
@@ -168,82 +172,158 @@ class BorrowDebt(BaseModel):
     """Initial amount borrowed (of debts which have not yet been repaid)"""
 
 
-class LendExtraText(BaseModel):
+class LendOriginEquivalentExtraText(BaseModel):
     """Human-readable field variants.
 
     Will not be null when query param `with_text` is `true`.
     """
 
-    debt: str
+    collateralized: str
 
-    interest: str
+    held: str
 
-    principal: str
-
-
-class LendExtraValueExtraText(BaseModel):
-    """Human-readable variants of USD values.
-
-    Will not be null when query params `with_text` and `with_value` are `true`.
-    """
-
-    debt: str
-
-    interest: str
-
-    principal: str
+    total: str
 
 
-class LendExtraValueExtra(BaseModel):
-    text: Optional[LendExtraValueExtraText] = None
-    """Human-readable variants of USD values.
-
-    Will not be null when query params `with_text` and `with_value` are `true`.
-    """
-
-
-class LendExtraValue(BaseModel):
-    """USD values for the corresponding amounts above.
-
-    Will not be null when query param `with_value` is `true`.
-    """
-
-    debt: str
-
-    extra: LendExtraValueExtra
-
-    interest: str
-
-    principal: str
-
-
-class LendExtra(BaseModel):
-    text: Optional[LendExtraText] = None
+class LendOriginEquivalentExtra(BaseModel):
+    text: Optional[LendOriginEquivalentExtraText] = None
     """Human-readable field variants.
 
     Will not be null when query param `with_text` is `true`.
     """
 
-    value: Optional[LendExtraValue] = None
+
+class LendOriginEquivalent(BaseModel):
+    """
+    The lending amounts converted into the equivalent for the receipt token's origin/source asset
+    """
+
+    collateralized: str
+    """
+    Total equivalent amount of origin token collateralized across this user's
+    borrowing portfolio
+
+    **NOTE:** This is **not** the amount of the origin asset that the user holds,
+    but the amount held in the receipt token rendered as the equivalent amount in
+    the origin asset.
+
+    Or, more formally:
+    `origin_equivalent_collateralized = receipt_collateralized / receipt_redemption_ratio`
+    """
+
+    extra: LendOriginEquivalentExtra
+
+    held: str
+    """Total equivalent amount of origin token held in address balance
+
+    **NOTE:** This is **not** the amount of the origin asset that the user holds,
+    but the amount held in the receipt token rendered as the equivalent amount in
+    the origin asset.
+
+    Or, more formally:
+    `origin_equivalent_held = receipt_held / receipt_redemption_ratio`
+    """
+
+    total: str
+    """Total of held and collateralized equivalent for origin asset
+
+    Or, more formally:
+    `origin_equivalent_total = receipt_lent_total / receipt_redemption_ratio`
+    """
+
+
+class LendReceiptAmountsExtraText(BaseModel):
+    """Human-readable field variants.
+
+    Will not be null when query param `with_text` is `true`.
+    """
+
+    collateralized: str
+
+    held: str
+
+    total: str
+
+
+class LendReceiptAmountsExtraValueExtraText(BaseModel):
+    """Human-readable variants of USD values.
+
+    Will not be null when query params `with_text` and `with_value` are `true`.
+    """
+
+    collateralized: str
+
+    held: str
+
+    total: str
+
+
+class LendReceiptAmountsExtraValueExtra(BaseModel):
+    text: Optional[LendReceiptAmountsExtraValueExtraText] = None
+    """Human-readable variants of USD values.
+
+    Will not be null when query params `with_text` and `with_value` are `true`.
+    """
+
+
+class LendReceiptAmountsExtraValue(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
     """
+
+    collateralized: str
+
+    extra: LendReceiptAmountsExtraValueExtra
+
+    held: str
+
+    total: str
+
+
+class LendReceiptAmountsExtra(BaseModel):
+    text: Optional[LendReceiptAmountsExtraText] = None
+    """Human-readable field variants.
+
+    Will not be null when query param `with_text` is `true`.
+    """
+
+    value: Optional[LendReceiptAmountsExtraValue] = None
+    """USD values for the corresponding amounts above.
+
+    Will not be null when query param `with_value` is `true`.
+    """
+
+
+class LendReceiptAmounts(BaseModel):
+    """The lending amounts in the original receipt token amounts"""
+
+    collateralized: str
+    """
+    Total amount of receipt token collateralized across this user's borrowing
+    portfolio
+    """
+
+    extra: LendReceiptAmountsExtra
+
+    held: str
+    """Total amount of receipt token held in address balance"""
+
+    total: str
+    """Sum of receipt amount held and receipt amount collateralized"""
 
 
 class Lend(BaseModel):
     """User contirbution for asset's lending market, if one exists"""
 
-    debt: str
-    """Sum open debt amount (this is simply the principal + interest)"""
+    origin_equivalent: LendOriginEquivalent
+    """
+    The lending amounts converted into the equivalent for the receipt token's
+    origin/source asset
+    """
 
-    extra: LendExtra
-
-    interest: str
-    """Sum of accrued interest for open debt position"""
-
-    principal: str
-    """Initial amount borrowed (of debts which have not yet been repaid)"""
+    receipt_amounts: LendReceiptAmounts
+    """The lending amounts in the original receipt token amounts"""
 
 
 class UserMergedMarket(BaseModel):

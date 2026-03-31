@@ -7,9 +7,8 @@ __all__ = ["CollateralGetByAssetResponse"]
 
 
 class CollateralGetByAssetResponse(BaseModel):
-    """Object data success response"""
-
     data: BorrowCollateralMarket
+    """Borrowing market, collateral info"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""
