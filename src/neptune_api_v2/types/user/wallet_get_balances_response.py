@@ -23,8 +23,6 @@ class Data(BaseModel):
 
 
 class WalletGetBalancesResponse(BaseModel):
-    """Object data success response"""
-
     data: Data
 
     error: None = None

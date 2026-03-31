@@ -3,6 +3,7 @@
 from typing import List, Optional
 
 from .._models import BaseModel
+from .asset_info import AssetInfo
 from .staking_pool_params import StakingPoolParams
 
 __all__ = [
@@ -89,7 +90,7 @@ class StakingPoolExtra(BaseModel):
 
 
 class StakingPool(BaseModel):
-    """Merges `StakingPool` with `StakingPoolParams`"""
+    """Staking pool contents along with associated pool params"""
 
     duration: int
     """The lockup duration for this pool in seconds"""
@@ -104,13 +105,16 @@ class StakingPool(BaseModel):
 
 
 class NeptParams(BaseModel):
+    asset_info: AssetInfo
+    """Asset identifiers with associated metadata"""
+
     emission_rate: str
     """The emission rate of NEPT in tokens per year"""
 
     extra: Extra
 
     staking_pools: List[StakingPool]
-    """Staking pools (pool params are included)"""
+    """Staking pools"""
 
     tokens_per_weight: int
     """Weight:token scaling factor

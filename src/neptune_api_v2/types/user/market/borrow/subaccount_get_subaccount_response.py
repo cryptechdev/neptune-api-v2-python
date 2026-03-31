@@ -7,9 +7,8 @@ __all__ = ["SubaccountGetSubaccountResponse"]
 
 
 class SubaccountGetSubaccountResponse(BaseModel):
-    """Object data success response"""
-
     data: UserBorrowMarketAccount
+    """User borrowing subaccount"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

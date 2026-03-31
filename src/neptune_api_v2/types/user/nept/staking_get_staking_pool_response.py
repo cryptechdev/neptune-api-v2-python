@@ -7,8 +7,6 @@ __all__ = ["StakingGetStakingPoolResponse"]
 
 
 class StakingGetStakingPoolResponse(BaseModel):
-    """Object data success response"""
-
     data: UserStakePool
 
     error: None = None

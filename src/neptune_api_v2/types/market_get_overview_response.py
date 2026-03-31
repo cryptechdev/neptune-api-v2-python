@@ -22,8 +22,6 @@ class Data(BaseModel):
 
 
 class MarketGetOverviewResponse(BaseModel):
-    """Object data success response"""
-
     data: Data
 
     error: None = None

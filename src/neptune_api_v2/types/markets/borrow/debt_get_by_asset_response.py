@@ -7,9 +7,8 @@ __all__ = ["DebtGetByAssetResponse"]
 
 
 class DebtGetByAssetResponse(BaseModel):
-    """Object data success response"""
-
     data: BorrowDebtMarket
+    """Borrowing market, debt info"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

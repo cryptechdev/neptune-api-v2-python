@@ -7,8 +7,6 @@ __all__ = ["AssetGetPriceHistoryResponse"]
 
 
 class AssetGetPriceHistoryResponse(BaseModel):
-    """Object data success response"""
-
     data: AssetPriceHistory
     """Historical prices for assets"""
 

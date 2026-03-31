@@ -18,8 +18,6 @@ class Data(BaseModel):
 
 
 class BorrowGetDebtAccountsByAssetResponse(BaseModel):
-    """Object data success response"""
-
     data: Data
 
     error: None = None

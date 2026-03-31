@@ -48,6 +48,8 @@ class SeriesPoint(BaseModel):
 
 
 class Series(BaseModel):
+    """Item and associated points"""
+
     asset: AssetSpec
     """Provides a unique identifier for an asset for use throughout the Neptune API.
 
@@ -70,4 +72,3 @@ class AssetPriceHistory(BaseModel):
     """
 
     series: List[Series]
-    """Pairs of items and their associated points"""

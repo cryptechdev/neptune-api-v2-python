@@ -12,6 +12,8 @@ __all__ = ["BorrowDebtMarket"]
 
 
 class BorrowDebtMarket(BaseModel):
+    """Borrowing market, debt info"""
+
     asset_info: AssetInfo
     """Asset identifiers with associated metadata"""
 

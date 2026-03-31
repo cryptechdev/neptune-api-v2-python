@@ -59,6 +59,13 @@ class Extra(BaseModel):
 
 
 class UserCollateralAccountPool(BaseModel):
+    """Associates a subaccount's index with it's inner allocations for a given asset.
+
+    This type is identical to `UserCollateralAssetPool`, except the asset association is interchanged for an account index.
+
+    Typically used in contexts where multiple subaccounts with a shared underlying asset are batched together.
+    """
+
     amount: str
     """Amount of this asset which is actively collateralized"""
 

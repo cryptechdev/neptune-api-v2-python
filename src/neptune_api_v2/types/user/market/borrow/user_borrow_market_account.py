@@ -11,6 +11,8 @@ __all__ = ["UserBorrowMarketAccount"]
 
 
 class UserBorrowMarketAccount(BaseModel):
+    """User borrowing subaccount"""
+
     collaterals: List[UserCollateralAssetPool]
     """Account collateral allocations"""
 
