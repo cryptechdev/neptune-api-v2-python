@@ -4,6 +4,7 @@ from typing import Optional
 
 from ...._models import BaseModel
 from ...asset_info import AssetInfo
+from ...market_rate import MarketRate
 
 __all__ = [
     "LendGetByAssetResponse",
@@ -103,6 +104,9 @@ class DataReceiptAmountsExtraValueExtraText(BaseModel):
 
     held: str
 
+    price: str
+    """Text representation of price"""
+
     total: str
 
 
@@ -118,6 +122,12 @@ class DataReceiptAmountsExtraValue(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was specified as well.
     """
 
     collateralized: str
@@ -125,6 +135,9 @@ class DataReceiptAmountsExtraValue(BaseModel):
     extra: DataReceiptAmountsExtraValueExtra
 
     held: str
+
+    price: str
+    """Price used in value calculations"""
 
     total: str
 
@@ -140,6 +153,14 @@ class DataReceiptAmountsExtra(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used
+    in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was
+    specified as well.
     """
 
 
@@ -164,6 +185,9 @@ class DataReceiptAmounts(BaseModel):
 class Data(BaseModel):
     asset_info: AssetInfo
     """Asset identifiers with associated metadata"""
+
+    market_rate: MarketRate
+    """Current market lending rate"""
 
     origin_equivalent: DataOriginEquivalent
     """

@@ -13,11 +13,9 @@ class ExtraText(BaseModel):
     Will not be null when query param `with_text` is `true`.
     """
 
-    debt: str
-
-    interest: str
-
     principal: str
+
+    shares: str
 
 
 class ExtraValueExtraText(BaseModel):
@@ -26,11 +24,12 @@ class ExtraValueExtraText(BaseModel):
     Will not be null when query params `with_text` and `with_value` are `true`.
     """
 
-    debt: str
-
-    interest: str
+    price: str
+    """Text representation of price"""
 
     principal: str
+
+    shares: str
 
 
 class ExtraValueExtra(BaseModel):
@@ -45,15 +44,22 @@ class ExtraValue(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
-    """
 
-    debt: str
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was specified as well.
+    """
 
     extra: ExtraValueExtra
 
-    interest: str
+    price: str
+    """Price used in value calculations"""
 
     principal: str
+
+    shares: str
 
 
 class Extra(BaseModel):
@@ -67,6 +73,14 @@ class Extra(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used
+    in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was
+    specified as well.
     """
 
 
@@ -78,16 +92,12 @@ class UserDebtAccountPool(BaseModel):
     Typically used in contexts where multiple subaccounts with a shared underlying asset are batched together.
     """
 
-    debt: str
-    """Sum open debt amount (this is simply the principal + interest)"""
-
     extra: Extra
 
     index: int
     """Account index"""
 
-    interest: str
-    """Sum of accrued interest for open debt position"""
-
     principal: str
     """Initial amount borrowed (of debts which have not yet been repaid)"""
+
+    shares: str

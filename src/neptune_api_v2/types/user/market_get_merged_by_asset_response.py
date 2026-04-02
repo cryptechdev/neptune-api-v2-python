@@ -8,6 +8,11 @@ __all__ = ["MarketGetMergedByAssetResponse"]
 
 class MarketGetMergedByAssetResponse(BaseModel):
     data: UserMergedMarket
+    """User market allocations grouped by asset.
+
+    **Note**: because of the inverted structure of merged market accounts, account
+    health cannot be represented and is excluded in the merged structures.
+    """
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

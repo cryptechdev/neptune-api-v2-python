@@ -117,6 +117,9 @@ class ExtraValueExtraText(BaseModel):
 
     amount_unlocked: str
 
+    price: str
+    """Text representation of price"""
+
 
 class ExtraValueExtra(BaseModel):
     text: Optional[ExtraValueExtraText] = None
@@ -130,6 +133,12 @@ class ExtraValue(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was specified as well.
     """
 
     amount: str
@@ -152,6 +161,9 @@ class ExtraValue(BaseModel):
 
     extra: ExtraValueExtra
 
+    price: str
+    """Price used in value calculations"""
+
 
 class Extra(BaseModel):
     percent: Optional[ExtraPercent] = None
@@ -171,6 +183,14 @@ class Extra(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used
+    in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was
+    specified as well.
     """
 
 
