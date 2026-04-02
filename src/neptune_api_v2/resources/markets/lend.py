@@ -17,13 +17,12 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncIntervalMultiPage, AsyncIntervalMultiPage
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.markets import lend_list_params, lend_get_by_asset_params, lend_get_rate_history_params
 from ...types.interval_unit import IntervalUnit
-from ...types.asset_rate_history import Series
 from ...types.markets.lend_list_response import LendListResponse
 from ...types.markets.lend_get_by_asset_response import LendGetByAssetResponse
+from ...types.markets.lend_get_rate_history_response import LendGetRateHistoryResponse
 
 __all__ = ["LendResource", "AsyncLendResource"]
 
@@ -160,7 +159,7 @@ class LendResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncIntervalMultiPage[Series]:
+    ) -> LendGetRateHistoryResponse:
         """
         Get historical lending rates for assets
 
@@ -210,9 +209,8 @@ class LendResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/api/v1/markets/lend/rate-history",
-            page=SyncIntervalMultiPage[Series],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -231,7 +229,7 @@ class LendResource(SyncAPIResource):
                     lend_get_rate_history_params.LendGetRateHistoryParams,
                 ),
             ),
-            model=Series,
+            cast_to=LendGetRateHistoryResponse,
         )
 
 
@@ -351,7 +349,7 @@ class AsyncLendResource(AsyncAPIResource):
             cast_to=LendGetByAssetResponse,
         )
 
-    def get_rate_history(
+    async def get_rate_history(
         self,
         *,
         end: int,
@@ -367,7 +365,7 @@ class AsyncLendResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Series, AsyncIntervalMultiPage[Series]]:
+    ) -> LendGetRateHistoryResponse:
         """
         Get historical lending rates for assets
 
@@ -417,15 +415,14 @@ class AsyncLendResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/api/v1/markets/lend/rate-history",
-            page=AsyncIntervalMultiPage[Series],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "end": end,
                         "period": period,
@@ -438,7 +435,7 @@ class AsyncLendResource(AsyncAPIResource):
                     lend_get_rate_history_params.LendGetRateHistoryParams,
                 ),
             ),
-            model=Series,
+            cast_to=LendGetRateHistoryResponse,
         )
 
 

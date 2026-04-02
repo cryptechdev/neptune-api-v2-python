@@ -43,6 +43,7 @@ from neptune_api_v2.types import (
     AssetRateHistory,
     AssetSpec,
     AssetListResponse,
+    AssetGetPriceHistoryResponse,
     AssetListPricesResponse,
 )
 ```
@@ -50,7 +51,7 @@ from neptune_api_v2.types import (
 Methods:
 
 - <code title="get /api/v1/assets">client.assets.<a href="./src/neptune_api_v2/resources/assets.py">list</a>() -> <a href="./src/neptune_api_v2/types/asset_list_response.py">AssetListResponse</a></code>
-- <code title="get /api/v1/assets/price-history">client.assets.<a href="./src/neptune_api_v2/resources/assets.py">get_price_history</a>(\*\*<a href="src/neptune_api_v2/types/asset_get_price_history_params.py">params</a>) -> SyncIntervalMultiPage[Series]</code>
+- <code title="get /api/v1/assets/price-history">client.assets.<a href="./src/neptune_api_v2/resources/assets.py">get_price_history</a>(\*\*<a href="src/neptune_api_v2/types/asset_get_price_history_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/asset_get_price_history_response.py">AssetGetPriceHistoryResponse</a></code>
 - <code title="get /api/v1/assets/prices">client.assets.<a href="./src/neptune_api_v2/resources/assets.py">list_prices</a>(\*\*<a href="src/neptune_api_v2/types/asset_list_prices_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/asset_list_prices_response.py">AssetListPricesResponse</a></code>
 
 # Markets
@@ -87,6 +88,7 @@ from neptune_api_v2.types.markets import (
     LendMarketState,
     LendListResponse,
     LendGetByAssetResponse,
+    LendGetRateHistoryResponse,
 )
 ```
 
@@ -94,20 +96,24 @@ Methods:
 
 - <code title="get /api/v1/markets/lend">client.markets.lend.<a href="./src/neptune_api_v2/resources/markets/lend.py">list</a>(\*\*<a href="src/neptune_api_v2/types/markets/lend_list_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/markets/lend_list_response.py">LendListResponse</a></code>
 - <code title="get /api/v1/markets/lend/lookup">client.markets.lend.<a href="./src/neptune_api_v2/resources/markets/lend.py">get_by_asset</a>(\*\*<a href="src/neptune_api_v2/types/markets/lend_get_by_asset_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/markets/lend_get_by_asset_response.py">LendGetByAssetResponse</a></code>
-- <code title="get /api/v1/markets/lend/rate-history">client.markets.lend.<a href="./src/neptune_api_v2/resources/markets/lend.py">get_rate_history</a>(\*\*<a href="src/neptune_api_v2/types/markets/lend_get_rate_history_params.py">params</a>) -> SyncIntervalMultiPage[Series]</code>
+- <code title="get /api/v1/markets/lend/rate-history">client.markets.lend.<a href="./src/neptune_api_v2/resources/markets/lend.py">get_rate_history</a>(\*\*<a href="src/neptune_api_v2/types/markets/lend_get_rate_history_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/markets/lend_get_rate_history_response.py">LendGetRateHistoryResponse</a></code>
 
 ## Borrow
 
 Types:
 
 ```python
-from neptune_api_v2.types.markets import BorrowMarketOverview, BorrowGetOverviewResponse
+from neptune_api_v2.types.markets import (
+    BorrowMarketOverview,
+    BorrowGetOverviewResponse,
+    BorrowGetRateHistoryResponse,
+)
 ```
 
 Methods:
 
 - <code title="get /api/v1/markets/borrow">client.markets.borrow.<a href="./src/neptune_api_v2/resources/markets/borrow/borrow.py">get_overview</a>(\*\*<a href="src/neptune_api_v2/types/markets/borrow_get_overview_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/markets/borrow_get_overview_response.py">BorrowGetOverviewResponse</a></code>
-- <code title="get /api/v1/markets/borrow/rate-history">client.markets.borrow.<a href="./src/neptune_api_v2/resources/markets/borrow/borrow.py">get_rate_history</a>(\*\*<a href="src/neptune_api_v2/types/markets/borrow_get_rate_history_params.py">params</a>) -> SyncIntervalMultiPage[Series]</code>
+- <code title="get /api/v1/markets/borrow/rate-history">client.markets.borrow.<a href="./src/neptune_api_v2/resources/markets/borrow/borrow.py">get_rate_history</a>(\*\*<a href="src/neptune_api_v2/types/markets/borrow_get_rate_history_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/markets/borrow_get_rate_history_response.py">BorrowGetRateHistoryResponse</a></code>
 
 ### Collaterals
 
@@ -369,7 +375,7 @@ from neptune_api_v2.types.analytics.market import (
 Methods:
 
 - <code title="get /api/v1/analytics/market/history/loans-originated">client.analytics.market.history.<a href="./src/neptune_api_v2/resources/analytics/market/history.py">get_loans_originated</a>(\*\*<a href="src/neptune_api_v2/types/analytics/market/history_get_loans_originated_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/analytics/market/history_get_loans_originated_response.py">SyncIntervalSinglePage[HistoryGetLoansOriginatedResponse]</a></code>
-- <code title="get /api/v1/analytics/market/history/loans-originated/by-asset">client.analytics.market.history.<a href="./src/neptune_api_v2/resources/analytics/market/history.py">get_loans_originated_by_asset</a>(\*\*<a href="src/neptune_api_v2/types/analytics/market/history_get_loans_originated_by_asset_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/analytics/market/history_get_loans_originated_by_asset_response.py">SyncIntervalMultiPage[HistoryGetLoansOriginatedByAssetResponse]</a></code>
+- <code title="get /api/v1/analytics/market/history/loans-originated/by-asset">client.analytics.market.history.<a href="./src/neptune_api_v2/resources/analytics/market/history.py">get_loans_originated_by_asset</a>(\*\*<a href="src/neptune_api_v2/types/analytics/market/history_get_loans_originated_by_asset_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/analytics/market/history_get_loans_originated_by_asset_response.py">HistoryGetLoansOriginatedByAssetResponse</a></code>
 
 ## Nept
 
