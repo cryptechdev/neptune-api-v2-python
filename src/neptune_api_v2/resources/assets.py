@@ -17,11 +17,12 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncIntervalMultiPage, AsyncIntervalMultiPage
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.interval_unit import IntervalUnit
 from ..types.asset_list_response import AssetListResponse
+from ..types.asset_price_history import Series
 from ..types.asset_list_prices_response import AssetListPricesResponse
-from ..types.asset_get_price_history_response import AssetGetPriceHistoryResponse
 
 __all__ = ["AssetsResource", "AsyncAssetsResource"]
 
@@ -81,7 +82,7 @@ class AssetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AssetGetPriceHistoryResponse:
+    ) -> SyncIntervalMultiPage[Series]:
         """
         Get historical prices for assets
 
@@ -131,8 +132,9 @@ class AssetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/api/v1/assets/price-history",
+            page=SyncIntervalMultiPage[Series],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -151,7 +153,7 @@ class AssetsResource(SyncAPIResource):
                     asset_get_price_history_params.AssetGetPriceHistoryParams,
                 ),
             ),
-            cast_to=AssetGetPriceHistoryResponse,
+            model=Series,
         )
 
     def list_prices(
@@ -231,7 +233,7 @@ class AsyncAssetsResource(AsyncAPIResource):
             cast_to=AssetListResponse,
         )
 
-    async def get_price_history(
+    def get_price_history(
         self,
         *,
         end: int,
@@ -247,7 +249,7 @@ class AsyncAssetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AssetGetPriceHistoryResponse:
+    ) -> AsyncPaginator[Series, AsyncIntervalMultiPage[Series]]:
         """
         Get historical prices for assets
 
@@ -297,14 +299,15 @@ class AsyncAssetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/api/v1/assets/price-history",
+            page=AsyncIntervalMultiPage[Series],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "end": end,
                         "period": period,
@@ -317,7 +320,7 @@ class AsyncAssetsResource(AsyncAPIResource):
                     asset_get_price_history_params.AssetGetPriceHistoryParams,
                 ),
             ),
-            cast_to=AssetGetPriceHistoryResponse,
+            model=Series,
         )
 
     async def list_prices(

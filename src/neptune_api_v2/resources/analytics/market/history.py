@@ -8,7 +8,7 @@ import httpx
 
 from ....types import IntervalUnit
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -17,7 +17,13 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import (
+    SyncIntervalMultiPage,
+    AsyncIntervalMultiPage,
+    SyncIntervalSinglePage,
+    AsyncIntervalSinglePage,
+)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.interval_unit import IntervalUnit
 from ....types.analytics.market import history_get_loans_originated_params, history_get_loans_originated_by_asset_params
 from ....types.analytics.market.history_get_loans_originated_response import HistoryGetLoansOriginatedResponse
@@ -63,7 +69,7 @@ class HistoryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> HistoryGetLoansOriginatedResponse:
+    ) -> SyncIntervalSinglePage[HistoryGetLoansOriginatedResponse]:
         """
         Get cumulative lending value history independent of assets
 
@@ -110,8 +116,9 @@ class HistoryResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/api/v1/analytics/market/history/loans-originated",
+            page=SyncIntervalSinglePage[HistoryGetLoansOriginatedResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -129,7 +136,7 @@ class HistoryResource(SyncAPIResource):
                     history_get_loans_originated_params.HistoryGetLoansOriginatedParams,
                 ),
             ),
-            cast_to=HistoryGetLoansOriginatedResponse,
+            model=HistoryGetLoansOriginatedResponse,
         )
 
     def get_loans_originated_by_asset(
@@ -148,7 +155,7 @@ class HistoryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> HistoryGetLoansOriginatedByAssetResponse:
+    ) -> SyncIntervalMultiPage[HistoryGetLoansOriginatedByAssetResponse]:
         """
         Get cumulative lending value history assets
 
@@ -198,8 +205,9 @@ class HistoryResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/api/v1/analytics/market/history/loans-originated/by-asset",
+            page=SyncIntervalMultiPage[HistoryGetLoansOriginatedByAssetResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -218,7 +226,7 @@ class HistoryResource(SyncAPIResource):
                     history_get_loans_originated_by_asset_params.HistoryGetLoansOriginatedByAssetParams,
                 ),
             ),
-            cast_to=HistoryGetLoansOriginatedByAssetResponse,
+            model=HistoryGetLoansOriginatedByAssetResponse,
         )
 
 
@@ -242,7 +250,7 @@ class AsyncHistoryResource(AsyncAPIResource):
         """
         return AsyncHistoryResourceWithStreamingResponse(self)
 
-    async def get_loans_originated(
+    def get_loans_originated(
         self,
         *,
         end: int,
@@ -257,7 +265,7 @@ class AsyncHistoryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> HistoryGetLoansOriginatedResponse:
+    ) -> AsyncPaginator[HistoryGetLoansOriginatedResponse, AsyncIntervalSinglePage[HistoryGetLoansOriginatedResponse]]:
         """
         Get cumulative lending value history independent of assets
 
@@ -304,14 +312,15 @@ class AsyncHistoryResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/api/v1/analytics/market/history/loans-originated",
+            page=AsyncIntervalSinglePage[HistoryGetLoansOriginatedResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "end": end,
                         "period": period,
@@ -323,10 +332,10 @@ class AsyncHistoryResource(AsyncAPIResource):
                     history_get_loans_originated_params.HistoryGetLoansOriginatedParams,
                 ),
             ),
-            cast_to=HistoryGetLoansOriginatedResponse,
+            model=HistoryGetLoansOriginatedResponse,
         )
 
-    async def get_loans_originated_by_asset(
+    def get_loans_originated_by_asset(
         self,
         *,
         end: int,
@@ -342,7 +351,9 @@ class AsyncHistoryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> HistoryGetLoansOriginatedByAssetResponse:
+    ) -> AsyncPaginator[
+        HistoryGetLoansOriginatedByAssetResponse, AsyncIntervalMultiPage[HistoryGetLoansOriginatedByAssetResponse]
+    ]:
         """
         Get cumulative lending value history assets
 
@@ -392,14 +403,15 @@ class AsyncHistoryResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/api/v1/analytics/market/history/loans-originated/by-asset",
+            page=AsyncIntervalMultiPage[HistoryGetLoansOriginatedByAssetResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "end": end,
                         "period": period,
@@ -412,7 +424,7 @@ class AsyncHistoryResource(AsyncAPIResource):
                     history_get_loans_originated_by_asset_params.HistoryGetLoansOriginatedByAssetParams,
                 ),
             ),
-            cast_to=HistoryGetLoansOriginatedByAssetResponse,
+            model=HistoryGetLoansOriginatedByAssetResponse,
         )
 
 

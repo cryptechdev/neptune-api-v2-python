@@ -1,14 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import List
+
 from ..._models import BaseModel
-from ..asset_rate_history import AssetRateHistory
+from .swap_route_target_set import SwapRouteTargetSet
 
-__all__ = ["LendGetRateHistoryResponse"]
+__all__ = ["RouteListAllResponse"]
 
 
-class LendGetRateHistoryResponse(BaseModel):
-    data: AssetRateHistory
-    """Historical rates for assets"""
+class RouteListAllResponse(BaseModel):
+    count: int
+    """Total number of objects irrespective of any pagination parameters."""
+
+    data: List[SwapRouteTargetSet]
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

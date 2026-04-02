@@ -96,6 +96,87 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
 
+## Pagination
+
+List methods in the Neptune API V2 API are paginated.
+
+This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+
+```python
+from neptune_api_v2 import NeptuneAPIV2
+
+client = NeptuneAPIV2()
+
+all_assets = []
+# Automatically fetches more pages as needed.
+for asset in client.assets.get_price_history(
+    end=0,
+    period="h",
+    start=0,
+):
+    # Do something with asset here
+    all_assets.append(asset)
+print(all_assets)
+```
+
+Or, asynchronously:
+
+```python
+import asyncio
+from neptune_api_v2 import AsyncNeptuneAPIV2
+
+client = AsyncNeptuneAPIV2()
+
+
+async def main() -> None:
+    all_assets = []
+    # Iterate through items across all pages, issuing requests as needed.
+    async for asset in client.assets.get_price_history(
+        end=0,
+        period="h",
+        start=0,
+    ):
+        all_assets.append(asset)
+    print(all_assets)
+
+
+asyncio.run(main())
+```
+
+Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
+
+```python
+first_page = await client.assets.get_price_history(
+    end=0,
+    period="h",
+    start=0,
+)
+if first_page.has_next_page():
+    print(f"will fetch next page using these details: {first_page.next_page_info()}")
+    next_page = await first_page.get_next_page()
+    print(f"number of items we just fetched: {len(next_page.data.series)}")
+
+# Remove `await` for non-async usage.
+```
+
+Or just work directly with the returned data:
+
+```python
+first_page = await client.assets.get_price_history(
+    end=0,
+    period="h",
+    start=0,
+)
+
+print(
+    f"the current start offset for this page: {first_page.data.pagination.next_offset}"
+)  # => "the current start offset for this page: 1"
+for asset in first_page.data.series:
+    print(asset.asset)
+
+# Remove `await` for non-async usage.
+```
+
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `neptune_api_v2.APIConnectionError` is raised.

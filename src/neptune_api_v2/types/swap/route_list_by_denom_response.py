@@ -1,14 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from ..._models import BaseModel
-from ..asset_rate_history import AssetRateHistory
+from .swap_route_target_set import SwapRouteTargetSet
 
-__all__ = ["BorrowGetRateHistoryResponse"]
+__all__ = ["RouteListByDenomResponse"]
 
 
-class BorrowGetRateHistoryResponse(BaseModel):
-    data: AssetRateHistory
-    """Historical rates for assets"""
+class RouteListByDenomResponse(BaseModel):
+    data: SwapRouteTargetSet
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

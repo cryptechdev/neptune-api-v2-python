@@ -12,8 +12,9 @@ from neptune_api_v2 import NeptuneAPIV2, AsyncNeptuneAPIV2
 from neptune_api_v2.types import (
     AssetListResponse,
     AssetListPricesResponse,
-    AssetGetPriceHistoryResponse,
 )
+from neptune_api_v2.pagination import SyncIntervalMultiPage, AsyncIntervalMultiPage
+from neptune_api_v2.types.asset_price_history import Series
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -57,7 +58,7 @@ class TestAssets:
             period="h",
             start=0,
         )
-        assert_matches_type(AssetGetPriceHistoryResponse, asset, path=["response"])
+        assert_matches_type(SyncIntervalMultiPage[Series], asset, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -71,7 +72,7 @@ class TestAssets:
             limit=1,
             offset=0,
         )
-        assert_matches_type(AssetGetPriceHistoryResponse, asset, path=["response"])
+        assert_matches_type(SyncIntervalMultiPage[Series], asset, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -85,7 +86,7 @@ class TestAssets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         asset = response.parse()
-        assert_matches_type(AssetGetPriceHistoryResponse, asset, path=["response"])
+        assert_matches_type(SyncIntervalMultiPage[Series], asset, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -99,7 +100,7 @@ class TestAssets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             asset = response.parse()
-            assert_matches_type(AssetGetPriceHistoryResponse, asset, path=["response"])
+            assert_matches_type(SyncIntervalMultiPage[Series], asset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -181,7 +182,7 @@ class TestAsyncAssets:
             period="h",
             start=0,
         )
-        assert_matches_type(AssetGetPriceHistoryResponse, asset, path=["response"])
+        assert_matches_type(AsyncIntervalMultiPage[Series], asset, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -195,7 +196,7 @@ class TestAsyncAssets:
             limit=1,
             offset=0,
         )
-        assert_matches_type(AssetGetPriceHistoryResponse, asset, path=["response"])
+        assert_matches_type(AsyncIntervalMultiPage[Series], asset, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -209,7 +210,7 @@ class TestAsyncAssets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         asset = await response.parse()
-        assert_matches_type(AssetGetPriceHistoryResponse, asset, path=["response"])
+        assert_matches_type(AsyncIntervalMultiPage[Series], asset, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -223,7 +224,7 @@ class TestAsyncAssets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             asset = await response.parse()
-            assert_matches_type(AssetGetPriceHistoryResponse, asset, path=["response"])
+            assert_matches_type(AsyncIntervalMultiPage[Series], asset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

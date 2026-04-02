@@ -9,6 +9,12 @@ import pytest
 
 from tests.utils import assert_matches_type
 from neptune_api_v2 import NeptuneAPIV2, AsyncNeptuneAPIV2
+from neptune_api_v2.pagination import (
+    SyncIntervalMultiPage,
+    AsyncIntervalMultiPage,
+    SyncIntervalSinglePage,
+    AsyncIntervalSinglePage,
+)
 from neptune_api_v2.types.analytics.market import (
     HistoryGetLoansOriginatedResponse,
     HistoryGetLoansOriginatedByAssetResponse,
@@ -28,7 +34,7 @@ class TestHistory:
             period="h",
             start=0,
         )
-        assert_matches_type(HistoryGetLoansOriginatedResponse, history, path=["response"])
+        assert_matches_type(SyncIntervalSinglePage[HistoryGetLoansOriginatedResponse], history, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -41,7 +47,7 @@ class TestHistory:
             limit=1,
             offset=0,
         )
-        assert_matches_type(HistoryGetLoansOriginatedResponse, history, path=["response"])
+        assert_matches_type(SyncIntervalSinglePage[HistoryGetLoansOriginatedResponse], history, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -55,7 +61,7 @@ class TestHistory:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         history = response.parse()
-        assert_matches_type(HistoryGetLoansOriginatedResponse, history, path=["response"])
+        assert_matches_type(SyncIntervalSinglePage[HistoryGetLoansOriginatedResponse], history, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -69,7 +75,7 @@ class TestHistory:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             history = response.parse()
-            assert_matches_type(HistoryGetLoansOriginatedResponse, history, path=["response"])
+            assert_matches_type(SyncIntervalSinglePage[HistoryGetLoansOriginatedResponse], history, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -81,7 +87,7 @@ class TestHistory:
             period="h",
             start=0,
         )
-        assert_matches_type(HistoryGetLoansOriginatedByAssetResponse, history, path=["response"])
+        assert_matches_type(SyncIntervalMultiPage[HistoryGetLoansOriginatedByAssetResponse], history, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -95,7 +101,7 @@ class TestHistory:
             limit=1,
             offset=0,
         )
-        assert_matches_type(HistoryGetLoansOriginatedByAssetResponse, history, path=["response"])
+        assert_matches_type(SyncIntervalMultiPage[HistoryGetLoansOriginatedByAssetResponse], history, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -109,7 +115,7 @@ class TestHistory:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         history = response.parse()
-        assert_matches_type(HistoryGetLoansOriginatedByAssetResponse, history, path=["response"])
+        assert_matches_type(SyncIntervalMultiPage[HistoryGetLoansOriginatedByAssetResponse], history, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -123,7 +129,9 @@ class TestHistory:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             history = response.parse()
-            assert_matches_type(HistoryGetLoansOriginatedByAssetResponse, history, path=["response"])
+            assert_matches_type(
+                SyncIntervalMultiPage[HistoryGetLoansOriginatedByAssetResponse], history, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -141,7 +149,7 @@ class TestAsyncHistory:
             period="h",
             start=0,
         )
-        assert_matches_type(HistoryGetLoansOriginatedResponse, history, path=["response"])
+        assert_matches_type(AsyncIntervalSinglePage[HistoryGetLoansOriginatedResponse], history, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -154,7 +162,7 @@ class TestAsyncHistory:
             limit=1,
             offset=0,
         )
-        assert_matches_type(HistoryGetLoansOriginatedResponse, history, path=["response"])
+        assert_matches_type(AsyncIntervalSinglePage[HistoryGetLoansOriginatedResponse], history, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -168,7 +176,7 @@ class TestAsyncHistory:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         history = await response.parse()
-        assert_matches_type(HistoryGetLoansOriginatedResponse, history, path=["response"])
+        assert_matches_type(AsyncIntervalSinglePage[HistoryGetLoansOriginatedResponse], history, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -182,7 +190,7 @@ class TestAsyncHistory:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             history = await response.parse()
-            assert_matches_type(HistoryGetLoansOriginatedResponse, history, path=["response"])
+            assert_matches_type(AsyncIntervalSinglePage[HistoryGetLoansOriginatedResponse], history, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -194,7 +202,9 @@ class TestAsyncHistory:
             period="h",
             start=0,
         )
-        assert_matches_type(HistoryGetLoansOriginatedByAssetResponse, history, path=["response"])
+        assert_matches_type(
+            AsyncIntervalMultiPage[HistoryGetLoansOriginatedByAssetResponse], history, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -208,7 +218,9 @@ class TestAsyncHistory:
             limit=1,
             offset=0,
         )
-        assert_matches_type(HistoryGetLoansOriginatedByAssetResponse, history, path=["response"])
+        assert_matches_type(
+            AsyncIntervalMultiPage[HistoryGetLoansOriginatedByAssetResponse], history, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -222,7 +234,9 @@ class TestAsyncHistory:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         history = await response.parse()
-        assert_matches_type(HistoryGetLoansOriginatedByAssetResponse, history, path=["response"])
+        assert_matches_type(
+            AsyncIntervalMultiPage[HistoryGetLoansOriginatedByAssetResponse], history, path=["response"]
+        )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -236,6 +250,8 @@ class TestAsyncHistory:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             history = await response.parse()
-            assert_matches_type(HistoryGetLoansOriginatedByAssetResponse, history, path=["response"])
+            assert_matches_type(
+                AsyncIntervalMultiPage[HistoryGetLoansOriginatedByAssetResponse], history, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
