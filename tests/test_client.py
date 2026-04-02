@@ -814,20 +814,20 @@ class TestNeptuneApiv2:
     @mock.patch("neptune_api_v2._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: NeptuneAPIV2) -> None:
-        respx_mock.get("/api/v1/status/health").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.get("/api/v1/markets").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            client.status.with_streaming_response.check_health().__enter__()
+            client.markets.with_streaming_response.get_overview().__enter__()
 
         assert _get_open_connections(client) == 0
 
     @mock.patch("neptune_api_v2._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: NeptuneAPIV2) -> None:
-        respx_mock.get("/api/v1/status/health").mock(return_value=httpx.Response(500))
+        respx_mock.get("/api/v1/markets").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            client.status.with_streaming_response.check_health().__enter__()
+            client.markets.with_streaming_response.get_overview().__enter__()
         assert _get_open_connections(client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -854,9 +854,9 @@ class TestNeptuneApiv2:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/api/v1/status/health").mock(side_effect=retry_handler)
+        respx_mock.get("/api/v1/markets").mock(side_effect=retry_handler)
 
-        response = client.status.with_raw_response.check_health()
+        response = client.markets.with_raw_response.get_overview()
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -878,9 +878,9 @@ class TestNeptuneApiv2:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/api/v1/status/health").mock(side_effect=retry_handler)
+        respx_mock.get("/api/v1/markets").mock(side_effect=retry_handler)
 
-        response = client.status.with_raw_response.check_health(extra_headers={"x-stainless-retry-count": Omit()})
+        response = client.markets.with_raw_response.get_overview(extra_headers={"x-stainless-retry-count": Omit()})
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -901,9 +901,9 @@ class TestNeptuneApiv2:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/api/v1/status/health").mock(side_effect=retry_handler)
+        respx_mock.get("/api/v1/markets").mock(side_effect=retry_handler)
 
-        response = client.status.with_raw_response.check_health(extra_headers={"x-stainless-retry-count": "42"})
+        response = client.markets.with_raw_response.get_overview(extra_headers={"x-stainless-retry-count": "42"})
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
@@ -1684,10 +1684,10 @@ class TestAsyncNeptuneApiv2:
     async def test_retrying_timeout_errors_doesnt_leak(
         self, respx_mock: MockRouter, async_client: AsyncNeptuneAPIV2
     ) -> None:
-        respx_mock.get("/api/v1/status/health").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.get("/api/v1/markets").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await async_client.status.with_streaming_response.check_health().__aenter__()
+            await async_client.markets.with_streaming_response.get_overview().__aenter__()
 
         assert _get_open_connections(async_client) == 0
 
@@ -1696,10 +1696,10 @@ class TestAsyncNeptuneApiv2:
     async def test_retrying_status_errors_doesnt_leak(
         self, respx_mock: MockRouter, async_client: AsyncNeptuneAPIV2
     ) -> None:
-        respx_mock.get("/api/v1/status/health").mock(return_value=httpx.Response(500))
+        respx_mock.get("/api/v1/markets").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await async_client.status.with_streaming_response.check_health().__aenter__()
+            await async_client.markets.with_streaming_response.get_overview().__aenter__()
         assert _get_open_connections(async_client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1726,9 +1726,9 @@ class TestAsyncNeptuneApiv2:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/api/v1/status/health").mock(side_effect=retry_handler)
+        respx_mock.get("/api/v1/markets").mock(side_effect=retry_handler)
 
-        response = await client.status.with_raw_response.check_health()
+        response = await client.markets.with_raw_response.get_overview()
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1750,9 +1750,11 @@ class TestAsyncNeptuneApiv2:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/api/v1/status/health").mock(side_effect=retry_handler)
+        respx_mock.get("/api/v1/markets").mock(side_effect=retry_handler)
 
-        response = await client.status.with_raw_response.check_health(extra_headers={"x-stainless-retry-count": Omit()})
+        response = await client.markets.with_raw_response.get_overview(
+            extra_headers={"x-stainless-retry-count": Omit()}
+        )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -1773,9 +1775,9 @@ class TestAsyncNeptuneApiv2:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/api/v1/status/health").mock(side_effect=retry_handler)
+        respx_mock.get("/api/v1/markets").mock(side_effect=retry_handler)
 
-        response = await client.status.with_raw_response.check_health(extra_headers={"x-stainless-retry-count": "42"})
+        response = await client.markets.with_raw_response.get_overview(extra_headers={"x-stainless-retry-count": "42"})
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 

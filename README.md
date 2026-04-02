@@ -32,8 +32,11 @@ from neptune_api_v2 import NeptuneAPIV2
 
 client = NeptuneAPIV2()
 
-response = client.status.check_health()
-print(response.status)
+response = client.markets.get_overview(
+    with_text=True,
+    with_value=True,
+)
+print(response.data)
 ```
 
 ## Async usage
@@ -48,8 +51,11 @@ client = AsyncNeptuneAPIV2()
 
 
 async def main() -> None:
-    response = await client.status.check_health()
-    print(response.status)
+    response = await client.markets.get_overview(
+        with_text=True,
+        with_value=True,
+    )
+    print(response.data)
 
 
 asyncio.run(main())
@@ -80,8 +86,11 @@ async def main() -> None:
     async with AsyncNeptuneAPIV2(
         http_client=DefaultAioHttpClient(),
     ) as client:
-        response = await client.status.check_health()
-        print(response.status)
+        response = await client.markets.get_overview(
+            with_text=True,
+            with_value=True,
+        )
+        print(response.data)
 
 
 asyncio.run(main())
@@ -107,16 +116,14 @@ from neptune_api_v2 import NeptuneAPIV2
 
 client = NeptuneAPIV2()
 
-all_assets = []
+all_users = []
 # Automatically fetches more pages as needed.
-for asset in client.assets.get_price_history(
-    end=0,
-    period="h",
-    start=0,
+for user in client.user.get_tx_history(
+    address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
 ):
-    # Do something with asset here
-    all_assets.append(asset)
-print(all_assets)
+    # Do something with user here
+    all_users.append(user)
+print(all_users)
 ```
 
 Or, asynchronously:
@@ -129,15 +136,13 @@ client = AsyncNeptuneAPIV2()
 
 
 async def main() -> None:
-    all_assets = []
+    all_users = []
     # Iterate through items across all pages, issuing requests as needed.
-    async for asset in client.assets.get_price_history(
-        end=0,
-        period="h",
-        start=0,
+    async for user in client.user.get_tx_history(
+        address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
     ):
-        all_assets.append(asset)
-    print(all_assets)
+        all_users.append(user)
+    print(all_users)
 
 
 asyncio.run(main())
@@ -146,15 +151,13 @@ asyncio.run(main())
 Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
 
 ```python
-first_page = await client.assets.get_price_history(
-    end=0,
-    period="h",
-    start=0,
+first_page = await client.user.get_tx_history(
+    address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
 )
 if first_page.has_next_page():
     print(f"will fetch next page using these details: {first_page.next_page_info()}")
     next_page = await first_page.get_next_page()
-    print(f"number of items we just fetched: {len(next_page.data.series)}")
+    print(f"number of items we just fetched: {len(next_page.data)}")
 
 # Remove `await` for non-async usage.
 ```
@@ -162,17 +165,13 @@ if first_page.has_next_page():
 Or just work directly with the returned data:
 
 ```python
-first_page = await client.assets.get_price_history(
-    end=0,
-    period="h",
-    start=0,
+first_page = await client.user.get_tx_history(
+    address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
 )
 
-print(
-    f"the current start offset for this page: {first_page.data.pagination.next_offset}"
-)  # => "the current start offset for this page: 1"
-for asset in first_page.data.series:
-    print(asset.asset)
+print(f"next page cursor: {first_page.prev_event_uuid}")  # => "next page cursor: ..."
+for user in first_page.data:
+    print(user.event_uuid)
 
 # Remove `await` for non-async usage.
 ```
@@ -193,7 +192,10 @@ from neptune_api_v2 import NeptuneAPIV2
 client = NeptuneAPIV2()
 
 try:
-    client.status.check_health()
+    client.markets.get_overview(
+        with_text=True,
+        with_value=True,
+    )
 except neptune_api_v2.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -236,7 +238,10 @@ client = NeptuneAPIV2(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).status.check_health()
+client.with_options(max_retries=5).markets.get_overview(
+    with_text=True,
+    with_value=True,
+)
 ```
 
 ### Timeouts
@@ -259,7 +264,10 @@ client = NeptuneAPIV2(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).status.check_health()
+client.with_options(timeout=5.0).markets.get_overview(
+    with_text=True,
+    with_value=True,
+)
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -300,11 +308,14 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from neptune_api_v2 import NeptuneAPIV2
 
 client = NeptuneAPIV2()
-response = client.status.with_raw_response.check_health()
+response = client.markets.with_raw_response.get_overview(
+    with_text=True,
+    with_value=True,
+)
 print(response.headers.get('X-My-Header'))
 
-status = response.parse()  # get the object that `status.check_health()` would have returned
-print(status.status)
+market = response.parse()  # get the object that `markets.get_overview()` would have returned
+print(market.data)
 ```
 
 These methods return an [`APIResponse`](https://github.com/cryptechdev/neptune-api-v2-python/tree/main/src/neptune_api_v2/_response.py) object.
@@ -318,7 +329,10 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.status.with_streaming_response.check_health() as response:
+with client.markets.with_streaming_response.get_overview(
+    with_text=True,
+    with_value=True,
+) as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
