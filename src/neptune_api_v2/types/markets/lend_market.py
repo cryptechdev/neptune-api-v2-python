@@ -1,7 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-
 from ..._models import BaseModel
 from ..asset_info import AssetInfo
 from ..market_rate import MarketRate
@@ -16,7 +14,7 @@ class LendMarket(BaseModel):
     asset_info: AssetInfo
     """Asset identifiers with associated metadata"""
 
-    rate: Optional[MarketRate] = None
+    rate: MarketRate
     """Lending market rates"""
 
     state: LendMarketState

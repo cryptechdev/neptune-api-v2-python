@@ -4,21 +4,11 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 from ..asset_info import AssetInfo
+from .market.borrow.user_debt_account_pool import UserDebtAccountPool
+from .market.borrow.user_collateral_account_pool import UserCollateralAccountPool
 
 __all__ = [
     "UserMergedMarket",
-    "BorrowCollateral",
-    "BorrowCollateralExtra",
-    "BorrowCollateralExtraText",
-    "BorrowCollateralExtraValue",
-    "BorrowCollateralExtraValueExtra",
-    "BorrowCollateralExtraValueExtraText",
-    "BorrowDebt",
-    "BorrowDebtExtra",
-    "BorrowDebtExtraText",
-    "BorrowDebtExtraValue",
-    "BorrowDebtExtraValueExtra",
-    "BorrowDebtExtraValueExtraText",
     "Lend",
     "LendOriginEquivalent",
     "LendOriginEquivalentExtra",
@@ -30,146 +20,6 @@ __all__ = [
     "LendReceiptAmountsExtraValueExtra",
     "LendReceiptAmountsExtraValueExtraText",
 ]
-
-
-class BorrowCollateralExtraText(BaseModel):
-    """Human-readable field variants.
-
-    Will not be null when query param `with_text` is `true`.
-    """
-
-    amount: str
-
-
-class BorrowCollateralExtraValueExtraText(BaseModel):
-    """Human-readable variants of USD values.
-
-    Will not be null when query params `with_text` and `with_value` are `true`.
-    """
-
-    amount: str
-
-
-class BorrowCollateralExtraValueExtra(BaseModel):
-    text: Optional[BorrowCollateralExtraValueExtraText] = None
-    """Human-readable variants of USD values.
-
-    Will not be null when query params `with_text` and `with_value` are `true`.
-    """
-
-
-class BorrowCollateralExtraValue(BaseModel):
-    """USD values for the corresponding amounts above.
-
-    Will not be null when query param `with_value` is `true`.
-    """
-
-    amount: str
-
-    extra: BorrowCollateralExtraValueExtra
-
-
-class BorrowCollateralExtra(BaseModel):
-    text: Optional[BorrowCollateralExtraText] = None
-    """Human-readable field variants.
-
-    Will not be null when query param `with_text` is `true`.
-    """
-
-    value: Optional[BorrowCollateralExtraValue] = None
-    """USD values for the corresponding amounts above.
-
-    Will not be null when query param `with_value` is `true`.
-    """
-
-
-class BorrowCollateral(BaseModel):
-    amount: str
-    """Amount of this asset which is actively collateralized"""
-
-    extra: BorrowCollateralExtra
-
-    index: int
-    """Account index"""
-
-
-class BorrowDebtExtraText(BaseModel):
-    """Human-readable field variants.
-
-    Will not be null when query param `with_text` is `true`.
-    """
-
-    debt: str
-
-    interest: str
-
-    principal: str
-
-
-class BorrowDebtExtraValueExtraText(BaseModel):
-    """Human-readable variants of USD values.
-
-    Will not be null when query params `with_text` and `with_value` are `true`.
-    """
-
-    debt: str
-
-    interest: str
-
-    principal: str
-
-
-class BorrowDebtExtraValueExtra(BaseModel):
-    text: Optional[BorrowDebtExtraValueExtraText] = None
-    """Human-readable variants of USD values.
-
-    Will not be null when query params `with_text` and `with_value` are `true`.
-    """
-
-
-class BorrowDebtExtraValue(BaseModel):
-    """USD values for the corresponding amounts above.
-
-    Will not be null when query param `with_value` is `true`.
-    """
-
-    debt: str
-
-    extra: BorrowDebtExtraValueExtra
-
-    interest: str
-
-    principal: str
-
-
-class BorrowDebtExtra(BaseModel):
-    text: Optional[BorrowDebtExtraText] = None
-    """Human-readable field variants.
-
-    Will not be null when query param `with_text` is `true`.
-    """
-
-    value: Optional[BorrowDebtExtraValue] = None
-    """USD values for the corresponding amounts above.
-
-    Will not be null when query param `with_value` is `true`.
-    """
-
-
-class BorrowDebt(BaseModel):
-    debt: str
-    """Sum open debt amount (this is simply the principal + interest)"""
-
-    extra: BorrowDebtExtra
-
-    index: int
-    """Account index"""
-
-    interest: str
-    """Sum of accrued interest for open debt position"""
-
-    principal: str
-    """Initial amount borrowed (of debts which have not yet been repaid)"""
 
 
 class LendOriginEquivalentExtraText(BaseModel):
@@ -255,6 +105,9 @@ class LendReceiptAmountsExtraValueExtraText(BaseModel):
 
     held: str
 
+    price: str
+    """Text representation of price"""
+
     total: str
 
 
@@ -270,6 +123,12 @@ class LendReceiptAmountsExtraValue(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was specified as well.
     """
 
     collateralized: str
@@ -277,6 +136,9 @@ class LendReceiptAmountsExtraValue(BaseModel):
     extra: LendReceiptAmountsExtraValueExtra
 
     held: str
+
+    price: str
+    """Price used in value calculations"""
 
     total: str
 
@@ -292,6 +154,14 @@ class LendReceiptAmountsExtra(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used
+    in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was
+    specified as well.
     """
 
 
@@ -314,7 +184,7 @@ class LendReceiptAmounts(BaseModel):
 
 
 class Lend(BaseModel):
-    """User contirbution for asset's lending market, if one exists"""
+    """User contribution for asset's lending market, if one exists"""
 
     origin_equivalent: LendOriginEquivalent
     """
@@ -327,14 +197,20 @@ class Lend(BaseModel):
 
 
 class UserMergedMarket(BaseModel):
+    """User market allocations grouped by asset.
+
+    **Note**: because of the inverted structure of merged market accounts, account
+    health cannot be represented and is excluded in the merged structures.
+    """
+
     asset_info: AssetInfo
     """Asset identifiers with associated metadata"""
 
-    borrow_collateral: List[BorrowCollateral]
+    borrow_collateral: List[UserCollateralAccountPool]
     """User collateral contribution for asset in borrow market, listed by subaccount"""
 
-    borrow_debt: List[BorrowDebt]
+    borrow_debt: List[UserDebtAccountPool]
     """User debt contribution for asset in borrow market, listed by subaccount"""
 
     lend: Optional[Lend] = None
-    """User contirbution for asset's lending market, if one exists"""
+    """User contribution for asset's lending market, if one exists"""

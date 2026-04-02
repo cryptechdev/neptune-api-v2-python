@@ -4,6 +4,7 @@ from typing import List, Optional
 
 from ...._models import BaseModel
 from ...asset_info import AssetInfo
+from ...market_rate import MarketRate
 
 __all__ = [
     "UserLendMarket",
@@ -103,6 +104,9 @@ class AssetPoolReceiptAmountsExtraValueExtraText(BaseModel):
 
     held: str
 
+    price: str
+    """Text representation of price"""
+
     total: str
 
 
@@ -118,6 +122,12 @@ class AssetPoolReceiptAmountsExtraValue(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was specified as well.
     """
 
     collateralized: str
@@ -125,6 +135,9 @@ class AssetPoolReceiptAmountsExtraValue(BaseModel):
     extra: AssetPoolReceiptAmountsExtraValueExtra
 
     held: str
+
+    price: str
+    """Price used in value calculations"""
 
     total: str
 
@@ -140,6 +153,14 @@ class AssetPoolReceiptAmountsExtra(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used
+    in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was
+    specified as well.
     """
 
 
@@ -165,6 +186,9 @@ class AssetPool(BaseModel):
     asset_info: AssetInfo
     """Asset identifiers with associated metadata"""
 
+    market_rate: MarketRate
+    """Current market lending rate"""
+
     origin_equivalent: AssetPoolOriginEquivalent
     """
     The lending amounts converted into the equivalent for the receipt token's
@@ -178,3 +202,6 @@ class AssetPool(BaseModel):
 class UserLendMarket(BaseModel):
     asset_pools: List[AssetPool]
     """User lending allocations"""
+
+    net_rate: MarketRate
+    """Account debt net rate"""

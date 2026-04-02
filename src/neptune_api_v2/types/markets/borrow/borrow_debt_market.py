@@ -1,7 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-
 from ...._models import BaseModel
 from ...asset_info import AssetInfo
 from ...market_rate import MarketRate
@@ -20,7 +18,7 @@ class BorrowDebtMarket(BaseModel):
     config: BorrowDebtConfig
     """Debt market configuration parameters"""
 
-    rate: Optional[MarketRate] = None
+    rate: MarketRate
     """Market rates"""
 
     state: BorrowDebtState

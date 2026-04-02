@@ -11,7 +11,7 @@ __all__ = ["AssetPrice", "Extra", "ExtraText"]
 class ExtraText(BaseModel):
     """Human-readable field variants.
 
-    Will not be null when query param `with-text` is `true`.
+    Will not be null when query param `with_text` is `true`.
     """
 
     last_updated_at: str
@@ -23,7 +23,7 @@ class Extra(BaseModel):
     text: Optional[ExtraText] = None
     """Human-readable field variants.
 
-    Will not be null when query param `with-text` is `true`.
+    Will not be null when query param `with_text` is `true`.
     """
 
 

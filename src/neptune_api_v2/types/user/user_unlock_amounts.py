@@ -45,7 +45,7 @@ class ExtraPercentExtra(BaseModel):
 class ExtraPercent(BaseModel):
     """Percentages for unlock amounts.
 
-    Will not be null when query param `with_percent` is `true`.
+    These do not factor in the `amount_staked` or `amount_held` values. Will not be null when query param `with_percent` is `true`.
     """
 
     claimable: str
@@ -96,6 +96,9 @@ class ExtraValueExtraText(BaseModel):
 
     locked: str
 
+    price: str
+    """Text representation of price"""
+
     reclaimed: str
 
 
@@ -111,6 +114,12 @@ class ExtraValue(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was specified as well.
     """
 
     amount: str
@@ -125,6 +134,9 @@ class ExtraValue(BaseModel):
 
     locked: str
 
+    price: str
+    """Price used in value calculations"""
+
     reclaimed: str
 
 
@@ -132,7 +144,8 @@ class Extra(BaseModel):
     percent: Optional[ExtraPercent] = None
     """Percentages for unlock amounts.
 
-    Will not be null when query param `with_percent` is `true`.
+    These do not factor in the `amount_staked` or `amount_held` values. Will not be
+    null when query param `with_percent` is `true`.
     """
 
     text: Optional[ExtraText] = None
@@ -145,6 +158,14 @@ class Extra(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used
+    in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was
+    specified as well.
     """
 
 

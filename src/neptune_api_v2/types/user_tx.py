@@ -22,9 +22,9 @@ class ExtraText(BaseModel):
 
     event_time: str
 
-    price: str
+    historic_price: str
 
-    value: str
+    historic_value: str
 
 
 class ExtraValueExtraText(BaseModel):
@@ -34,6 +34,9 @@ class ExtraValueExtraText(BaseModel):
     """
 
     amount: Optional[str] = None
+
+    price: Optional[str] = None
+    """Text representation of price"""
 
 
 class ExtraValueExtra(BaseModel):
@@ -48,11 +51,20 @@ class ExtraValue(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was specified as well.
     """
 
     amount: Optional[str] = None
 
     extra: ExtraValueExtra
+
+    price: str
+    """Price used in value calculations"""
 
 
 class Extra(BaseModel):
@@ -66,6 +78,14 @@ class Extra(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used
+    in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was
+    specified as well.
     """
 
 
@@ -122,7 +142,7 @@ class UserTx(BaseModel):
 
     extra: Extra
 
-    price: Union[str, float, None] = None
+    historic_price: Union[str, float, None] = None
     """The price of the associated asset at the time of the transaction.
 
     This value will be set for all currently implemented action types. It is set as
@@ -130,10 +150,7 @@ class UserTx(BaseModel):
     an associated amount.
     """
 
-    tx_hash: str
-    """Transaction hash"""
-
-    value: Union[str, float, None] = None
+    historic_value: Union[str, float, None] = None
     """The USD value at the time of the transaction.
 
     Derived using the amount and historical price of the associated asset.
@@ -142,3 +159,6 @@ class UserTx(BaseModel):
     nullable for forwards compatibility for future action types which may not have
     an associated amount.
     """
+
+    tx_hash: str
+    """Transaction hash"""
