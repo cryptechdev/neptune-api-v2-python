@@ -100,7 +100,11 @@ class RoutesResource(SyncAPIResource):
           source_denom: Source asset denom to fetch target routes for
 
               **Note**: This is a normal injective asset denom, and not an `AssetSpec` ID.
-              E.g. While `inj` is a valid `source_denom, `native;inj` is not valid.
+
+              E.g.
+
+              - `inj` is a **valid** value for `source_denom`.
+              - `native;inj` is **not a valid value** for `source_denom`.
 
           extra_headers: Send extra headers
 
@@ -209,7 +213,11 @@ class AsyncRoutesResource(AsyncAPIResource):
           source_denom: Source asset denom to fetch target routes for
 
               **Note**: This is a normal injective asset denom, and not an `AssetSpec` ID.
-              E.g. While `inj` is a valid `source_denom, `native;inj` is not valid.
+
+              E.g.
+
+              - `inj` is a **valid** value for `source_denom`.
+              - `native;inj` is **not a valid value** for `source_denom`.
 
           extra_headers: Send extra headers
 
