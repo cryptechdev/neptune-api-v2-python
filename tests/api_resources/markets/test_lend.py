@@ -9,11 +9,12 @@ import pytest
 
 from tests.utils import assert_matches_type
 from neptune_api_v2 import NeptuneAPIV2, AsyncNeptuneAPIV2
+from neptune_api_v2.pagination import SyncIntervalMultiPage, AsyncIntervalMultiPage
 from neptune_api_v2.types.markets import (
     LendListResponse,
     LendGetByAssetResponse,
-    LendGetRateHistoryResponse,
 )
+from neptune_api_v2.types.asset_rate_history import Series
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -110,7 +111,7 @@ class TestLend:
             period="h",
             start=0,
         )
-        assert_matches_type(LendGetRateHistoryResponse, lend, path=["response"])
+        assert_matches_type(SyncIntervalMultiPage[Series], lend, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -124,7 +125,7 @@ class TestLend:
             limit=1,
             offset=0,
         )
-        assert_matches_type(LendGetRateHistoryResponse, lend, path=["response"])
+        assert_matches_type(SyncIntervalMultiPage[Series], lend, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -138,7 +139,7 @@ class TestLend:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lend = response.parse()
-        assert_matches_type(LendGetRateHistoryResponse, lend, path=["response"])
+        assert_matches_type(SyncIntervalMultiPage[Series], lend, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -152,7 +153,7 @@ class TestLend:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lend = response.parse()
-            assert_matches_type(LendGetRateHistoryResponse, lend, path=["response"])
+            assert_matches_type(SyncIntervalMultiPage[Series], lend, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -251,7 +252,7 @@ class TestAsyncLend:
             period="h",
             start=0,
         )
-        assert_matches_type(LendGetRateHistoryResponse, lend, path=["response"])
+        assert_matches_type(AsyncIntervalMultiPage[Series], lend, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -265,7 +266,7 @@ class TestAsyncLend:
             limit=1,
             offset=0,
         )
-        assert_matches_type(LendGetRateHistoryResponse, lend, path=["response"])
+        assert_matches_type(AsyncIntervalMultiPage[Series], lend, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -279,7 +280,7 @@ class TestAsyncLend:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lend = await response.parse()
-        assert_matches_type(LendGetRateHistoryResponse, lend, path=["response"])
+        assert_matches_type(AsyncIntervalMultiPage[Series], lend, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -293,6 +294,6 @@ class TestAsyncLend:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lend = await response.parse()
-            assert_matches_type(LendGetRateHistoryResponse, lend, path=["response"])
+            assert_matches_type(AsyncIntervalMultiPage[Series], lend, path=["response"])
 
         assert cast(Any, response.is_closed) is True
