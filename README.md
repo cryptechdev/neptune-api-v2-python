@@ -32,10 +32,7 @@ from neptune_api_v2 import NeptuneAPIV2
 
 client = NeptuneAPIV2()
 
-response = client.markets.get_overview(
-    with_text=True,
-    with_value=True,
-)
+response = client.markets.get_overview()
 print(response.data)
 ```
 
@@ -51,10 +48,7 @@ client = AsyncNeptuneAPIV2()
 
 
 async def main() -> None:
-    response = await client.markets.get_overview(
-        with_text=True,
-        with_value=True,
-    )
+    response = await client.markets.get_overview()
     print(response.data)
 
 
@@ -86,10 +80,7 @@ async def main() -> None:
     async with AsyncNeptuneAPIV2(
         http_client=DefaultAioHttpClient(),
     ) as client:
-        response = await client.markets.get_overview(
-            with_text=True,
-            with_value=True,
-        )
+        response = await client.markets.get_overview()
         print(response.data)
 
 
