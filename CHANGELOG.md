@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.2.0 (2026-04-03)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/cryptechdev/neptune-api-v2-python/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** add missing models, pagination impls ([1aa9a59](https://github.com/cryptechdev/neptune-api-v2-python/commit/1aa9a590bdc800e554100b00a41b552add478bce))
+* **api:** add python publishing config ([72173a4](https://github.com/cryptechdev/neptune-api-v2-python/commit/72173a429dddb88648a29991c1870d86dd8c6b0a))
+* **api:** api update ([ebee3a7](https://github.com/cryptechdev/neptune-api-v2-python/commit/ebee3a79f42790d9fba6fced90848e432581817f))
+* **api:** api update ([a2daaa3](https://github.com/cryptechdev/neptune-api-v2-python/commit/a2daaa306f5c0ea3c17d2816d25ab9eaf90f058c))
+* **api:** api update ([64bfdf0](https://github.com/cryptechdev/neptune-api-v2-python/commit/64bfdf0f0f702d71e05b37a490f1ced871af27d0))
+* **api:** disable series pagn, update example requests ([9d71f0b](https://github.com/cryptechdev/neptune-api-v2-python/commit/9d71f0b3d797212151cb8d65c5ff72886904a6e9))
+* **api:** Fix readme title, fix inverted example params ([c90715f](https://github.com/cryptechdev/neptune-api-v2-python/commit/c90715f3ad82baedeb47f32889d7aba4404d5114))
+* **api:** manual updates ([3424a81](https://github.com/cryptechdev/neptune-api-v2-python/commit/3424a811af4205ad9396f23f7fd56055f6e2fb35))
+* **api:** manual updates ([f1f5aae](https://github.com/cryptechdev/neptune-api-v2-python/commit/f1f5aaef9e720cdb0933330c9836e8a666b806b4))
+
+
+### Chores
+
+* remove custom code ([d81def3](https://github.com/cryptechdev/neptune-api-v2-python/commit/d81def31c6a38ad5972605a6054bf701bcaad6be))
+* update SDK settings ([3ea9109](https://github.com/cryptechdev/neptune-api-v2-python/commit/3ea910942b953e7ee8f5ed1baa371d72df8dfaf6))
+* update SDK settings ([3b2c9f9](https://github.com/cryptechdev/neptune-api-v2-python/commit/3b2c9f9b390aa03d3601dea10cb69133568726fd))
+* update SDK settings ([a41b0dd](https://github.com/cryptechdev/neptune-api-v2-python/commit/a41b0dd737f1ca76a0af6af4792c05dac3ea0b93))
+* update SDK settings ([5759a86](https://github.com/cryptechdev/neptune-api-v2-python/commit/5759a869889951c83f68dfc8d7df247c81fe6cd1))
+
 ## 0.1.0 (2026-03-30)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/cryptechdev/neptune-api-v2-python/compare/v0.0.1...v0.1.0)
