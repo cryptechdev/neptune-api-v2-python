@@ -56,14 +56,6 @@ from .analytics import (
     AnalyticsResourceWithStreamingResponse,
     AsyncAnalyticsResourceWithStreamingResponse,
 )
-from .integrations import (
-    IntegrationsResource,
-    AsyncIntegrationsResource,
-    IntegrationsResourceWithRawResponse,
-    AsyncIntegrationsResourceWithRawResponse,
-    IntegrationsResourceWithStreamingResponse,
-    AsyncIntegrationsResourceWithStreamingResponse,
-)
 
 __all__ = [
     "StatusResource",
@@ -102,12 +94,6 @@ __all__ = [
     "AsyncAnalyticsResourceWithRawResponse",
     "AnalyticsResourceWithStreamingResponse",
     "AsyncAnalyticsResourceWithStreamingResponse",
-    "IntegrationsResource",
-    "AsyncIntegrationsResource",
-    "IntegrationsResourceWithRawResponse",
-    "AsyncIntegrationsResourceWithRawResponse",
-    "IntegrationsResourceWithStreamingResponse",
-    "AsyncIntegrationsResourceWithStreamingResponse",
     "SwapResource",
     "AsyncSwapResource",
     "SwapResourceWithRawResponse",
