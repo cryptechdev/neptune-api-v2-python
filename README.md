@@ -16,12 +16,9 @@ The full API of this library can be found in [api.md](api.md).
 ## Installation
 
 ```sh
-# install from the production repo
-pip install git+ssh://git@github.com/cryptechdev/neptune-api-v2-python.git
+# install from PyPI
+pip install neptune_api_v2
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install neptune_api_v2`
 
 ## Usage
 
@@ -70,8 +67,8 @@ By default, the async client uses `httpx` for HTTP requests. However, for improv
 You can enable this by installing `aiohttp`:
 
 ```sh
-# install from the production repo
-pip install 'neptune_api_v2[aiohttp] @ git+ssh://git@github.com/cryptechdev/neptune-api-v2-python.git'
+# install from PyPI
+pip install neptune_api_v2[aiohttp]
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
