@@ -3,11 +3,15 @@
 from typing import List
 
 from ...._models import BaseModel
-from .borrow.user_debt_asset_pool import UserDebtAssetPool
+from ...market_rate import MarketRate
+from .user_lend_asset_pool import UserLendAssetPool
 
 __all__ = ["UserLendMarket"]
 
 
 class UserLendMarket(BaseModel):
-    asset_pools: List[UserDebtAssetPool]
+    asset_pools: List[UserLendAssetPool]
     """User lending allocations"""
+
+    net_rate: MarketRate
+    """Account debt net rate"""

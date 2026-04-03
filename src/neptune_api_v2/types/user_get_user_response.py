@@ -7,8 +7,6 @@ __all__ = ["UserGetUserResponse"]
 
 
 class UserGetUserResponse(BaseModel):
-    """Object data success response"""
-
     data: User
 
     error: None = None

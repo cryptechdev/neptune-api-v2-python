@@ -4,6 +4,7 @@ from typing import List
 
 from ...._models import BaseModel
 from ...asset_info import AssetInfo
+from ...market_rate import MarketRate
 from .borrow.user_debt_account_pool import UserDebtAccountPool
 
 __all__ = ["BorrowGetDebtAccountsByAssetResponse", "Data"]
@@ -16,10 +17,11 @@ class Data(BaseModel):
     asset_info: AssetInfo
     """Asset identifiers with associated metadata"""
 
+    market_rate: MarketRate
+    """Current market borrowing rate"""
+
 
 class BorrowGetDebtAccountsByAssetResponse(BaseModel):
-    """Object data success response"""
-
     data: Data
 
     error: None = None

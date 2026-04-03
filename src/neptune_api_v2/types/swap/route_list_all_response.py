@@ -2,19 +2,17 @@
 
 from typing import List
 
-from .user_tx import UserTx
-from .._models import BaseModel
+from ..._models import BaseModel
+from .swap_route_target_set import SwapRouteTargetSet
 
-__all__ = ["UserGetTxHistoryResponse"]
+__all__ = ["RouteListAllResponse"]
 
 
-class UserGetTxHistoryResponse(BaseModel):
-    """List data success response"""
-
+class RouteListAllResponse(BaseModel):
     count: int
     """Total number of objects irrespective of any pagination parameters."""
 
-    data: List[UserTx]
+    data: List[SwapRouteTargetSet]
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

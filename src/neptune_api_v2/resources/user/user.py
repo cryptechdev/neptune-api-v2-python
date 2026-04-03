@@ -34,6 +34,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...pagination import SyncTxHistoryPage, AsyncTxHistoryPage
 from .market.market import (
     MarketResource,
     AsyncMarketResource,
@@ -42,10 +43,10 @@ from .market.market import (
     MarketResourceWithStreamingResponse,
     AsyncMarketResourceWithStreamingResponse,
 )
-from ..._base_client import make_request_options
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.user_tx import UserTx
 from ...types.event_action import EventAction
 from ...types.user_get_user_response import UserGetUserResponse
-from ...types.user_get_tx_history_response import UserGetTxHistoryResponse
 
 __all__ = ["UserResource", "AsyncUserResource"]
 
@@ -98,7 +99,7 @@ class UserResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserGetTxHistoryResponse:
+    ) -> SyncTxHistoryPage[UserTx]:
         """
         Get user tx history
 
@@ -137,8 +138,9 @@ class UserResource(SyncAPIResource):
         """
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
-        return self._get(
+        return self._get_api_list(
             path_template("/api/v1/users/{address}/tx-history", address=address),
+            page=SyncTxHistoryPage[UserTx],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -156,7 +158,7 @@ class UserResource(SyncAPIResource):
                     user_get_tx_history_params.UserGetTxHistoryParams,
                 ),
             ),
-            cast_to=UserGetTxHistoryResponse,
+            model=UserTx,
         )
 
     def get_user(
@@ -247,7 +249,7 @@ class AsyncUserResource(AsyncAPIResource):
         """
         return AsyncUserResourceWithStreamingResponse(self)
 
-    async def get_tx_history(
+    def get_tx_history(
         self,
         address: str,
         *,
@@ -263,7 +265,7 @@ class AsyncUserResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserGetTxHistoryResponse:
+    ) -> AsyncPaginator[UserTx, AsyncTxHistoryPage[UserTx]]:
         """
         Get user tx history
 
@@ -302,14 +304,15 @@ class AsyncUserResource(AsyncAPIResource):
         """
         if not address:
             raise ValueError(f"Expected a non-empty value for `address` but received {address!r}")
-        return await self._get(
+        return self._get_api_list(
             path_template("/api/v1/users/{address}/tx-history", address=address),
+            page=AsyncTxHistoryPage[UserTx],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "action": action,
                         "limit": limit,
@@ -321,7 +324,7 @@ class AsyncUserResource(AsyncAPIResource):
                     user_get_tx_history_params.UserGetTxHistoryParams,
                 ),
             ),
-            cast_to=UserGetTxHistoryResponse,
+            model=UserTx,
         )
 
     async def get_user(

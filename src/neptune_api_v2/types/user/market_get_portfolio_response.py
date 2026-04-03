@@ -7,8 +7,6 @@ __all__ = ["MarketGetPortfolioResponse"]
 
 
 class MarketGetPortfolioResponse(BaseModel):
-    """Object data success response"""
-
     data: UserMarket
 
     error: None = None

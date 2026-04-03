@@ -1,15 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from ...._models import BaseModel
-from .borrow.user_debt_asset_pool import UserDebtAssetPool
+from .user_lend_asset_pool import UserLendAssetPool
 
 __all__ = ["LendGetByAssetResponse"]
 
 
 class LendGetByAssetResponse(BaseModel):
-    """Object data success response"""
-
-    data: UserDebtAssetPool
+    data: UserLendAssetPool
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

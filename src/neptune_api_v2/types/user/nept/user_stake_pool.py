@@ -26,6 +26,9 @@ class ExtraValueExtraText(BaseModel):
 
     amount_sum: str
 
+    price: str
+    """Text representation of price"""
+
 
 class ExtraValueExtra(BaseModel):
     text: Optional[ExtraValueExtraText] = None
@@ -39,11 +42,20 @@ class ExtraValue(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was specified as well.
     """
 
     amount_sum: str
 
     extra: ExtraValueExtra
+
+    price: str
+    """Price used in value calculations"""
 
 
 class Extra(BaseModel):
@@ -57,6 +69,14 @@ class Extra(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used
+    in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was
+    specified as well.
     """
 
 
@@ -69,7 +89,7 @@ class UserStakePool(BaseModel):
     """
 
     common: StakingPoolFull
-    """Merges `StakingPool` with both `StakingPoolWithParams` and `StakingPoolState`"""
+    """Staking pool contents along with associated pool state and pool params"""
 
     contents: List[UserStakeBondingEntry]
     """Bonding/stake entries

@@ -7,8 +7,6 @@ __all__ = ["NeptGetParamsResponse"]
 
 
 class NeptGetParamsResponse(BaseModel):
-    """Object data success response"""
-
     data: NeptParams
 
     error: None = None

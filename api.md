@@ -7,13 +7,11 @@ from neptune_api_v2.types import (
     ErrorData,
     ErrorDataVariants,
     ErrorKind,
-    ErrorResponseVariants,
+    ErrorResponse,
     ErrorScope,
     FieldValidationError,
     Interval,
     IntervalUnit,
-    ListErrorResponse,
-    ObjErrorResponse,
     ValidationErrorData,
     ValidationFieldSource,
 )
@@ -186,18 +184,12 @@ Methods:
 Types:
 
 ```python
-from neptune_api_v2.types import (
-    EventAction,
-    User,
-    UserTx,
-    UserGetTxHistoryResponse,
-    UserGetUserResponse,
-)
+from neptune_api_v2.types import EventAction, User, UserTx, UserGetUserResponse
 ```
 
 Methods:
 
-- <code title="get /api/v1/users/{address}/tx-history">client.user.<a href="./src/neptune_api_v2/resources/user/user.py">get_tx_history</a>(address, \*\*<a href="src/neptune_api_v2/types/user_get_tx_history_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/user_get_tx_history_response.py">UserGetTxHistoryResponse</a></code>
+- <code title="get /api/v1/users/{address}/tx-history">client.user.<a href="./src/neptune_api_v2/resources/user/user.py">get_tx_history</a>(address, \*\*<a href="src/neptune_api_v2/types/user_get_tx_history_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/user_tx.py">SyncTxHistoryPage[UserTx]</a></code>
 - <code title="get /api/v1/users/{address}/user">client.user.<a href="./src/neptune_api_v2/resources/user/user.py">get_user</a>(address, \*\*<a href="src/neptune_api_v2/types/user_get_user_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/user_get_user_response.py">UserGetUserResponse</a></code>
 
 ## Market
@@ -226,7 +218,10 @@ Types:
 
 ```python
 from neptune_api_v2.types.user.market import (
+    UserLendAssetPool,
     UserLendMarket,
+    UserLendOriginAmounts,
+    UserLendReceiptAmounts,
     LendListResponse,
     LendGetByAssetResponse,
 )
@@ -379,7 +374,7 @@ from neptune_api_v2.types.analytics.market import (
 
 Methods:
 
-- <code title="get /api/v1/analytics/market/history/loans-originated">client.analytics.market.history.<a href="./src/neptune_api_v2/resources/analytics/market/history.py">get_loans_originated</a>(\*\*<a href="src/neptune_api_v2/types/analytics/market/history_get_loans_originated_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/analytics/market/history_get_loans_originated_response.py">HistoryGetLoansOriginatedResponse</a></code>
+- <code title="get /api/v1/analytics/market/history/loans-originated">client.analytics.market.history.<a href="./src/neptune_api_v2/resources/analytics/market/history.py">get_loans_originated</a>(\*\*<a href="src/neptune_api_v2/types/analytics/market/history_get_loans_originated_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/analytics/market/history_get_loans_originated_response.py">SyncIntervalSinglePage[HistoryGetLoansOriginatedResponse]</a></code>
 - <code title="get /api/v1/analytics/market/history/loans-originated/by-asset">client.analytics.market.history.<a href="./src/neptune_api_v2/resources/analytics/market/history.py">get_loans_originated_by_asset</a>(\*\*<a href="src/neptune_api_v2/types/analytics/market/history_get_loans_originated_by_asset_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/analytics/market/history_get_loans_originated_by_asset_response.py">HistoryGetLoansOriginatedByAssetResponse</a></code>
 
 ## Nept
@@ -407,3 +402,22 @@ from neptune_api_v2.types.integrations import BantrGetTransactionsResponse
 Methods:
 
 - <code title="get /api/v1/integrations/bantr/transactions">client.integrations.bantr.<a href="./src/neptune_api_v2/resources/integrations/bantr.py">get_transactions</a>(\*\*<a href="src/neptune_api_v2/types/integrations/bantr_get_transactions_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/integrations/bantr_get_transactions_response.py">BantrGetTransactionsResponse</a></code>
+
+# Swap
+
+## Routes
+
+Types:
+
+```python
+from neptune_api_v2.types.swap import (
+    SwapRouteTargetSet,
+    RouteListAllResponse,
+    RouteListByDenomResponse,
+)
+```
+
+Methods:
+
+- <code title="get /api/v1/swap/routes/all">client.swap.routes.<a href="./src/neptune_api_v2/resources/swap/routes.py">list_all</a>(\*\*<a href="src/neptune_api_v2/types/swap/route_list_all_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/swap/route_list_all_response.py">RouteListAllResponse</a></code>
+- <code title="get /api/v1/swap/routes">client.swap.routes.<a href="./src/neptune_api_v2/resources/swap/routes.py">list_by_denom</a>(\*\*<a href="src/neptune_api_v2/types/swap/route_list_by_denom_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/swap/route_list_by_denom_response.py">RouteListByDenomResponse</a></code>

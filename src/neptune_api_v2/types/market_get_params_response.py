@@ -7,8 +7,6 @@ __all__ = ["MarketGetParamsResponse"]
 
 
 class MarketGetParamsResponse(BaseModel):
-    """Object data success response"""
-
     data: GlobalMarketConfig
 
     error: None = None

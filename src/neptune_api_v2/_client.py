@@ -31,10 +31,11 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import nept, user, assets, status, markets, analytics, integrations
+    from .resources import nept, swap, user, assets, status, markets, analytics, integrations
     from .resources.nept import NeptResource, AsyncNeptResource
     from .resources.assets import AssetsResource, AsyncAssetsResource
     from .resources.status import StatusResource, AsyncStatusResource
+    from .resources.swap.swap import SwapResource, AsyncSwapResource
     from .resources.user.user import UserResource, AsyncUserResource
     from .resources.markets.markets import MarketsResource, AsyncMarketsResource
     from .resources.analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
@@ -135,6 +136,12 @@ class NeptuneAPIV2(SyncAPIClient):
         from .resources.integrations import IntegrationsResource
 
         return IntegrationsResource(self)
+
+    @cached_property
+    def swap(self) -> SwapResource:
+        from .resources.swap import SwapResource
+
+        return SwapResource(self)
 
     @cached_property
     def with_raw_response(self) -> NeptuneAPIV2WithRawResponse:
@@ -326,6 +333,12 @@ class AsyncNeptuneAPIV2(AsyncAPIClient):
         return AsyncIntegrationsResource(self)
 
     @cached_property
+    def swap(self) -> AsyncSwapResource:
+        from .resources.swap import AsyncSwapResource
+
+        return AsyncSwapResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncNeptuneAPIV2WithRawResponse:
         return AsyncNeptuneAPIV2WithRawResponse(self)
 
@@ -478,6 +491,12 @@ class NeptuneAPIV2WithRawResponse:
 
         return IntegrationsResourceWithRawResponse(self._client.integrations)
 
+    @cached_property
+    def swap(self) -> swap.SwapResourceWithRawResponse:
+        from .resources.swap import SwapResourceWithRawResponse
+
+        return SwapResourceWithRawResponse(self._client.swap)
+
 
 class AsyncNeptuneAPIV2WithRawResponse:
     _client: AsyncNeptuneAPIV2
@@ -526,6 +545,12 @@ class AsyncNeptuneAPIV2WithRawResponse:
         from .resources.integrations import AsyncIntegrationsResourceWithRawResponse
 
         return AsyncIntegrationsResourceWithRawResponse(self._client.integrations)
+
+    @cached_property
+    def swap(self) -> swap.AsyncSwapResourceWithRawResponse:
+        from .resources.swap import AsyncSwapResourceWithRawResponse
+
+        return AsyncSwapResourceWithRawResponse(self._client.swap)
 
 
 class NeptuneAPIV2WithStreamedResponse:
@@ -576,6 +601,12 @@ class NeptuneAPIV2WithStreamedResponse:
 
         return IntegrationsResourceWithStreamingResponse(self._client.integrations)
 
+    @cached_property
+    def swap(self) -> swap.SwapResourceWithStreamingResponse:
+        from .resources.swap import SwapResourceWithStreamingResponse
+
+        return SwapResourceWithStreamingResponse(self._client.swap)
+
 
 class AsyncNeptuneAPIV2WithStreamedResponse:
     _client: AsyncNeptuneAPIV2
@@ -624,6 +655,12 @@ class AsyncNeptuneAPIV2WithStreamedResponse:
         from .resources.integrations import AsyncIntegrationsResourceWithStreamingResponse
 
         return AsyncIntegrationsResourceWithStreamingResponse(self._client.integrations)
+
+    @cached_property
+    def swap(self) -> swap.AsyncSwapResourceWithStreamingResponse:
+        from .resources.swap import AsyncSwapResourceWithStreamingResponse
+
+        return AsyncSwapResourceWithStreamingResponse(self._client.swap)
 
 
 Client = NeptuneAPIV2

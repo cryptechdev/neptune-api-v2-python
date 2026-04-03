@@ -6,8 +6,11 @@ from .lend_list_params import LendListParams as LendListParams
 from .user_lend_market import UserLendMarket as UserLendMarket
 from .lend_list_response import LendListResponse as LendListResponse
 from .user_borrow_market import UserBorrowMarket as UserBorrowMarket
+from .user_lend_asset_pool import UserLendAssetPool as UserLendAssetPool
 from .lend_get_by_asset_params import LendGetByAssetParams as LendGetByAssetParams
 from .user_borrow_market_pools import UserBorrowMarketPools as UserBorrowMarketPools
+from .user_lend_origin_amounts import UserLendOriginAmounts as UserLendOriginAmounts
+from .user_lend_receipt_amounts import UserLendReceiptAmounts as UserLendReceiptAmounts
 from .lend_get_by_asset_response import LendGetByAssetResponse as LendGetByAssetResponse
 from .borrow_get_portfolio_params import BorrowGetPortfolioParams as BorrowGetPortfolioParams
 from .borrow_get_portfolio_response import BorrowGetPortfolioResponse as BorrowGetPortfolioResponse

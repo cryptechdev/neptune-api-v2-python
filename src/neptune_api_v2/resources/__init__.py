@@ -8,6 +8,14 @@ from .nept import (
     NeptResourceWithStreamingResponse,
     AsyncNeptResourceWithStreamingResponse,
 )
+from .swap import (
+    SwapResource,
+    AsyncSwapResource,
+    SwapResourceWithRawResponse,
+    AsyncSwapResourceWithRawResponse,
+    SwapResourceWithStreamingResponse,
+    AsyncSwapResourceWithStreamingResponse,
+)
 from .user import (
     UserResource,
     AsyncUserResource,
@@ -100,4 +108,10 @@ __all__ = [
     "AsyncIntegrationsResourceWithRawResponse",
     "IntegrationsResourceWithStreamingResponse",
     "AsyncIntegrationsResourceWithStreamingResponse",
+    "SwapResource",
+    "AsyncSwapResource",
+    "SwapResourceWithRawResponse",
+    "AsyncSwapResourceWithRawResponse",
+    "SwapResourceWithStreamingResponse",
+    "AsyncSwapResourceWithStreamingResponse",
 ]

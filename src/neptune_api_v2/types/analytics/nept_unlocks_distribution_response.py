@@ -13,8 +13,6 @@ class Data(BaseModel):
 
 
 class NeptUnlocksDistributionResponse(BaseModel):
-    """Object data success response"""
-
     data: Data
 
     error: None = None

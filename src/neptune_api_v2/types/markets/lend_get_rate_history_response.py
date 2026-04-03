@@ -7,8 +7,6 @@ __all__ = ["LendGetRateHistoryResponse"]
 
 
 class LendGetRateHistoryResponse(BaseModel):
-    """Object data success response"""
-
     data: AssetRateHistory
     """Historical rates for assets"""
 

@@ -14,9 +14,7 @@ class ExtraText(BaseModel):
     Will not be null when query param `with_text` is `true`.
     """
 
-    debt_sum: str
-
-    interest_sum: str
+    balance_sum: str
 
     principal_sum: str
 
@@ -29,9 +27,10 @@ class ExtraValueExtraText(BaseModel):
     Will not be null when query params `with_text` and `with_value` are `true`.
     """
 
-    debt_sum: str
+    balance_sum: str
 
-    interest_sum: str
+    price: str
+    """Text representation of price"""
 
     principal_sum: str
 
@@ -48,13 +47,20 @@ class ExtraValue(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was specified as well.
     """
 
-    debt_sum: str
+    balance_sum: str
 
     extra: ExtraValueExtra
 
-    interest_sum: str
+    price: str
+    """Price used in value calculations"""
 
     principal_sum: str
 
@@ -70,26 +76,23 @@ class Extra(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used
+    in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was
+    specified as well.
     """
 
 
 class BorrowDebtState(BaseModel):
-    debt_sum: str
-    """Sum open debt amount (this is simply the principal sum + interest sum)"""
+    balance_sum: str
 
     extra: Extra
 
-    interest_sum: str
-    """
-    Sum of accrued interest for all open debts (those which have not yet been
-    repaid)
-    """
-
     principal_sum: str
-    """
-    Sum of initial amount borrowed for all open debts (those which have not yet been
-    repaid)
-    """
 
     time_last_distributed_interest: datetime
     """Timestamp used to keep track of the last time interest was distributed."""

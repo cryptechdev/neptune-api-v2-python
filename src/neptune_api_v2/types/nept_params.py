@@ -3,6 +3,7 @@
 from typing import List, Optional
 
 from .._models import BaseModel
+from .asset_info import AssetInfo
 from .staking_pool_params import StakingPoolParams
 
 __all__ = [
@@ -35,6 +36,9 @@ class ExtraValueExtraText(BaseModel):
 
     emission_rate: str
 
+    price: str
+    """Text representation of price"""
+
 
 class ExtraValueExtra(BaseModel):
     text: Optional[ExtraValueExtraText] = None
@@ -48,11 +52,20 @@ class ExtraValue(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was specified as well.
     """
 
     emission_rate: str
 
     extra: ExtraValueExtra
+
+    price: str
+    """Price used in value calculations"""
 
 
 class Extra(BaseModel):
@@ -66,6 +79,14 @@ class Extra(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used
+    in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was
+    specified as well.
     """
 
 
@@ -89,7 +110,7 @@ class StakingPoolExtra(BaseModel):
 
 
 class StakingPool(BaseModel):
-    """Merges `StakingPool` with `StakingPoolParams`"""
+    """Staking pool contents along with associated pool params"""
 
     duration: int
     """The lockup duration for this pool in seconds"""
@@ -104,13 +125,16 @@ class StakingPool(BaseModel):
 
 
 class NeptParams(BaseModel):
+    asset_info: AssetInfo
+    """Asset identifiers with associated metadata"""
+
     emission_rate: str
     """The emission rate of NEPT in tokens per year"""
 
     extra: Extra
 
     staking_pools: List[StakingPool]
-    """Staking pools (pool params are included)"""
+    """Staking pools"""
 
     tokens_per_weight: int
     """Weight:token scaling factor

@@ -24,6 +24,9 @@ class ExtraValueExtraText(BaseModel):
 
     amount: str
 
+    price: str
+    """Text representation of price"""
+
 
 class ExtraValueExtra(BaseModel):
     text: Optional[ExtraValueExtraText] = None
@@ -37,11 +40,20 @@ class ExtraValue(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was specified as well.
     """
 
     amount: str
 
     extra: ExtraValueExtra
+
+    price: str
+    """Price used in value calculations"""
 
 
 class Extra(BaseModel):
@@ -55,10 +67,25 @@ class Extra(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used
+    in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was
+    specified as well.
     """
 
 
 class UserCollateralAccountPool(BaseModel):
+    """Associates a subaccount's index with it's inner allocations for a given asset.
+
+    This type is identical to `UserCollateralAssetPool`, except the asset association is interchanged for an account index.
+
+    Typically used in contexts where multiple subaccounts with a shared underlying asset are batched together.
+    """
+
     amount: str
     """Amount of this asset which is actively collateralized"""
 

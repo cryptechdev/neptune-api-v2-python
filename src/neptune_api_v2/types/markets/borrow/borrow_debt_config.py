@@ -26,7 +26,10 @@ class ExtraValueExtraText(BaseModel):
     Will not be null when query params `with_text` and `with_value` are `true`.
     """
 
-    borrow_cap: str
+    borrow_cap: Optional[str] = None
+
+    price: Optional[str] = None
+    """Text representation of price"""
 
 
 class ExtraValueExtra(BaseModel):
@@ -41,11 +44,20 @@ class ExtraValue(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was specified as well.
     """
 
     borrow_cap: Optional[str] = None
 
     extra: ExtraValueExtra
+
+    price: str
+    """Price used in value calculations"""
 
 
 class Extra(BaseModel):
@@ -59,6 +71,14 @@ class Extra(BaseModel):
     """USD values for the corresponding amounts above.
 
     Will not be null when query param `with_value` is `true`.
+
+    ### Note
+
+    This variant group contains an additional `price` field (set to the number used
+    in value calculation).
+
+    The embedded text group will contain the text variant if `with_text` was
+    specified as well.
     """
 
 

@@ -16,12 +16,9 @@ The full API of this library can be found in [api.md](api.md).
 ## Installation
 
 ```sh
-# install from the production repo
-pip install git+ssh://git@github.com/cryptechdev/neptune-api-v2-python.git
+# install from PyPI
+pip install neptune_api_v2
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install neptune_api_v2`
 
 ## Usage
 
@@ -32,8 +29,11 @@ from neptune_api_v2 import NeptuneAPIV2
 
 client = NeptuneAPIV2()
 
-response = client.status.check_health()
-print(response.status)
+response = client.markets.get_overview(
+    with_text=True,
+    with_value=True,
+)
+print(response.data)
 ```
 
 ## Async usage
@@ -48,8 +48,11 @@ client = AsyncNeptuneAPIV2()
 
 
 async def main() -> None:
-    response = await client.status.check_health()
-    print(response.status)
+    response = await client.markets.get_overview(
+        with_text=True,
+        with_value=True,
+    )
+    print(response.data)
 
 
 asyncio.run(main())
@@ -64,8 +67,8 @@ By default, the async client uses `httpx` for HTTP requests. However, for improv
 You can enable this by installing `aiohttp`:
 
 ```sh
-# install from the production repo
-pip install 'neptune_api_v2[aiohttp] @ git+ssh://git@github.com/cryptechdev/neptune-api-v2-python.git'
+# install from PyPI
+pip install neptune_api_v2[aiohttp]
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
@@ -80,8 +83,11 @@ async def main() -> None:
     async with AsyncNeptuneAPIV2(
         http_client=DefaultAioHttpClient(),
     ) as client:
-        response = await client.status.check_health()
-        print(response.status)
+        response = await client.markets.get_overview(
+            with_text=True,
+            with_value=True,
+        )
+        print(response.data)
 
 
 asyncio.run(main())
@@ -95,6 +101,77 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 - Converting to a dictionary, `model.to_dict()`
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
+
+## Pagination
+
+List methods in the Neptune API V2 API are paginated.
+
+This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+
+```python
+from neptune_api_v2 import NeptuneAPIV2
+
+client = NeptuneAPIV2()
+
+all_users = []
+# Automatically fetches more pages as needed.
+for user in client.user.get_tx_history(
+    address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
+):
+    # Do something with user here
+    all_users.append(user)
+print(all_users)
+```
+
+Or, asynchronously:
+
+```python
+import asyncio
+from neptune_api_v2 import AsyncNeptuneAPIV2
+
+client = AsyncNeptuneAPIV2()
+
+
+async def main() -> None:
+    all_users = []
+    # Iterate through items across all pages, issuing requests as needed.
+    async for user in client.user.get_tx_history(
+        address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
+    ):
+        all_users.append(user)
+    print(all_users)
+
+
+asyncio.run(main())
+```
+
+Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
+
+```python
+first_page = await client.user.get_tx_history(
+    address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
+)
+if first_page.has_next_page():
+    print(f"will fetch next page using these details: {first_page.next_page_info()}")
+    next_page = await first_page.get_next_page()
+    print(f"number of items we just fetched: {len(next_page.data)}")
+
+# Remove `await` for non-async usage.
+```
+
+Or just work directly with the returned data:
+
+```python
+first_page = await client.user.get_tx_history(
+    address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
+)
+
+print(f"next page cursor: {first_page.prev_event_uuid}")  # => "next page cursor: ..."
+for user in first_page.data:
+    print(user.event_uuid)
+
+# Remove `await` for non-async usage.
+```
 
 ## Handling errors
 
@@ -112,7 +189,7 @@ from neptune_api_v2 import NeptuneAPIV2
 client = NeptuneAPIV2()
 
 try:
-    client.status.check_health()
+    client.markets.get_overview()
 except neptune_api_v2.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -155,7 +232,7 @@ client = NeptuneAPIV2(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).status.check_health()
+client.with_options(max_retries=5).markets.get_overview()
 ```
 
 ### Timeouts
@@ -178,7 +255,7 @@ client = NeptuneAPIV2(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).status.check_health()
+client.with_options(timeout=5.0).markets.get_overview()
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -219,11 +296,11 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from neptune_api_v2 import NeptuneAPIV2
 
 client = NeptuneAPIV2()
-response = client.status.with_raw_response.check_health()
+response = client.markets.with_raw_response.get_overview()
 print(response.headers.get('X-My-Header'))
 
-status = response.parse()  # get the object that `status.check_health()` would have returned
-print(status.status)
+market = response.parse()  # get the object that `markets.get_overview()` would have returned
+print(market.data)
 ```
 
 These methods return an [`APIResponse`](https://github.com/cryptechdev/neptune-api-v2-python/tree/main/src/neptune_api_v2/_response.py) object.
@@ -237,7 +314,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.status.with_streaming_response.check_health() as response:
+with client.markets.with_streaming_response.get_overview() as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():

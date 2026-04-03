@@ -10,9 +10,10 @@ import pytest
 from tests.utils import assert_matches_type
 from neptune_api_v2 import NeptuneAPIV2, AsyncNeptuneAPIV2
 from neptune_api_v2.types import (
+    UserTx,
     UserGetUserResponse,
-    UserGetTxHistoryResponse,
 )
+from neptune_api_v2.pagination import SyncTxHistoryPage, AsyncTxHistoryPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +27,7 @@ class TestUser:
         user = client.user.get_tx_history(
             address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
-        assert_matches_type(UserGetTxHistoryResponse, user, path=["response"])
+        assert_matches_type(SyncTxHistoryPage[UserTx], user, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -40,7 +41,7 @@ class TestUser:
             with_text=True,
             with_value=True,
         )
-        assert_matches_type(UserGetTxHistoryResponse, user, path=["response"])
+        assert_matches_type(SyncTxHistoryPage[UserTx], user, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -52,7 +53,7 @@ class TestUser:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(UserGetTxHistoryResponse, user, path=["response"])
+        assert_matches_type(SyncTxHistoryPage[UserTx], user, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -64,7 +65,7 @@ class TestUser:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(UserGetTxHistoryResponse, user, path=["response"])
+            assert_matches_type(SyncTxHistoryPage[UserTx], user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -141,7 +142,7 @@ class TestAsyncUser:
         user = await async_client.user.get_tx_history(
             address="injvalcons1a03k0ztfyjnd70apawva003pkh0adqmau0a9q0",
         )
-        assert_matches_type(UserGetTxHistoryResponse, user, path=["response"])
+        assert_matches_type(AsyncTxHistoryPage[UserTx], user, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -155,7 +156,7 @@ class TestAsyncUser:
             with_text=True,
             with_value=True,
         )
-        assert_matches_type(UserGetTxHistoryResponse, user, path=["response"])
+        assert_matches_type(AsyncTxHistoryPage[UserTx], user, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -167,7 +168,7 @@ class TestAsyncUser:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(UserGetTxHistoryResponse, user, path=["response"])
+        assert_matches_type(AsyncTxHistoryPage[UserTx], user, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
@@ -179,7 +180,7 @@ class TestAsyncUser:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(UserGetTxHistoryResponse, user, path=["response"])
+            assert_matches_type(AsyncTxHistoryPage[UserTx], user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

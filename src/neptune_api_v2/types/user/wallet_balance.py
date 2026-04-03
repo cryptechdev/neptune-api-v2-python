@@ -8,6 +8,8 @@ __all__ = ["WalletBalance"]
 
 
 class WalletBalance(BaseModel):
+    """Asset and balance contents for a given wallet"""
+
     asset: AssetSpec
     """Provides a unique identifier for an asset for use throughout the Neptune API.
 
