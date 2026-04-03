@@ -389,20 +389,6 @@ Methods:
 
 - <code title="get /api/v1/analytics/nept/unlocks-distribution">client.analytics.nept.<a href="./src/neptune_api_v2/resources/analytics/nept.py">unlocks_distribution</a>(\*\*<a href="src/neptune_api_v2/types/analytics/nept_unlocks_distribution_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/analytics/nept_unlocks_distribution_response.py">NeptUnlocksDistributionResponse</a></code>
 
-# Integrations
-
-## Bantr
-
-Types:
-
-```python
-from neptune_api_v2.types.integrations import BantrGetTransactionsResponse
-```
-
-Methods:
-
-- <code title="get /api/v1/integrations/bantr/transactions">client.integrations.bantr.<a href="./src/neptune_api_v2/resources/integrations/bantr.py">get_transactions</a>(\*\*<a href="src/neptune_api_v2/types/integrations/bantr_get_transactions_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/integrations/bantr_get_transactions_response.py">BantrGetTransactionsResponse</a></code>
-
 # Swap
 
 ## Routes

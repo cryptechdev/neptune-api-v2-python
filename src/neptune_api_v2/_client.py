@@ -31,7 +31,7 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import nept, swap, user, assets, status, markets, analytics, integrations
+    from .resources import nept, swap, user, assets, status, markets, analytics
     from .resources.nept import NeptResource, AsyncNeptResource
     from .resources.assets import AssetsResource, AsyncAssetsResource
     from .resources.status import StatusResource, AsyncStatusResource
@@ -39,7 +39,6 @@ if TYPE_CHECKING:
     from .resources.user.user import UserResource, AsyncUserResource
     from .resources.markets.markets import MarketsResource, AsyncMarketsResource
     from .resources.analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
-    from .resources.integrations.integrations import IntegrationsResource, AsyncIntegrationsResource
 
 __all__ = [
     "Timeout",
@@ -130,12 +129,6 @@ class NeptuneAPIV2(SyncAPIClient):
         from .resources.analytics import AnalyticsResource
 
         return AnalyticsResource(self)
-
-    @cached_property
-    def integrations(self) -> IntegrationsResource:
-        from .resources.integrations import IntegrationsResource
-
-        return IntegrationsResource(self)
 
     @cached_property
     def swap(self) -> SwapResource:
@@ -327,12 +320,6 @@ class AsyncNeptuneAPIV2(AsyncAPIClient):
         return AsyncAnalyticsResource(self)
 
     @cached_property
-    def integrations(self) -> AsyncIntegrationsResource:
-        from .resources.integrations import AsyncIntegrationsResource
-
-        return AsyncIntegrationsResource(self)
-
-    @cached_property
     def swap(self) -> AsyncSwapResource:
         from .resources.swap import AsyncSwapResource
 
@@ -486,12 +473,6 @@ class NeptuneAPIV2WithRawResponse:
         return AnalyticsResourceWithRawResponse(self._client.analytics)
 
     @cached_property
-    def integrations(self) -> integrations.IntegrationsResourceWithRawResponse:
-        from .resources.integrations import IntegrationsResourceWithRawResponse
-
-        return IntegrationsResourceWithRawResponse(self._client.integrations)
-
-    @cached_property
     def swap(self) -> swap.SwapResourceWithRawResponse:
         from .resources.swap import SwapResourceWithRawResponse
 
@@ -539,12 +520,6 @@ class AsyncNeptuneAPIV2WithRawResponse:
         from .resources.analytics import AsyncAnalyticsResourceWithRawResponse
 
         return AsyncAnalyticsResourceWithRawResponse(self._client.analytics)
-
-    @cached_property
-    def integrations(self) -> integrations.AsyncIntegrationsResourceWithRawResponse:
-        from .resources.integrations import AsyncIntegrationsResourceWithRawResponse
-
-        return AsyncIntegrationsResourceWithRawResponse(self._client.integrations)
 
     @cached_property
     def swap(self) -> swap.AsyncSwapResourceWithRawResponse:
@@ -596,12 +571,6 @@ class NeptuneAPIV2WithStreamedResponse:
         return AnalyticsResourceWithStreamingResponse(self._client.analytics)
 
     @cached_property
-    def integrations(self) -> integrations.IntegrationsResourceWithStreamingResponse:
-        from .resources.integrations import IntegrationsResourceWithStreamingResponse
-
-        return IntegrationsResourceWithStreamingResponse(self._client.integrations)
-
-    @cached_property
     def swap(self) -> swap.SwapResourceWithStreamingResponse:
         from .resources.swap import SwapResourceWithStreamingResponse
 
@@ -649,12 +618,6 @@ class AsyncNeptuneAPIV2WithStreamedResponse:
         from .resources.analytics import AsyncAnalyticsResourceWithStreamingResponse
 
         return AsyncAnalyticsResourceWithStreamingResponse(self._client.analytics)
-
-    @cached_property
-    def integrations(self) -> integrations.AsyncIntegrationsResourceWithStreamingResponse:
-        from .resources.integrations import AsyncIntegrationsResourceWithStreamingResponse
-
-        return AsyncIntegrationsResourceWithStreamingResponse(self._client.integrations)
 
     @cached_property
     def swap(self) -> swap.AsyncSwapResourceWithStreamingResponse:
