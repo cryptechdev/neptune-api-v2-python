@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.0 (2026-04-04)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/cryptechdev/neptune-api-v2-python/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* **api:** api update ([bf139f9](https://github.com/cryptechdev/neptune-api-v2-python/commit/bf139f9f726989199d7838e8194aca5245fd8842))
+* **api:** remove bantr integration endpoint ([5271ab6](https://github.com/cryptechdev/neptune-api-v2-python/commit/5271ab6f22c8b68e451cb7ada4ff3c7e587f8232))
+
 ## 0.2.0 (2026-04-03)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/cryptechdev/neptune-api-v2-python/compare/v0.1.0...v0.2.0)
