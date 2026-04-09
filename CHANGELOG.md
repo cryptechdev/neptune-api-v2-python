@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.4.0 (2026-04-09)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/cryptechdev/neptune-api-v2-python/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* **api:** API backend sync ([404a198](https://github.com/cryptechdev/neptune-api-v2-python/commit/404a198d748b43053c14018ec69bac544a93bba9))
+
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([f3dc171](https://github.com/cryptechdev/neptune-api-v2-python/commit/f3dc171474cb886cbf6b48d39d813ffe378583f0))
+
 ## 0.3.0 (2026-04-04)
 
 Full Changelog: [v0.2.0...v0.3.0](https://github.com/cryptechdev/neptune-api-v2-python/compare/v0.2.0...v0.3.0)
