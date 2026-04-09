@@ -152,7 +152,7 @@ class HistoryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HistoryGetLoansOriginatedByAssetResponse:
         """
-        Get cumulative lending value history assets
+        Get loans originated history
 
         Args:
           end: End timestamp for interval range (inclusive)
@@ -347,7 +347,7 @@ class AsyncHistoryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HistoryGetLoansOriginatedByAssetResponse:
         """
-        Get cumulative lending value history assets
+        Get loans originated history
 
         Args:
           end: End timestamp for interval range (inclusive)

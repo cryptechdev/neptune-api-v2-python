@@ -1,29 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-
 from ..._models import BaseModel
-from .wallet_balance import WalletBalance
+from .user_wallet_portfolio import UserWalletPortfolio
 
-__all__ = ["WalletGetBalancesResponse", "Data"]
-
-
-class Data(BaseModel):
-    balances: List[WalletBalance]
-    """Array of each wallet balance"""
-
-    total_value: Optional[str] = None
-    """
-    Sum value in USD. Guaranteed null if value calculation is disabled / guaranteed
-    non-null if calculation is enabled.
-
-    **NOTE:** this only accounts for assets which are internally known & tracked.
-    See the `/assets` endpoint for a list of supported assets.
-    """
+__all__ = ["WalletGetBalancesResponse"]
 
 
 class WalletGetBalancesResponse(BaseModel):
-    data: Data
+    data: UserWalletPortfolio
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""
