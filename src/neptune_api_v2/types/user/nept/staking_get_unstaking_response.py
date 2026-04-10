@@ -1,31 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-
 from ...._models import BaseModel
-from .user_stake_unbonding_entry import UserStakeUnbondingEntry
+from .user_stake_unbonding import UserStakeUnbonding
 
-__all__ = ["StakingGetUnstakingResponse", "Data"]
-
-
-class Data(BaseModel):
-    amount_sum: str
-    """Total amount of all unbond entries
-
-    **NOTE:** this value is affected by active filters, if any (e.g. filtering over
-    account index)
-    """
-
-    contents: List[UserStakeUnbondingEntry]
-    """Unbonding/unstake entries
-
-    **NOTE:** cascade unbondings from pool >= 2 are contained in the bondings list
-    of the lower adjacent pool from which the unbond occurred.
-    """
+__all__ = ["StakingGetUnstakingResponse"]
 
 
 class StakingGetUnstakingResponse(BaseModel):
-    data: Data
+    data: UserStakeUnbonding
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

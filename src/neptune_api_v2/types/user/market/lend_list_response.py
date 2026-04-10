@@ -1,7 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-
 from ...._models import BaseModel
 from .user_lend_market import UserLendMarket
 
@@ -9,10 +7,7 @@ __all__ = ["LendListResponse"]
 
 
 class LendListResponse(BaseModel):
-    count: int
-    """Total number of objects irrespective of any pagination parameters."""
-
-    data: List[UserLendMarket]
+    data: UserLendMarket
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""
