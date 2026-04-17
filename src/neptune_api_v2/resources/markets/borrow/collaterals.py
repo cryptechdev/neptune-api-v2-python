@@ -55,7 +55,7 @@ class CollateralsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollateralListResponse:
         """
-        Get borrowing collateral markets
+        Get borrowing collateral markets overview
 
         Args:
           with_text: Include text variation fields
@@ -172,7 +172,7 @@ class AsyncCollateralsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollateralListResponse:
         """
-        Get borrowing collateral markets
+        Get borrowing collateral markets overview
 
         Args:
           with_text: Include text variation fields

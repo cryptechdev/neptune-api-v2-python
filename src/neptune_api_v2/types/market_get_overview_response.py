@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 
 from .tvl import Tvl
 from .._models import BaseModel
@@ -8,7 +8,50 @@ from .markets.lend_market import LendMarket
 from .global_market_config import GlobalMarketConfig
 from .markets.borrow_market_overview import BorrowMarketOverview
 
-__all__ = ["MarketGetOverviewResponse", "Data"]
+__all__ = [
+    "MarketGetOverviewResponse",
+    "Data",
+    "DataLend",
+    "DataLendSupply",
+    "DataLendSupplyExtra",
+    "DataLendSupplyExtraText",
+]
+
+
+class DataLendSupplyExtraText(BaseModel):
+    """Human-readable field variants.
+
+    Will not be null when query param `with_text` is `true`.
+    """
+
+    principal: str
+
+
+class DataLendSupplyExtra(BaseModel):
+    text: Optional[DataLendSupplyExtraText] = None
+    """Human-readable field variants.
+
+    Will not be null when query param `with_text` is `true`.
+    """
+
+
+class DataLendSupply(BaseModel):
+    """Supply breakdown for lending markets"""
+
+    extra: DataLendSupplyExtra
+
+    principal: str
+    """Sum USD value of lending principal"""
+
+
+class DataLend(BaseModel):
+    """Lending markets overview"""
+
+    contents: List[LendMarket]
+    """Lending markets"""
+
+    supply: DataLendSupply
+    """Supply breakdown for lending markets"""
 
 
 class Data(BaseModel):
@@ -18,11 +61,11 @@ class Data(BaseModel):
     global_config: GlobalMarketConfig
     """Market runtime parameters"""
 
-    lend: List[LendMarket]
-    """Current lending markets"""
+    lend: DataLend
+    """Lending markets overview"""
 
     tvl: Tvl
-    """Market TVL"""
+    """Oveerall market TVL"""
 
 
 class MarketGetOverviewResponse(BaseModel):

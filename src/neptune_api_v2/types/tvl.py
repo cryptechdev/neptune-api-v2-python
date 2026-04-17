@@ -13,11 +13,9 @@ class ExtraText(BaseModel):
     Will not be null when query param `with_text` is `true`.
     """
 
-    collateral_value: str
+    net_tvl: str
 
-    lend_value: str
-
-    total_value: str
+    tvl: str
 
 
 class Extra(BaseModel):
@@ -29,13 +27,13 @@ class Extra(BaseModel):
 
 
 class Tvl(BaseModel):
-    collateral_value: str
-    """Market TVL in USD - collateral portion"""
-
     extra: Extra
 
-    lend_value: str
-    """Market TVL in USD - lend portion"""
+    net_tvl: str
+    """Market net TVL in USD (equivalent to `tvl - borrow.debts.supply.balance`)"""
 
-    total_value: str
-    """Market TVL in USD"""
+    tvl: str
+    """
+    Market TVL in USD (equivalent to
+    `borrow.collaterals.supply.non_receipt.balance + lend.supply.principal`)
+    """

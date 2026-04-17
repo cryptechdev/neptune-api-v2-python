@@ -15,7 +15,7 @@ class ExtraText(BaseModel):
 
     balance: str
 
-    collateral_sum: str
+    shares: str
 
 
 class ExtraValueExtraText(BaseModel):
@@ -26,10 +26,10 @@ class ExtraValueExtraText(BaseModel):
 
     balance: str
 
-    collateral_sum: str
-
     price: str
     """Text representation of price"""
+
+    shares: str
 
 
 class ExtraValueExtra(BaseModel):
@@ -54,12 +54,12 @@ class ExtraValue(BaseModel):
 
     balance: str
 
-    collateral_sum: str
-
     extra: ExtraValueExtra
 
     price: str
     """Price used in value calculations"""
+
+    shares: str
 
 
 class Extra(BaseModel):
@@ -87,7 +87,7 @@ class Extra(BaseModel):
 class BorrowCollateralState(BaseModel):
     balance: str
 
-    collateral_sum: str
-    """Total amount of this asset which is actively collateralized"""
-
     extra: Extra
+
+    shares: str
+    """Total amount of this asset which is actively collateralized"""

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.0 (2026-04-17)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/cryptechdev/neptune-api-v2-python/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* **api:** rename `/markets/tvl` endpoint, fix market state pool fields, nest market listings under `content` ([9e71b8b](https://github.com/cryptechdev/neptune-api-v2-python/commit/9e71b8b2f76b4c84bd08ac74bef391a67c5270f1))
+
 ## 0.5.0 (2026-04-17)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/cryptechdev/neptune-api-v2-python/compare/v0.4.0...v0.5.0)

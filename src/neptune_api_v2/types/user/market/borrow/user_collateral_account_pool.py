@@ -13,7 +13,9 @@ class ExtraText(BaseModel):
     Will not be null when query param `with_text` is `true`.
     """
 
-    amount: str
+    principal: str
+
+    shares: str
 
 
 class ExtraValueExtraText(BaseModel):
@@ -22,10 +24,12 @@ class ExtraValueExtraText(BaseModel):
     Will not be null when query params `with_text` and `with_value` are `true`.
     """
 
-    amount: str
-
     price: str
     """Text representation of price"""
+
+    principal: str
+
+    shares: str
 
 
 class ExtraValueExtra(BaseModel):
@@ -48,12 +52,14 @@ class ExtraValue(BaseModel):
     The embedded text group will contain the text variant if `with_text` was specified as well.
     """
 
-    amount: str
-
     extra: ExtraValueExtra
 
     price: str
     """Price used in value calculations"""
+
+    principal: str
+
+    shares: str
 
 
 class Extra(BaseModel):
@@ -86,10 +92,12 @@ class UserCollateralAccountPool(BaseModel):
     Typically used in contexts where multiple subaccounts with a shared underlying asset are batched together.
     """
 
-    amount: str
-    """Amount of this asset which is actively collateralized"""
-
     extra: Extra
 
     index: int
     """Account index"""
+
+    principal: str
+    """Amount of this asset which is actively collateralized"""
+
+    shares: str
