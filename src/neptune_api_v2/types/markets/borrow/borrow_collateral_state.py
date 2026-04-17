@@ -13,6 +13,8 @@ class ExtraText(BaseModel):
     Will not be null when query param `with_text` is `true`.
     """
 
+    balance: str
+
     collateral_sum: str
 
 
@@ -21,6 +23,8 @@ class ExtraValueExtraText(BaseModel):
 
     Will not be null when query params `with_text` and `with_value` are `true`.
     """
+
+    balance: str
 
     collateral_sum: str
 
@@ -47,6 +51,8 @@ class ExtraValue(BaseModel):
 
     The embedded text group will contain the text variant if `with_text` was specified as well.
     """
+
+    balance: str
 
     collateral_sum: str
 

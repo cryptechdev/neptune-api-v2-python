@@ -13,6 +13,7 @@ from .lend import (
     AsyncLendResourceWithStreamingResponse,
 )
 from ...types import (
+    market_get_tvl_params,
     market_get_merged_params,
     market_get_params_params,
     market_get_overview_params,
@@ -37,6 +38,7 @@ from .borrow.borrow import (
     AsyncBorrowResourceWithStreamingResponse,
 )
 from ..._base_client import make_request_options
+from ...types.market_get_tvl_response import MarketGetTvlResponse
 from ...types.market_get_merged_response import MarketGetMergedResponse
 from ...types.market_get_params_response import MarketGetParamsResponse
 from ...types.market_get_overview_response import MarketGetOverviewResponse
@@ -252,6 +254,43 @@ class MarketsResource(SyncAPIResource):
             cast_to=MarketGetParamsResponse,
         )
 
+    def get_tvl(
+        self,
+        *,
+        with_text: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MarketGetTvlResponse:
+        """
+        Get market TVL
+
+        Args:
+          with_text: Include text variation fields
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/api/v1/markets/tvl",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"with_text": with_text}, market_get_tvl_params.MarketGetTvlParams),
+            ),
+            cast_to=MarketGetTvlResponse,
+        )
+
 
 class AsyncMarketsResource(AsyncAPIResource):
     @cached_property
@@ -462,6 +501,43 @@ class AsyncMarketsResource(AsyncAPIResource):
             cast_to=MarketGetParamsResponse,
         )
 
+    async def get_tvl(
+        self,
+        *,
+        with_text: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> MarketGetTvlResponse:
+        """
+        Get market TVL
+
+        Args:
+          with_text: Include text variation fields
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/api/v1/markets/tvl",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"with_text": with_text}, market_get_tvl_params.MarketGetTvlParams),
+            ),
+            cast_to=MarketGetTvlResponse,
+        )
+
 
 class MarketsResourceWithRawResponse:
     def __init__(self, markets: MarketsResource) -> None:
@@ -478,6 +554,9 @@ class MarketsResourceWithRawResponse:
         )
         self.get_params = to_raw_response_wrapper(
             markets.get_params,
+        )
+        self.get_tvl = to_raw_response_wrapper(
+            markets.get_tvl,
         )
 
     @cached_property
@@ -505,6 +584,9 @@ class AsyncMarketsResourceWithRawResponse:
         self.get_params = async_to_raw_response_wrapper(
             markets.get_params,
         )
+        self.get_tvl = async_to_raw_response_wrapper(
+            markets.get_tvl,
+        )
 
     @cached_property
     def lend(self) -> AsyncLendResourceWithRawResponse:
@@ -531,6 +613,9 @@ class MarketsResourceWithStreamingResponse:
         self.get_params = to_streamed_response_wrapper(
             markets.get_params,
         )
+        self.get_tvl = to_streamed_response_wrapper(
+            markets.get_tvl,
+        )
 
     @cached_property
     def lend(self) -> LendResourceWithStreamingResponse:
@@ -556,6 +641,9 @@ class AsyncMarketsResourceWithStreamingResponse:
         )
         self.get_params = async_to_streamed_response_wrapper(
             markets.get_params,
+        )
+        self.get_tvl = async_to_streamed_response_wrapper(
+            markets.get_tvl,
         )
 
     @cached_property
