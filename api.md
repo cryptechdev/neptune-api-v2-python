@@ -63,10 +63,12 @@ from neptune_api_v2.types import (
     GlobalMarketConfig,
     MarketRate,
     MergedMarket,
+    Tvl,
     MarketGetMergedResponse,
     MarketGetMergedByAssetResponse,
     MarketGetOverviewResponse,
     MarketGetParamsResponse,
+    MarketGetTvlResponse,
 )
 ```
 
@@ -76,6 +78,7 @@ Methods:
 - <code title="get /api/v1/markets/merged/lookup">client.markets.<a href="./src/neptune_api_v2/resources/markets/markets.py">get_merged_by_asset</a>(\*\*<a href="src/neptune_api_v2/types/market_get_merged_by_asset_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/market_get_merged_by_asset_response.py">MarketGetMergedByAssetResponse</a></code>
 - <code title="get /api/v1/markets">client.markets.<a href="./src/neptune_api_v2/resources/markets/markets.py">get_overview</a>(\*\*<a href="src/neptune_api_v2/types/market_get_overview_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/market_get_overview_response.py">MarketGetOverviewResponse</a></code>
 - <code title="get /api/v1/markets/config">client.markets.<a href="./src/neptune_api_v2/resources/markets/markets.py">get_params</a>(\*\*<a href="src/neptune_api_v2/types/market_get_params_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/market_get_params_response.py">MarketGetParamsResponse</a></code>
+- <code title="get /api/v1/markets/tvl">client.markets.<a href="./src/neptune_api_v2/resources/markets/markets.py">get_tvl</a>(\*\*<a href="src/neptune_api_v2/types/market_get_tvl_params.py">params</a>) -> <a href="./src/neptune_api_v2/types/market_get_tvl_response.py">MarketGetTvlResponse</a></code>
 
 ## Lend
 
