@@ -14,9 +14,9 @@ class ExtraText(BaseModel):
     Will not be null when query param `with_text` is `true`.
     """
 
-    balance_sum: str
+    balance: str
 
-    principal_sum: str
+    shares: str
 
     time_last_distributed_interest: str
 
@@ -27,12 +27,12 @@ class ExtraValueExtraText(BaseModel):
     Will not be null when query params `with_text` and `with_value` are `true`.
     """
 
-    balance_sum: str
+    balance: str
 
     price: str
     """Text representation of price"""
 
-    principal_sum: str
+    shares: str
 
 
 class ExtraValueExtra(BaseModel):
@@ -55,14 +55,14 @@ class ExtraValue(BaseModel):
     The embedded text group will contain the text variant if `with_text` was specified as well.
     """
 
-    balance_sum: str
+    balance: str
 
     extra: ExtraValueExtra
 
     price: str
     """Price used in value calculations"""
 
-    principal_sum: str
+    shares: str
 
 
 class Extra(BaseModel):
@@ -88,11 +88,11 @@ class Extra(BaseModel):
 
 
 class BorrowDebtState(BaseModel):
-    balance_sum: str
+    balance: str
 
     extra: Extra
 
-    principal_sum: str
+    shares: str
 
     time_last_distributed_interest: datetime
     """Timestamp used to keep track of the last time interest was distributed."""

@@ -13,7 +13,7 @@ class ExtraText(BaseModel):
     Will not be null when query param `with_text` is `true`.
     """
 
-    principal_sum: str
+    principal: str
 
     receipt_total_supply: str
 
@@ -29,7 +29,7 @@ class ExtraValueExtraText(BaseModel):
     price: str
     """Text representation of price"""
 
-    principal_sum: str
+    principal: str
 
 
 class ExtraValueExtra(BaseModel):
@@ -57,7 +57,7 @@ class ExtraValue(BaseModel):
     price: str
     """Price used in value calculations"""
 
-    principal_sum: str
+    principal: str
 
 
 class Extra(BaseModel):
@@ -85,7 +85,7 @@ class Extra(BaseModel):
 class LendMarketState(BaseModel):
     extra: Extra
 
-    principal_sum: str
+    principal: str
     """The total amount of the asset deposited for lending in the market."""
 
     receipt_total_supply: str

@@ -1,11 +1,9 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-
 from .tvl import Tvl
 from .._models import BaseModel
-from .markets.lend_market import LendMarket
 from .global_market_config import GlobalMarketConfig
+from .markets.lend_overview import LendOverview
 from .markets.borrow_market_overview import BorrowMarketOverview
 
 __all__ = ["MarketGetOverviewResponse", "Data"]
@@ -18,11 +16,11 @@ class Data(BaseModel):
     global_config: GlobalMarketConfig
     """Market runtime parameters"""
 
-    lend: List[LendMarket]
-    """Current lending markets"""
+    lend: LendOverview
+    """Lending markets overview"""
 
     tvl: Tvl
-    """Market TVL"""
+    """Oveerall market TVL"""
 
 
 class MarketGetOverviewResponse(BaseModel):

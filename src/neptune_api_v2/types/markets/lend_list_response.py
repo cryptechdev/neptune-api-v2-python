@@ -1,18 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-
 from ..._models import BaseModel
-from .lend_market import LendMarket
+from .lend_overview import LendOverview
 
 __all__ = ["LendListResponse"]
 
 
 class LendListResponse(BaseModel):
-    count: int
-    """Total number of objects irrespective of any pagination parameters."""
-
-    data: List[LendMarket]
+    data: LendOverview
+    """Lending markets overview"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

@@ -1,18 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-
 from ...._models import BaseModel
-from .borrow_debt_market import BorrowDebtMarket
+from .borrow_debt_overview import BorrowDebtOverview
 
 __all__ = ["DebtListResponse"]
 
 
 class DebtListResponse(BaseModel):
-    count: int
-    """Total number of objects irrespective of any pagination parameters."""
-
-    data: List[BorrowDebtMarket]
+    data: BorrowDebtOverview
+    """Borrowing market debts overview"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

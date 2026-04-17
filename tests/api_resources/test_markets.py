@@ -10,9 +10,9 @@ import pytest
 from tests.utils import assert_matches_type
 from neptune_api_v2 import NeptuneAPIV2, AsyncNeptuneAPIV2
 from neptune_api_v2.types import (
-    MarketGetTvlResponse,
     MarketGetMergedResponse,
     MarketGetParamsResponse,
+    MarketGetSupplyResponse,
     MarketGetOverviewResponse,
     MarketGetMergedByAssetResponse,
 )
@@ -179,37 +179,37 @@ class TestMarkets:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_get_tvl(self, client: NeptuneAPIV2) -> None:
-        market = client.markets.get_tvl()
-        assert_matches_type(MarketGetTvlResponse, market, path=["response"])
+    def test_method_get_supply(self, client: NeptuneAPIV2) -> None:
+        market = client.markets.get_supply()
+        assert_matches_type(MarketGetSupplyResponse, market, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_get_tvl_with_all_params(self, client: NeptuneAPIV2) -> None:
-        market = client.markets.get_tvl(
+    def test_method_get_supply_with_all_params(self, client: NeptuneAPIV2) -> None:
+        market = client.markets.get_supply(
             with_text=True,
         )
-        assert_matches_type(MarketGetTvlResponse, market, path=["response"])
+        assert_matches_type(MarketGetSupplyResponse, market, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_get_tvl(self, client: NeptuneAPIV2) -> None:
-        response = client.markets.with_raw_response.get_tvl()
+    def test_raw_response_get_supply(self, client: NeptuneAPIV2) -> None:
+        response = client.markets.with_raw_response.get_supply()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         market = response.parse()
-        assert_matches_type(MarketGetTvlResponse, market, path=["response"])
+        assert_matches_type(MarketGetSupplyResponse, market, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_get_tvl(self, client: NeptuneAPIV2) -> None:
-        with client.markets.with_streaming_response.get_tvl() as response:
+    def test_streaming_response_get_supply(self, client: NeptuneAPIV2) -> None:
+        with client.markets.with_streaming_response.get_supply() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             market = response.parse()
-            assert_matches_type(MarketGetTvlResponse, market, path=["response"])
+            assert_matches_type(MarketGetSupplyResponse, market, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -375,36 +375,36 @@ class TestAsyncMarkets:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_get_tvl(self, async_client: AsyncNeptuneAPIV2) -> None:
-        market = await async_client.markets.get_tvl()
-        assert_matches_type(MarketGetTvlResponse, market, path=["response"])
+    async def test_method_get_supply(self, async_client: AsyncNeptuneAPIV2) -> None:
+        market = await async_client.markets.get_supply()
+        assert_matches_type(MarketGetSupplyResponse, market, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_get_tvl_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
-        market = await async_client.markets.get_tvl(
+    async def test_method_get_supply_with_all_params(self, async_client: AsyncNeptuneAPIV2) -> None:
+        market = await async_client.markets.get_supply(
             with_text=True,
         )
-        assert_matches_type(MarketGetTvlResponse, market, path=["response"])
+        assert_matches_type(MarketGetSupplyResponse, market, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_get_tvl(self, async_client: AsyncNeptuneAPIV2) -> None:
-        response = await async_client.markets.with_raw_response.get_tvl()
+    async def test_raw_response_get_supply(self, async_client: AsyncNeptuneAPIV2) -> None:
+        response = await async_client.markets.with_raw_response.get_supply()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         market = await response.parse()
-        assert_matches_type(MarketGetTvlResponse, market, path=["response"])
+        assert_matches_type(MarketGetSupplyResponse, market, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_get_tvl(self, async_client: AsyncNeptuneAPIV2) -> None:
-        async with async_client.markets.with_streaming_response.get_tvl() as response:
+    async def test_streaming_response_get_supply(self, async_client: AsyncNeptuneAPIV2) -> None:
+        async with async_client.markets.with_streaming_response.get_supply() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             market = await response.parse()
-            assert_matches_type(MarketGetTvlResponse, market, path=["response"])
+            assert_matches_type(MarketGetSupplyResponse, market, path=["response"])
 
         assert cast(Any, response.is_closed) is True

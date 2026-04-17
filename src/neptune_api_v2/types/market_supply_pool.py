@@ -4,7 +4,7 @@ from typing import Optional
 
 from .._models import BaseModel
 
-__all__ = ["Tvl", "Extra", "ExtraText"]
+__all__ = ["MarketSupplyPool", "Extra", "ExtraText"]
 
 
 class ExtraText(BaseModel):
@@ -13,9 +13,9 @@ class ExtraText(BaseModel):
     Will not be null when query param `with_text` is `true`.
     """
 
-    net_tvl: str
+    balance: str
 
-    tvl: str
+    shares: str
 
 
 class Extra(BaseModel):
@@ -26,14 +26,11 @@ class Extra(BaseModel):
     """
 
 
-class Tvl(BaseModel):
+class MarketSupplyPool(BaseModel):
+    balance: str
+    """Sum USD value of market balance"""
+
     extra: Extra
 
-    net_tvl: str
-    """Market net TVL in USD (equivalent to `tvl - borrow.debts.supply.balance`)"""
-
-    tvl: str
-    """
-    Market TVL in USD (equivalent to
-    `borrow.collaterals.supply.non_receipt.balance + lend.supply.principal`)
-    """
+    shares: str
+    """Sum USD value of market shares"""

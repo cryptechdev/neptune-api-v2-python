@@ -1,18 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-
 from ...._models import BaseModel
-from .borrow_collateral_market import BorrowCollateralMarket
+from .borrow_collateral_overview import BorrowCollateralOverview
 
 __all__ = ["CollateralListResponse"]
 
 
 class CollateralListResponse(BaseModel):
-    count: int
-    """Total number of objects irrespective of any pagination parameters."""
-
-    data: List[BorrowCollateralMarket]
+    data: BorrowCollateralOverview
+    """Borrowing market collaterals overview"""
 
     error: None = None
     """Error data. Guaranteed `null` for successful response."""

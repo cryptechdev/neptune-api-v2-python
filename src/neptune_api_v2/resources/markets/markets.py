@@ -13,9 +13,9 @@ from .lend import (
     AsyncLendResourceWithStreamingResponse,
 )
 from ...types import (
-    market_get_tvl_params,
     market_get_merged_params,
     market_get_params_params,
+    market_get_supply_params,
     market_get_overview_params,
     market_get_merged_by_asset_params,
 )
@@ -38,9 +38,9 @@ from .borrow.borrow import (
     AsyncBorrowResourceWithStreamingResponse,
 )
 from ..._base_client import make_request_options
-from ...types.market_get_tvl_response import MarketGetTvlResponse
 from ...types.market_get_merged_response import MarketGetMergedResponse
 from ...types.market_get_params_response import MarketGetParamsResponse
+from ...types.market_get_supply_response import MarketGetSupplyResponse
 from ...types.market_get_overview_response import MarketGetOverviewResponse
 from ...types.market_get_merged_by_asset_response import MarketGetMergedByAssetResponse
 
@@ -254,7 +254,7 @@ class MarketsResource(SyncAPIResource):
             cast_to=MarketGetParamsResponse,
         )
 
-    def get_tvl(
+    def get_supply(
         self,
         *,
         with_text: bool | Omit = omit,
@@ -264,9 +264,9 @@ class MarketsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketGetTvlResponse:
+    ) -> MarketGetSupplyResponse:
         """
-        Get market TVL
+        Get market supply
 
         Args:
           with_text: Include text variation fields
@@ -280,15 +280,15 @@ class MarketsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/api/v1/markets/tvl",
+            "/api/v1/markets/supply",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"with_text": with_text}, market_get_tvl_params.MarketGetTvlParams),
+                query=maybe_transform({"with_text": with_text}, market_get_supply_params.MarketGetSupplyParams),
             ),
-            cast_to=MarketGetTvlResponse,
+            cast_to=MarketGetSupplyResponse,
         )
 
 
@@ -501,7 +501,7 @@ class AsyncMarketsResource(AsyncAPIResource):
             cast_to=MarketGetParamsResponse,
         )
 
-    async def get_tvl(
+    async def get_supply(
         self,
         *,
         with_text: bool | Omit = omit,
@@ -511,9 +511,9 @@ class AsyncMarketsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketGetTvlResponse:
+    ) -> MarketGetSupplyResponse:
         """
-        Get market TVL
+        Get market supply
 
         Args:
           with_text: Include text variation fields
@@ -527,15 +527,17 @@ class AsyncMarketsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/api/v1/markets/tvl",
+            "/api/v1/markets/supply",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"with_text": with_text}, market_get_tvl_params.MarketGetTvlParams),
+                query=await async_maybe_transform(
+                    {"with_text": with_text}, market_get_supply_params.MarketGetSupplyParams
+                ),
             ),
-            cast_to=MarketGetTvlResponse,
+            cast_to=MarketGetSupplyResponse,
         )
 
 
@@ -555,8 +557,8 @@ class MarketsResourceWithRawResponse:
         self.get_params = to_raw_response_wrapper(
             markets.get_params,
         )
-        self.get_tvl = to_raw_response_wrapper(
-            markets.get_tvl,
+        self.get_supply = to_raw_response_wrapper(
+            markets.get_supply,
         )
 
     @cached_property
@@ -584,8 +586,8 @@ class AsyncMarketsResourceWithRawResponse:
         self.get_params = async_to_raw_response_wrapper(
             markets.get_params,
         )
-        self.get_tvl = async_to_raw_response_wrapper(
-            markets.get_tvl,
+        self.get_supply = async_to_raw_response_wrapper(
+            markets.get_supply,
         )
 
     @cached_property
@@ -613,8 +615,8 @@ class MarketsResourceWithStreamingResponse:
         self.get_params = to_streamed_response_wrapper(
             markets.get_params,
         )
-        self.get_tvl = to_streamed_response_wrapper(
-            markets.get_tvl,
+        self.get_supply = to_streamed_response_wrapper(
+            markets.get_supply,
         )
 
     @cached_property
@@ -642,8 +644,8 @@ class AsyncMarketsResourceWithStreamingResponse:
         self.get_params = async_to_streamed_response_wrapper(
             markets.get_params,
         )
-        self.get_tvl = async_to_streamed_response_wrapper(
-            markets.get_tvl,
+        self.get_supply = async_to_streamed_response_wrapper(
+            markets.get_supply,
         )
 
     @cached_property

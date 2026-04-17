@@ -1,17 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-
 from ..._models import BaseModel
-from .borrow.borrow_debt_market import BorrowDebtMarket
-from .borrow.borrow_collateral_market import BorrowCollateralMarket
+from .borrow.borrow_debt_overview import BorrowDebtOverview
+from .borrow.borrow_collateral_overview import BorrowCollateralOverview
 
 __all__ = ["BorrowMarketOverview"]
 
 
 class BorrowMarketOverview(BaseModel):
-    collaterals: List[BorrowCollateralMarket]
-    """Borrowing collateral markets"""
+    collaterals: BorrowCollateralOverview
+    """Borrowing market collaterals overview"""
 
-    debts: List[BorrowDebtMarket]
-    """Borrowing debt markets"""
+    debts: BorrowDebtOverview
+    """Borrowing market debts overview"""

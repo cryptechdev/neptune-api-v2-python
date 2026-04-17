@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["MarketGetTvlParams"]
+__all__ = ["MarketGetSupplyParams"]
 
 
-class MarketGetTvlParams(TypedDict, total=False):
+class MarketGetSupplyParams(TypedDict, total=False):
     with_text: bool
     """Include text variation fields"""
