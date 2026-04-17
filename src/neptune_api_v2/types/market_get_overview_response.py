@@ -2,6 +2,7 @@
 
 from typing import List
 
+from .tvl import Tvl
 from .._models import BaseModel
 from .markets.lend_market import LendMarket
 from .global_market_config import GlobalMarketConfig
@@ -19,6 +20,9 @@ class Data(BaseModel):
 
     lend: List[LendMarket]
     """Current lending markets"""
+
+    tvl: Tvl
+    """Market TVL"""
 
 
 class MarketGetOverviewResponse(BaseModel):

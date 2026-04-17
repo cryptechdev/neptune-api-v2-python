@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .tvl import Tvl as Tvl
 from .user import User as User
 from .user_tx import UserTx as UserTx
 from .interval import Interval as Interval
@@ -26,9 +27,11 @@ from .staking_pool_params import StakingPoolParams as StakingPoolParams
 from .asset_classification import AssetClassification as AssetClassification
 from .global_market_config import GlobalMarketConfig as GlobalMarketConfig
 from .user_get_user_params import UserGetUserParams as UserGetUserParams
+from .market_get_tvl_params import MarketGetTvlParams as MarketGetTvlParams
 from .nept_get_state_params import NeptGetStateParams as NeptGetStateParams
 from .nept_get_params_params import NeptGetParamsParams as NeptGetParamsParams
 from .user_get_user_response import UserGetUserResponse as UserGetUserResponse
+from .market_get_tvl_response import MarketGetTvlResponse as MarketGetTvlResponse
 from .nept_get_state_response import NeptGetStateResponse as NeptGetStateResponse
 from .validation_field_source import ValidationFieldSource as ValidationFieldSource
 from .asset_list_prices_params import AssetListPricesParams as AssetListPricesParams
