@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.5.0 (2026-04-17)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/cryptechdev/neptune-api-v2-python/compare/v0.4.0...v0.5.0)
+
+### Features
+
+* **api:** add TVL, missing balance variants ([10486d5](https://github.com/cryptechdev/neptune-api-v2-python/commit/10486d58a60c4e1744125c00f7cee3b8eb34382e))
+
+
+### Bug Fixes
+
+* ensure file data are only sent as 1 parameter ([1581f6d](https://github.com/cryptechdev/neptune-api-v2-python/commit/1581f6dae176d8896f9d7dcfc79cda9413aa7275))
+
+
+### Chores
+
+* **ci:** remove release-doctor workflow ([39b2df7](https://github.com/cryptechdev/neptune-api-v2-python/commit/39b2df7b359adc03bcad1e4f6521ace263c88393))
+
 ## 0.4.0 (2026-04-09)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/cryptechdev/neptune-api-v2-python/compare/v0.3.0...v0.4.0)
