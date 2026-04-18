@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.1 (2026-04-18)
+
+Full Changelog: [v0.6.0...v0.6.1](https://github.com/cryptechdev/neptune-api-v2-python/compare/v0.6.0...v0.6.1)
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([e3b4463](https://github.com/cryptechdev/neptune-api-v2-python/commit/e3b44635c279a772f8626572cd192601b0b4d62f))
+
+
+### Chores
+
+* **internal:** fix ([6d99eaa](https://github.com/cryptechdev/neptune-api-v2-python/commit/6d99eaacc946f60cc38e251e74d3df1878c85231))
+
 ## 0.6.0 (2026-04-17)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/cryptechdev/neptune-api-v2-python/compare/v0.5.0...v0.6.0)
