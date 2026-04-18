@@ -1,56 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-
 from ...._models import BaseModel
-from .borrow_debt_market import BorrowDebtMarket
+from .borrow_debt_overview import BorrowDebtOverview
 
-__all__ = ["DebtListResponse", "Data", "DataSupply", "DataSupplyExtra", "DataSupplyExtraText"]
-
-
-class DataSupplyExtraText(BaseModel):
-    """Human-readable field variants.
-
-    Will not be null when query param `with_text` is `true`.
-    """
-
-    balance: str
-
-    shares: str
-
-
-class DataSupplyExtra(BaseModel):
-    text: Optional[DataSupplyExtraText] = None
-    """Human-readable field variants.
-
-    Will not be null when query param `with_text` is `true`.
-    """
-
-
-class DataSupply(BaseModel):
-    """Supply breakdown for debt markets"""
-
-    balance: str
-    """Sum USD value of market balance"""
-
-    extra: DataSupplyExtra
-
-    shares: str
-    """Sum USD value of market shares"""
-
-
-class Data(BaseModel):
-    """Borrowing market debts overview"""
-
-    contents: List[BorrowDebtMarket]
-    """Borrowing debt markets"""
-
-    supply: DataSupply
-    """Supply breakdown for debt markets"""
+__all__ = ["DebtListResponse"]
 
 
 class DebtListResponse(BaseModel):
-    data: Data
+    data: BorrowDebtOverview
     """Borrowing market debts overview"""
 
     error: None = None
