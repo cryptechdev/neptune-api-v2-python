@@ -20,6 +20,7 @@ from .merged_market import MergedMarket as MergedMarket
 from .asset_metadata import AssetMetadata as AssetMetadata
 from .staking_pool_full import StakingPoolFull as StakingPoolFull
 from .asset_rate_history import AssetRateHistory as AssetRateHistory
+from .market_supply_pool import MarketSupplyPool as MarketSupplyPool
 from .staking_pool_state import StakingPoolState as StakingPoolState
 from .asset_list_response import AssetListResponse as AssetListResponse
 from .asset_price_history import AssetPriceHistory as AssetPriceHistory
@@ -35,11 +36,13 @@ from .validation_field_source import ValidationFieldSource as ValidationFieldSou
 from .asset_list_prices_params import AssetListPricesParams as AssetListPricesParams
 from .market_get_merged_params import MarketGetMergedParams as MarketGetMergedParams
 from .market_get_params_params import MarketGetParamsParams as MarketGetParamsParams
+from .market_get_supply_params import MarketGetSupplyParams as MarketGetSupplyParams
 from .nept_get_params_response import NeptGetParamsResponse as NeptGetParamsResponse
 from .asset_list_prices_response import AssetListPricesResponse as AssetListPricesResponse
 from .market_get_merged_response import MarketGetMergedResponse as MarketGetMergedResponse
 from .market_get_overview_params import MarketGetOverviewParams as MarketGetOverviewParams
 from .market_get_params_response import MarketGetParamsResponse as MarketGetParamsResponse
+from .market_get_supply_response import MarketGetSupplyResponse as MarketGetSupplyResponse
 from .user_get_tx_history_params import UserGetTxHistoryParams as UserGetTxHistoryParams
 from .market_get_overview_response import MarketGetOverviewResponse as MarketGetOverviewResponse
 from .status_check_health_response import StatusCheckHealthResponse as StatusCheckHealthResponse

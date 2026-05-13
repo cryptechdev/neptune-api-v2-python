@@ -7,6 +7,7 @@ from .borrow_debt_state import BorrowDebtState as BorrowDebtState
 from .borrow_debt_config import BorrowDebtConfig as BorrowDebtConfig
 from .borrow_debt_market import BorrowDebtMarket as BorrowDebtMarket
 from .debt_list_response import DebtListResponse as DebtListResponse
+from .borrow_debt_overview import BorrowDebtOverview as BorrowDebtOverview
 from .collateral_list_params import CollateralListParams as CollateralListParams
 from .borrow_collateral_state import BorrowCollateralState as BorrowCollateralState
 from .borrow_debt_market_data import BorrowDebtMarketData as BorrowDebtMarketData
@@ -14,7 +15,9 @@ from .borrow_collateral_config import BorrowCollateralConfig as BorrowCollateral
 from .borrow_collateral_market import BorrowCollateralMarket as BorrowCollateralMarket
 from .collateral_list_response import CollateralListResponse as CollateralListResponse
 from .debt_get_by_asset_params import DebtGetByAssetParams as DebtGetByAssetParams
+from .borrow_collateral_overview import BorrowCollateralOverview as BorrowCollateralOverview
 from .debt_get_by_asset_response import DebtGetByAssetResponse as DebtGetByAssetResponse
 from .borrow_collateral_market_data import BorrowCollateralMarketData as BorrowCollateralMarketData
 from .collateral_get_by_asset_params import CollateralGetByAssetParams as CollateralGetByAssetParams
+from .borrow_collateral_market_supply import BorrowCollateralMarketSupply as BorrowCollateralMarketSupply
 from .collateral_get_by_asset_response import CollateralGetByAssetResponse as CollateralGetByAssetResponse

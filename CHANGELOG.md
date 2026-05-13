@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.7.0 (2026-05-13)
+
+Full Changelog: [v0.6.0...v0.7.0](https://github.com/cryptechdev/neptune-api-v2-python/compare/v0.6.0...v0.7.0)
+
+### Features
+
+* **internal/types:** support eagerly validating pydantic iterators ([e336f57](https://github.com/cryptechdev/neptune-api-v2-python/commit/e336f57b22b5cabf9bae29b676a789ea9d2b7842))
+* support setting headers via env ([b5ef889](https://github.com/cryptechdev/neptune-api-v2-python/commit/b5ef88979d72f7a372f340502025a1be6c69216d))
+
+
+### Bug Fixes
+
+* **client:** add missing f-string prefix in file type error message ([305e8fe](https://github.com/cryptechdev/neptune-api-v2-python/commit/305e8fe198c890cb71ee05a3eddb4c8e6d2a19f0))
+* use correct field name format for multipart file arrays ([e892969](https://github.com/cryptechdev/neptune-api-v2-python/commit/e892969e96a26dd08f61f88dac7812e73df8e16e))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([e3b4463](https://github.com/cryptechdev/neptune-api-v2-python/commit/e3b44635c279a772f8626572cd192601b0b4d62f))
+
+
+### Chores
+
+* **internal:** fix ([6d99eaa](https://github.com/cryptechdev/neptune-api-v2-python/commit/6d99eaacc946f60cc38e251e74d3df1878c85231))
+* **internal:** more robust bootstrap script ([f0b98d2](https://github.com/cryptechdev/neptune-api-v2-python/commit/f0b98d296af0176f85591c6a2cabd1a32bcb56ec))
+* **internal:** reformat pyproject.toml ([9434760](https://github.com/cryptechdev/neptune-api-v2-python/commit/94347608eb5c9304bec7a087ad631a453186b421))
+
 ## 0.6.0 (2026-04-17)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/cryptechdev/neptune-api-v2-python/compare/v0.5.0...v0.6.0)
